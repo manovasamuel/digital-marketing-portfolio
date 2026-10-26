@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111111" />
+  <title>Meta Ads Lead Generation &amp; Tracking Setup — ReelForge AI — Manova Samuel</title>
+  <meta name="description" content="Meta Ads lead generation campaign build and tracking setup case study for ReelForge AI by Manova Samuel. Advantage+ ad set architecture, 9:16 video creative development, Meta Pixel PageView verification, and measurement planning." />
+  <meta name="author" content="Manova Samuel" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Meta Ads Lead Generation &amp; Tracking Setup — ReelForge AI — Manova Samuel" />
+  <meta property="og:description" content="A practical Meta Ads campaign build for ReelForge AI: Leads objective, Advantage+ ad set, 9:16 portrait video creative, Meta Pixel browser verification, and pre-launch measurement framework." />
+  <meta property="og:image" content="assets/images/meta-ads/video_poster.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+
+  <!-- Inherits the portfolio design system -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+
+  <style>
+    /* ==========================================================================
+       DEDICATED META ADS CASE STUDY PAGE
+       Preserves the approved Nothing Technology-inspired design system:
+       - Dark charcoal (#111111) and warm off-white (#ecebe4 / #f2f0e9) palette
+       - Subtle widely spaced dot grid (72px spacing, 1.15px radius)
+       - Instrument Serif editorial headlines
+       - Space Grotesk body typography
+       - Local NDot55 font for technical labels and section numbers
+       - Thin borders, restrained accent colors, clean image-and-text layouts
+       ========================================================================== */
+
+    .meta-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-ink);
+      background-image: radial-gradient(circle at 50% 50%, var(--dot-dark-color) var(--dot-radius), transparent calc(var(--dot-radius) + 0.35px));
+      background-size: var(--dot-spacing-x) var(--dot-spacing-y);
+      background-repeat: repeat;
+      background-position: 0 0;
+      color: var(--color-text-light);
+    }
+
+    /* Top Navigation Bar */
+    .meta-topstrip {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px var(--pad-x);
+      border-bottom: 1px solid var(--color-border-dark);
+      background-color: rgba(17, 17, 17, 0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      gap: 16px;
+    }
+
+    .meta-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .meta-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-muted-light);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 999px;
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .meta-back-btn:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      border-color: var(--color-paper);
+      transform: translateX(-3px);
+    }
+
+    .meta-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #6a6961;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .meta-breadcrumb-sep { opacity: 0.45; }
+
+    .meta-breadcrumb-active {
+      color: var(--color-muted-light);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .meta-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .meta-nav-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-text-dark);
+      background: var(--color-paper);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--color-paper);
+      transition: transform var(--transition-fast), background var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .meta-nav-action:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Main Container */
+    .meta-page-main {
+      flex: 1;
+      max-width: var(--max-width);
+      width: 100%;
+      margin: 0 auto;
+      padding: 64px var(--pad-x) 110px;
+      display: flex;
+      flex-direction: column;
+      gap: 72px;
+    }
+
+    /* Section Eyebrow */
+    .meta-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted-dark);
+      margin-bottom: 16px;
+    }
+
+    .meta-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--color-muted-dark);
+      flex-shrink: 0;
+    }
+
+    /* --- SECTION A: HERO --- */
+    .meta-hero {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .meta-hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(38px, 5.8vw, 76px);
+      font-weight: 400;
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      color: var(--color-text-light);
+      margin: 0;
+      max-width: 960px;
+    }
+
+    .meta-hero-tagline {
+      font-family: var(--font-sans);
+      font-size: clamp(17px, 2.1vw, 22px);
+      color: var(--color-muted-light);
+      line-height: 1.5;
+      margin: 0;
+      max-width: 820px;
+    }
+
+    .meta-hero-tagline em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--color-paper);
+    }
+
+    .meta-badges-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .meta-badge-amber {
+      color: #dfad52;
+      background: rgba(223, 173, 82, 0.09);
+      border: 1px solid rgba(223, 173, 82, 0.28);
+    }
+
+    .meta-badge-muted {
+      color: var(--color-muted-light);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--color-border-dark);
+    }
+
+    /* Metadata Strip */
+    .meta-meta-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 20px;
+      padding: 24px 0;
+      border-top: 1px solid var(--color-border-dark);
+      border-bottom: 1px solid var(--color-border-dark);
+    }
+
+    .meta-meta-col {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .meta-meta-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6a6961;
+    }
+
+    .meta-meta-val {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--color-text-light);
+    }
+
+    .meta-meta-val.mono-val {
+      font-family: 'Noto Sans Mono', monospace;
+      font-size: 12.5px;
+    }
+
+    /* Hero Showcase Panel */
+    .meta-showcase {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #141413;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+    }
+
+    .meta-showcase-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: #1b1b1a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .meta-showcase-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .meta-showcase-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .meta-showcase-meta-logo {
+      height: 18px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+
+    .meta-showcase-title-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-showcase-title-block b {
+      font-size: 13px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .meta-showcase-title-block span {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: #8c8b82;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .meta-showcase-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .meta-showcase-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-paper);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+
+    .meta-showcase-link:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+    }
+
+    .meta-showcase-media {
+      width: 100%;
+      background: #0d0d0d;
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .meta-showcase-img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: contain;
+      object-position: top center;
+      display: block;
+    }
+
+    .meta-showcase-foot {
+      padding: 12px 20px;
+      background: #141413;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: #77766d;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* --- SECTION: GENERAL CARDS & PANELS --- */
+    .meta-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .meta-section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .meta-section-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.8vw, 44px);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      color: var(--color-text-light);
+      margin: 0;
+    }
+
+    .meta-section-head p {
+      font-size: 14px;
+      color: var(--color-muted-light);
+      max-width: 760px;
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .meta-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .meta-card-panel {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 28px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .meta-card-panel h3 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--color-paper);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .meta-card-panel p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--color-muted-light);
+      margin: 0;
+    }
+
+    .meta-boundary-note {
+      padding: 14px 18px;
+      background: rgba(223, 173, 82, 0.06);
+      border-left: 2px solid #dfad52;
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #cfceca;
+    }
+
+    .meta-boundary-note b {
+      color: #dfad52;
+      font-weight: 600;
+    }
+
+    /* --- SECTION B: WARM OFF-WHITE ARCHITECTURE PANEL --- */
+    .meta-warm-surface {
+      background-color: var(--color-paper);
+      background-image: radial-gradient(circle at 50% 50%, var(--dot-light-color) var(--dot-radius), transparent calc(var(--dot-radius) + 0.35px));
+      background-size: var(--dot-spacing-x) var(--dot-spacing-y);
+      background-repeat: repeat;
+      background-position: 0 0;
+      color: var(--color-text-dark);
+      border-radius: 10px;
+      padding: 38px 36px 42px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .meta-warm-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+      padding-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .meta-warm-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .meta-warm-brand img.meta-mark {
+      height: 20px;
+      width: auto;
+    }
+
+    .meta-warm-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.6vw, 42px);
+      font-weight: 400;
+      color: var(--color-text-dark);
+      margin: 0;
+      letter-spacing: -0.03em;
+    }
+
+    .meta-naming-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .meta-naming-card {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(17, 17, 17, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .meta-naming-tier {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #63625b;
+    }
+
+    .meta-naming-formula {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #111111;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .meta-naming-val {
+      font-family: 'Noto Sans Mono', monospace;
+      font-size: 12.5px;
+      color: #1a4f8b;
+      background: rgba(26, 79, 139, 0.07);
+      padding: 8px 12px;
+      border-radius: 4px;
+      word-break: break-all;
+    }
+
+    /* --- SECTION C: DUAL EVIDENCE & SCREENSHOTS --- */
+    .meta-dual-evidence {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .meta-dark-evidence-card {
+      background: #141413;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-ev-head {
+      padding: 12px 18px;
+      background: #1b1b1a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #8c8b82;
+    }
+
+    .meta-ev-img-wrap {
+      width: 100%;
+      background: #0d0d0d;
+      cursor: zoom-in;
+    }
+
+    .meta-ev-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .meta-ev-caption {
+      padding: 14px 18px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #9c9b92;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .meta-ev-caption strong {
+      color: var(--color-paper);
+    }
+
+    /* --- SECTION D: CREATIVE DEVELOPMENT & VIDEO PLAYER --- */
+    .meta-creative-stage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .meta-creative-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .meta-creative-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+    }
+
+    .meta-concept-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #dfad52;
+    }
+
+    .meta-format-badge {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8c8b82;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Video Player Enclosure */
+    .meta-video-container {
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000000;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+      position: relative;
+    }
+
+    .meta-video-player {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 16;
+      display: block;
+      background: #000000;
+      object-fit: cover;
+    }
+
+    /* Static Creative Image Enclosure */
+    .meta-image-container {
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #0a0a0a;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .meta-image-artwork {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 16;
+      display: block;
+      object-fit: cover;
+    }
+
+    .meta-creative-caption {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #a8a79d;
+      text-align: center;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .meta-creative-caption b {
+      color: var(--color-paper);
+    }
+
+    /* Copy Matrix */
+    .meta-copy-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.02);
+      margin-top: 10px;
+    }
+
+    .meta-copy-table th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8c8b82;
+      background: #181817;
+      padding: 12px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border-dark);
+    }
+
+    .meta-copy-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .meta-copy-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .meta-copy-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #dfad52;
+      width: 22%;
+      vertical-align: top;
+    }
+
+    .meta-copy-val {
+      color: #f2f0e9;
+    }
+
+    /* --- SECTION E: TRACKING & EVENTS MANAGER --- */
+    .meta-tracking-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .meta-tracking-step {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .meta-ts-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #dfad52;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-tracking-step h4 {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 400;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .meta-tracking-step p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #a8a79d;
+      margin: 0;
+    }
+
+    /* Events Manager Quad Grid */
+    .meta-events-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .meta-event-card {
+      background: #141413;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-event-head {
+      padding: 12px 14px;
+      background: #1b1b1a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8c8b82;
+    }
+
+    .meta-event-count {
+      color: var(--color-paper);
+      font-weight: 600;
+    }
+
+    .meta-event-img-wrap {
+      width: 100%;
+      background: #ffffff;
+      padding: 8px;
+      cursor: zoom-in;
+    }
+
+    .meta-event-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .meta-event-caption {
+      padding: 10px 14px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: #8c8b82;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* --- SECTION F: MEASUREMENT PLAN & DECISION TREE --- */
+    .meta-journey-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .meta-journey-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+
+    .meta-jn-num {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: #dfad52;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-journey-card h4 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .meta-journey-card span.event-name {
+      font-family: 'Noto Sans Mono', monospace;
+      font-size: 10.5px;
+      color: #4da3ff;
+      background: rgba(77, 163, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    .meta-formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .meta-formula-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .meta-formula-name {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #dfad52;
+    }
+
+    .meta-formula-calc {
+      font-family: 'Noto Sans Mono', monospace;
+      font-size: 12.5px;
+      color: var(--color-paper);
+    }
+
+    .meta-formula-note {
+      font-size: 11px;
+      color: #77766d;
+    }
+
+    /* Decision Tree Table */
+    .meta-tree-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .meta-tree-table th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8c8b82;
+      background: #181817;
+      padding: 12px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border-dark);
+    }
+
+    .meta-tree-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .meta-tree-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .meta-symptom-cell {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #e57373;
+      width: 28%;
+      vertical-align: top;
+    }
+
+    /* --- SECTION G: RESULTS & LIMITATIONS --- */
+    .meta-learnings-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .meta-dark-panel {
+      background: #141413;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .meta-dark-panel h3 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--color-paper);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .meta-dark-panel p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--color-muted-light);
+      margin: 0;
+    }
+
+    .meta-limits-list, .meta-steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .meta-limits-list li {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #d1cfc7;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .meta-limits-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #e57373;
+    }
+
+    .meta-limits-list li b {
+      color: #ffffff;
+    }
+
+    .meta-steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #d1cfc7;
+    }
+
+    .meta-step-bullet {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-paper);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .meta-project-status-box {
+      margin-top: 6px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 6px;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #cfceca;
+    }
+
+    /* --- FOOTER --- */
+    .meta-page-footer {
+      border-top: 1px solid var(--color-border-dark);
+      padding: 48px var(--pad-x) 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .meta-footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .meta-pill-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-muted-light);
+      text-decoration: none;
+      padding: 8px 18px;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 999px;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .meta-pill-link:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      border-color: var(--color-paper);
+    }
+
+    .meta-footer-brand {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #6a6961;
+      text-transform: uppercase;
+    }
+
+    .meta-footer-brand b {
+      color: var(--color-paper);
+    }
+
+    /* --- ACCESSIBLE LIGHTBOX MODAL --- */
+    .meta-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10, 10, 10, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .meta-lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .meta-lightbox-dialog {
+      max-width: 95vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .meta-lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    .meta-lightbox-caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #cfceca;
+      letter-spacing: 0.04em;
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .meta-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast);
+    }
+
+    .meta-lightbox-close:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 1024px) {
+      .meta-naming-grid,
+      .meta-creative-stage,
+      .meta-dual-evidence,
+      .meta-tracking-flow,
+      .meta-events-grid,
+      .meta-formulas-grid,
+      .meta-learnings-wrap {
+        grid-template-columns: 1fr 1fr;
+      }
+      .meta-journey-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .meta-split-grid,
+      .meta-naming-grid,
+      .meta-creative-stage,
+      .meta-dual-evidence,
+      .meta-tracking-flow,
+      .meta-events-grid,
+      .meta-journey-grid,
+      .meta-formulas-grid,
+      .meta-learnings-wrap {
+        grid-template-columns: 1fr;
+      }
+      .meta-topstrip {
+        padding: 12px 16px;
+      }
+      .meta-breadcrumb {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="meta-page">
+
+  <!-- Sticky Top Navigation -->
+  <header class="meta-topstrip" role="banner">
+    <div class="meta-nav-left">
+      <a href="index.html#digital-marketing" class="meta-back-btn" id="topBackBtn">
+        <span aria-hidden="true">&#8592;</span> Return to Portfolio
+      </a>
+      <div class="meta-breadcrumb" aria-label="Breadcrumb">
+        <span>Portfolio</span>
+        <span class="meta-breadcrumb-sep">/</span>
+        <span>Digital Marketing</span>
+        <span class="meta-breadcrumb-sep">/</span>
+        <span class="meta-breadcrumb-active">Meta Ads Lead Generation &amp; Tracking</span>
+      </div>
+    </div>
+    <div class="meta-nav-right">
+      <a href="https://reel-forge-ai-psi.vercel.app/" target="_blank" rel="noopener noreferrer" class="meta-nav-action">
+        <span>Live Product</span> <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <main class="meta-page-main" id="mainContent">
+
+    <!-- SECTION A: HERO -->
+    <section class="meta-hero" aria-labelledby="heroHeadline">
+      <div class="meta-eyebrow reveal">02.2 / PERFORMANCE MARKETING · PAID SOCIAL &amp; TRACKING</div>
+      
+      <h1 class="meta-hero-title reveal delay-1" id="heroHeadline">
+        From ad concept<br>to measurable funnel.
+      </h1>
+
+      <p class="meta-hero-tagline reveal delay-2">
+        A practical Meta Ads campaign build for <em>ReelForge AI</em> — covering campaign hierarchy, 9:16 video creative development, website tracking, and pre-launch measurement planning.
+      </p>
+
+      <div class="meta-badges-strip reveal delay-3">
+        <span class="meta-badge meta-badge-amber">
+          <span aria-hidden="true">✦</span> Practice Build · Draft in Ads Manager
+        </span>
+        <span class="meta-badge meta-badge-muted">
+          No Live Campaign Spend Claimed
+        </span>
+        <span class="meta-badge meta-badge-muted">
+          Objective: Plan for Website Registrations
+        </span>
+      </div>
+
+      <!-- Metadata Strip -->
+      <div class="meta-meta-strip reveal delay-3" aria-label="Project Metadata">
+        <div class="meta-meta-col">
+          <span class="meta-meta-label">Category</span>
+          <span class="meta-meta-val">Performance Marketing / Paid Social</span>
+        </div>
+        <div class="meta-meta-col">
+          <span class="meta-meta-label">Brand &amp; Product</span>
+          <span class="meta-meta-val">ReelForge AI (Social Intelligence)</span>
+        </div>
+        <div class="meta-meta-col">
+          <span class="meta-meta-label">Campaign Status</span>
+          <span class="meta-meta-val">Draft / Unpublished (₹0.00 Delivery)</span>
+        </div>
+        <div class="meta-meta-col">
+          <span class="meta-meta-label">Primary Conversion</span>
+          <span class="meta-meta-val">CompleteRegistration (Website)</span>
+        </div>
+        <div class="meta-meta-col">
+          <span class="meta-meta-label">Targeting Setup</span>
+          <span class="meta-meta-val mono-val">India Tech Cities · 22–45 · Advantage+</span>
+        </div>
+        <div class="meta-meta-col">
+          <span class="meta-meta-label">Budget Strategy</span>
+          <span class="meta-meta-val mono-val">Advantage Campaign Budget (CBO)</span>
+        </div>
+      </div>
+
+      <!-- Hero Visual Showcase: Campaign Overview Evidence -->
+      <div class="meta-showcase reveal-scale" aria-label="Meta Ads Campaign Overview Evidence">
+        <div class="meta-showcase-bar">
+          <div class="meta-showcase-brand">
+            <img src="assets/images/reelforge/reelforge_logo.png" alt="ReelForge AI Official Logo" class="meta-showcase-logo" />
+            <img src="assets/images/certifications/meta-ab-testing/logo.svg" alt="Meta Logo" class="meta-showcase-meta-logo" />
+            <div class="meta-showcase-title-block">
+              <b>ReelForge AI | Leads | India | Oct 2026</b>
+              <span>Meta Ads Manager · Campaign Hierarchy &amp; Budget Setup</span>
+            </div>
+          </div>
+          <div class="meta-showcase-actions">
+            <a href="https://reel-forge-ai-psi.vercel.app/" target="_blank" rel="noopener noreferrer" class="meta-showcase-link">
+              <span>Product Website</span> <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="meta-showcase-media" role="button" tabindex="0" data-lightbox="assets/images/meta-ads/p3_img2_6.jpeg" data-caption="Figure 1: Campaign Hierarchy & Budget Setup in Meta Ads Manager. Documents draft campaign 'ReelForge AI | Leads | India | Oct 2026' configured with Leads objective and Advantage+ campaign budget set to ₹100.00/day." aria-label="Click to enlarge Figure 1 screenshot">
+          <img src="assets/images/meta-ads/p3_img2_6.jpeg" alt="Meta Ads Manager interface showing ReelForge AI Leads campaign with Advantage+ budget strategy" class="meta-showcase-img" />
+        </div>
+
+        <div class="meta-showcase-foot">
+          <span>Figure 1: Campaign Setup &amp; Budget Strategy (Meta Ads Manager)</span>
+          <span>Status: Draft / Unpublished · Zero ad delivery</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 01: PROJECT SNAPSHOT -->
+    <section class="meta-section reveal" aria-labelledby="snapshotTitle">
+      <div class="meta-eyebrow">01 / PROJECT SNAPSHOT</div>
+      <div class="meta-section-head">
+        <h2 id="snapshotTitle">A strategy built for account registration.</h2>
+        <p>A genuine practice build: campaign draft, original creative concepts, and website event investigation. No paid delivery was launched.</p>
+      </div>
+
+      <div class="meta-split-grid">
+        <div class="meta-card-panel">
+          <div class="mono" style="color: #8c8b82;">PROJECT OBJECTIVE</div>
+          <h3>Generate Website Registrations</h3>
+          <p>
+            Design a structured Meta lead-generation workflow that attracts relevant digital marketers and content creators, encourages account registration on Vercel, and measures progression toward free-trial activation and paid subscription.
+          </p>
+          <div class="mono" style="color: #8c8b82; margin-top: 8px;">PLATFORM &amp; TOOLS</div>
+          <p>
+            Meta Ads Manager, Meta Events Manager, Meta Pixel, ChatGPT-assisted copywriting, and Pomelli for motion graphic creative generation.
+          </p>
+        </div>
+
+        <div class="meta-card-panel">
+          <div class="mono" style="color: #8c8b82;">PRE-LAUNCH LIMITATION</div>
+          <h3>Draft Status &amp; Configuration Reality</h3>
+          <p>
+            The campaign was structured with the Leads objective and Website conversion location. However, in the account screenshot, the specific Conversion Event dropdown remained unselected.
+          </p>
+          <div class="meta-boundary-note">
+            <b>Honesty Boundary:</b> Account-registration event mapping requires end-to-end tag verification before any live media launch. Zero live clicks, conversions, or revenue are claimed.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02: CAMPAIGN ARCHITECTURE (WARM CONTRAST SURFACE) -->
+    <section class="meta-warm-surface" aria-labelledby="archTitle">
+      <div class="meta-warm-head">
+        <div class="meta-warm-brand">
+          <img src="assets/images/certifications/meta-ab-testing/logo.svg" alt="Meta Logo" class="meta-mark" />
+          <div class="mono" style="color: #63625b;">02 / CAMPAIGN ARCHITECTURE</div>
+        </div>
+        <h2 id="archTitle">A clear structure from campaign to ad.</h2>
+      </div>
+
+      <p style="font-size: 14px; line-height: 1.7; color: #3b3a35; margin: 0; max-width: 820px;">
+        Consistent naming conventions make the advertising account easier to operate, analyze, and scale. Every level communicates critical targeting and creative attributes without opening ad settings.
+      </p>
+
+      <!-- Naming Conventions Matrix -->
+      <div class="meta-naming-grid">
+        <div class="meta-naming-card">
+          <span class="meta-naming-tier">CAMPAIGN LEVEL</span>
+          <span class="meta-naming-formula">brand + objective + market + period</span>
+          <div class="meta-naming-val">ReelForge AI | Leads | India | Oct 2026</div>
+        </div>
+
+        <div class="meta-naming-card">
+          <span class="meta-naming-tier">AD SET LEVEL</span>
+          <span class="meta-naming-formula">approach + audience + location + age</span>
+          <div class="meta-naming-val">Advantage+ | Marketing Professionals | India Tech Cities | 22-45</div>
+        </div>
+
+        <div class="meta-naming-card">
+          <span class="meta-naming-tier">AD LEVEL</span>
+          <span class="meta-naming-formula">format + hook + CTA + version</span>
+          <div class="meta-naming-val">Video | Stop Guessing | Sign Up | V1</div>
+        </div>
+      </div>
+
+      <!-- Evidence: Ad Set Setup Screen -->
+      <div class="meta-dark-evidence-card">
+        <div class="meta-ev-head">
+          <span>AD SET CONFIGURATION OBSERVED</span>
+          <span>WEBSITE LEADS LOCATION</span>
+        </div>
+        <div class="meta-ev-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/meta-ads/p3_img1_7.jpeg" data-caption="Figure 2: Ad Set Configuration (Meta Ads Manager). Documents conversion location set to Website, performance goal set to 'Maximise number of leads', and dataset linked to 'ReelForge AI | Website | Lead Tracking'. Note the purple boundary highlighting that the specific Conversion event dropdown is unselected." aria-label="Click to enlarge Figure 2 screenshot">
+          <img src="assets/images/meta-ads/p3_img1_7.jpeg" alt="Meta Ads Manager ad set settings showing conversion location Website and unselected conversion event" />
+        </div>
+        <div class="meta-ev-caption">
+          <strong>Figure 2: Ad Set Level Setup.</strong> Demonstrates the Advantage+ audience setup and Website conversion destination. The highlighted box reveals an essential pre-launch finding: the specific conversion action must be mapped to <code>CompleteRegistration</code> before publishing.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: CREATIVE DEVELOPMENT & FEATURED VIDEO -->
+    <section class="meta-section" aria-labelledby="creativeTitle">
+      <div class="meta-eyebrow">03 / CREATIVE DEVELOPMENT</div>
+      <div class="meta-section-head">
+        <h2 id="creativeTitle">Two creative directions, one product position.</h2>
+        <p>Created with ChatGPT-assisted prompting and Pomelli. The original promotional 9:16 video creative is embedded below alongside the positioning artwork.</p>
+      </div>
+
+      <!-- Featured Creative Showcase: Video + Static Artwork -->
+      <div class="meta-creative-stage">
+        
+        <!-- Concept A: Featured Promotional Video -->
+        <div class="meta-creative-col">
+          <div class="meta-creative-header">
+            <span class="meta-concept-tag">CREATIVE A · PROBLEM-LED</span>
+            <span class="meta-format-badge">9:16 MOTION VIDEO · FEATURED</span>
+          </div>
+
+          <div class="meta-video-container reveal-scale">
+            <video 
+              class="meta-video-player"
+              controls
+              playsinline
+              preload="metadata"
+              poster="assets/images/meta-ads/video_poster.jpg"
+              aria-label="ReelForge AI promotional creative video in 9:16 portrait format"
+            >
+              <source src="assets/videos/pomelli_creative_video_9_16_1021.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <p class="meta-creative-caption">
+            <b>Figure 3A: Featured Video Creative (9:16 Portrait).</b> Problem-led motion creative ("Stop Guessing What to Post") produced for ReelForge AI using Pomelli. Native controls enabled; unmuted playback available on demand.
+          </p>
+        </div>
+
+        <!-- Concept B: Brand Positioning Artwork -->
+        <div class="meta-creative-col">
+          <div class="meta-creative-header">
+            <span class="meta-concept-tag">CREATIVE B · BRAND POSITIONING</span>
+            <span class="meta-format-badge">1080 × 1920 STATIC ARTWORK</span>
+          </div>
+
+          <div class="meta-image-container" role="button" tabindex="0" data-lightbox="assets/images/meta-ads/creative_b_artwork.jpg" data-caption="Figure 3B: Concept B Artwork ('Deconstruct Attention. Engineer Growth.'). 1080x1920 static creative exploring brand positioning and frame-by-frame content intelligence." aria-label="Click to enlarge Figure 3B artwork">
+            <img 
+              src="assets/images/meta-ads/creative_b_artwork.jpg" 
+              alt="Creative B artwork showing 'Deconstruct Attention. Engineer Growth' with technical waveform visual" 
+              class="meta-image-artwork"
+            />
+          </div>
+
+          <p class="meta-creative-caption">
+            <b>Figure 3B: Concept B Static Concept.</b> Secondary creative angle testing high-level positioning: <em>"Deconstruct Attention. Engineer Growth."</em> Designed for side-by-side A/B creative testing against the problem-led video.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Creative Copy Matrix -->
+      <div class="meta-card-panel">
+        <div class="mono" style="color: #dfad52;">SELECTED AD CONCEPT &amp; COPY HIERARCHY</div>
+        <h3>“Stop Guessing What to Post.”</h3>
+        <p>
+          The problem-led hook makes audience pain immediate and relatable for social media managers. The supporting copy directly connects competitor video analysis to an actionable, data-backed content roadmap.
+        </p>
+
+        <table class="meta-copy-table" aria-label="Selected Ad Copy Breakdown">
+          <thead>
+            <tr>
+              <th scope="col">Element</th>
+              <th scope="col">Authored Ad Copy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="meta-copy-label">Primary Text</td>
+              <td class="meta-copy-val">
+                Still guessing what content to post? ReelForge AI analyzes competitors and high-performing social content to uncover what makes content work - so you can build a smarter content strategy instead of guessing.
+              </td>
+            </tr>
+            <tr>
+              <td class="meta-copy-label">Headline</td>
+              <td class="meta-copy-val">
+                Stop Guessing What to Post
+              </td>
+            </tr>
+            <tr>
+              <td class="meta-copy-label">Description</td>
+              <td class="meta-copy-val">
+                Discover your brand’s Content DNA.
+              </td>
+            </tr>
+            <tr>
+              <td class="meta-copy-label">CTA Button</td>
+              <td class="meta-copy-val" style="font-weight: 600; color: #dfad52;">
+                SIGN UP
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="meta-boundary-note" style="margin-top: 8px;">
+          <b>Creative-Format Principle:</b> Static image communicates value quickly within 1.5 seconds; video introduces movement, sound, and sequence. In a live campaign, neither format is assumed to win before a controlled A/B test.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04: AD BUILD & DESTINATION -->
+    <section class="meta-section" aria-labelledby="adBuildTitle">
+      <div class="meta-eyebrow">04 / AD BUILD &amp; DESTINATION</div>
+      <div class="meta-section-head">
+        <h2 id="adBuildTitle">Configured for a website destination.</h2>
+        <p>The Ad level connects the creative asset, social profile identity, ad copy, CTA button, and landing page destination.</p>
+      </div>
+
+      <div class="meta-split-grid">
+        <!-- Evidence: Ads Manager Ad Preview -->
+        <div class="meta-dark-evidence-card">
+          <div class="meta-ev-head">
+            <span>ADS MANAGER PREVIEW + DESTINATION</span>
+            <span>MOBILE FEED &amp; REELS PLACEMENTS</span>
+          </div>
+          <div class="meta-ev-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/meta-ads/p5_img1_11.jpeg" data-caption="Figure 4: Ads Manager Preview & Destination URL. Displays the video ad preview with 'Stop Guessing What to Post', 'Sign Up' call-to-action button, and destination URL set to https://reel-forge-ai-psi.vercel.app/." aria-label="Click to enlarge Figure 4 screenshot">
+            <img src="assets/images/meta-ads/p5_img1_11.jpeg" alt="Meta Ads Manager ad editor showing preview with video creative, Sign Up button, and Vercel URL" />
+          </div>
+          <div class="meta-ev-caption">
+            <strong>Figure 4: Ad Setup &amp; Preview.</strong> Documents the integration of the video creative with the ReelForge AI page identity, primary text, and verified website destination URL.
+          </div>
+        </div>
+
+        <div class="meta-card-panel">
+          <div class="mono" style="color: #8c8b82;">SPECIFICATION DETAILS</div>
+          <h3>Draft Ad Parameters</h3>
+          <ul class="meta-limits-list" style="margin-top: 6px;">
+            <li><b>Ad Name:</b> <code>Video | Stop Guessing | Sign Up | V1</code></li>
+            <li><b>Identity:</b> ReelForge AI Facebook Page + Instagram Profile</li>
+            <li><b>Format:</b> Single Video / Motion Graphic (9:16 Vertical)</li>
+            <li><b>Destination URL:</b> <code>https://reel-forge-ai-psi.vercel.app/</code></li>
+            <li><b>Call to Action:</b> Sign Up</li>
+            <li><b>Partnership Ad:</b> OFF (First-party brand deployment)</li>
+          </ul>
+
+          <div class="meta-boundary-note" style="margin-top: 10px;">
+            <b>Pre-Launch QA Check:</b> Review suggested product/source information in Ads Manager and ensure website SSL and mobile landing page UX are fully verified prior to publishing.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05: TRACKING IMPLEMENTATION -->
+    <section class="meta-section" aria-labelledby="trackingTitle">
+      <div class="meta-eyebrow">05 / TRACKING IMPLEMENTATION</div>
+      <div class="meta-section-head">
+        <h2 id="trackingTitle">Pixel request verified in the browser.</h2>
+        <p>A network request is empirical evidence that the browser attempted to send an event; Events Manager later confirmed active PageView reception.</p>
+      </div>
+
+      <!-- Network Request Evidence Card -->
+      <div class="meta-dark-evidence-card">
+        <div class="meta-ev-head">
+          <span>BROWSER DEVELOPER TOOLS · NETWORK INSPECTOR</span>
+          <span>QUERY PARAMETER: ev=PageView</span>
+        </div>
+        <div class="meta-ev-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/meta-ads/p6_img1_13.jpeg" data-caption="Figure 5: Browser Network Request for Meta Pixel. Documents an outgoing HTTP GET request to facebook.com/tr/ containing query parameter ev=PageView from the live URL reel-forge-ai-psi.vercel.app. Pixel ID is redacted in this public case study." aria-label="Click to enlarge Figure 5 screenshot">
+          <img src="assets/images/meta-ads/p6_img1_13.jpeg" alt="Browser network console inspecting Facebook Pixel tracking request showing ev=PageView" />
+        </div>
+        <div class="meta-ev-caption">
+          <strong>Figure 5: Browser Network Request Verification.</strong> Confirms that the Meta Pixel script fires an outgoing <code>ev=PageView</code> beacon upon loading the live website. The Pixel ID is redacted for public documentation.
+        </div>
+      </div>
+
+      <!-- 3-Stage Tracking Chain -->
+      <div class="meta-tracking-flow">
+        <div class="meta-tracking-step">
+          <span class="meta-ts-num">STAGE 01 · VERIFIED</span>
+          <h4>Browser Execution</h4>
+          <p>
+            The Meta Pixel JavaScript container is active on the live site, and an outgoing <code>ev=PageView</code> request was confirmed in Chrome DevTools.
+          </p>
+        </div>
+
+        <div class="meta-tracking-step">
+          <span class="meta-ts-num">STAGE 02 · VERIFIED</span>
+          <h4>Events Manager</h4>
+          <p>
+            Meta Events Manager received the signal, displaying <code>PageView</code> as an active dataset event with historical traffic spikes.
+          </p>
+        </div>
+
+        <div class="meta-tracking-step">
+          <span class="meta-ts-num">STAGE 03 · PENDING</span>
+          <h4>Event Mapping</h4>
+          <p>
+            Verify specific trigger conditions for <code>Lead</code> and <code>InitiateCheckout</code>, and implement a validated <code>CompleteRegistration</code> mapping for user sign-ups.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06: EVENT ACTIVITY IN EVENTS MANAGER -->
+    <section class="meta-section" aria-labelledby="activityTitle">
+      <div class="meta-eyebrow">06 / EVENT ACTIVITY &amp; DIAGNOSTICS</div>
+      <div class="meta-section-head">
+        <h2 id="activityTitle">Events Manager shows website activity.</h2>
+        <p>Event names and counts were captured in the account dashboard. These represent point-in-time technical UI snapshots, not paid ad campaign results.</p>
+      </div>
+
+      <!-- 4 Event Activity Cards -->
+      <div class="meta-events-grid">
+        <div class="meta-event-card">
+          <div class="meta-event-head">
+            <span>PageView</span>
+            <span class="meta-event-count">217 events</span>
+          </div>
+          <div class="meta-event-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/meta-ads/p7_img2_15.jpeg" data-caption="Figure 6A: PageView Activity in Events Manager. Shows 217 recorded events with automated advanced matching." aria-label="Click to enlarge PageView event">
+            <img src="assets/images/meta-ads/p7_img2_15.jpeg" alt="Events Manager showing PageView graph with 217 events" />
+          </div>
+          <div class="meta-event-caption">Baseline page visit signal.</div>
+        </div>
+
+        <div class="meta-event-card">
+          <div class="meta-event-head">
+            <span>Start Trial</span>
+            <span class="meta-event-count">46 events</span>
+          </div>
+          <div class="meta-event-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/meta-ads/p7_img1_17.jpeg" data-caption="Figure 6B: Start Trial Activity in Events Manager. Shows 46 recorded events." aria-label="Click to enlarge Start trial event">
+            <img src="assets/images/meta-ads/p7_img1_17.jpeg" alt="Events Manager showing Start Trial graph with 46 events" />
+          </div>
+          <div class="meta-event-caption">Trial initiation trigger.</div>
+        </div>
+
+        <div class="meta-event-card">
+          <div class="meta-event-head">
+            <span>Initiate Checkout</span>
+            <span class="meta-event-count">55 events</span>
+          </div>
+          <div class="meta-event-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/meta-ads/p7_img3_18.jpeg" data-caption="Figure 6C: Initiate Checkout Activity in Events Manager. Shows 55 recorded events." aria-label="Click to enlarge Initiate checkout event">
+            <img src="assets/images/meta-ads/p7_img3_18.jpeg" alt="Events Manager showing Initiate Checkout graph with 55 events" />
+          </div>
+          <div class="meta-event-caption">Downstream checkout intent.</div>
+        </div>
+
+        <div class="meta-event-card">
+          <div class="meta-event-head">
+            <span>Lead</span>
+            <span class="meta-event-count">8 events</span>
+          </div>
+          <div class="meta-event-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/meta-ads/p7_img4_16.jpeg" data-caption="Figure 6D: Lead Event Activity in Events Manager. Shows 8 recorded events." aria-label="Click to enlarge Lead event">
+            <img src="assets/images/meta-ads/p7_img4_16.jpeg" alt="Events Manager showing Lead graph with 8 events" />
+          </div>
+          <div class="meta-event-caption">Early lead form trigger.</div>
+        </div>
+      </div>
+
+      <!-- Critical Evidence Caution Box -->
+      <div class="meta-card-panel">
+        <div class="mono" style="color: #e57373;">CRITICAL EVIDENCE BOUNDARY &amp; ATTRIBUTION CAUTION</div>
+        <h3>Why Dashboard Counts Are Not Ad Results</h3>
+        <p>
+          The event counts displayed above represent point-in-time interface captures reflecting testing activity, manual visits, and organic interactions across varying date windows.
+        </p>
+        <p>
+          Because this campaign was built in draft mode and never launched with media spend, these events <strong>cannot be attributed to paid advertising</strong>. They serve solely as diagnostic verification that the Meta Pixel and dataset are receiving browser triggers.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 07: MEASUREMENT PLAN & DIAGNOSTIC TREE -->
+    <section class="meta-section" aria-labelledby="planTitle">
+      <div class="meta-eyebrow">07 / MEASUREMENT PLAN</div>
+      <div class="meta-section-head">
+        <h2 id="planTitle">Measure the funnel, then diagnose the break.</h2>
+        <p>The framework below outlines the measurement protocol planned for live campaign deployment, paired with a systematic diagnostic decision tree.</p>
+      </div>
+
+      <!-- Planned Customer Journey -->
+      <div class="meta-journey-grid" aria-label="Planned Customer Journey Steps">
+        <div class="meta-journey-card">
+          <span class="meta-jn-num">01 / IMPRESSION</span>
+          <h4>Ad Exposure</h4>
+          <span class="event-name">Creative + Hook</span>
+          <p style="font-size: 12px; color: #a8a79d; margin: 0;">User views video in Reels or Feed placement.</p>
+        </div>
+
+        <div class="meta-journey-card">
+          <span class="meta-jn-num">02 / VISIT</span>
+          <h4>Website Visit</h4>
+          <span class="event-name">PageView</span>
+          <p style="font-size: 12px; color: #a8a79d; margin: 0;">User taps CTA and lands on Vercel application.</p>
+        </div>
+
+        <div class="meta-journey-card">
+          <span class="meta-jn-num">03 / SIGN-UP</span>
+          <h4>Registration</h4>
+          <span class="event-name">CompleteRegistration</span>
+          <p style="font-size: 12px; color: #a8a79d; margin: 0;">Primary campaign conversion outcome.</p>
+        </div>
+
+        <div class="meta-journey-card">
+          <span class="meta-jn-num">04 / TRIAL</span>
+          <h4>Free Trial</h4>
+          <span class="event-name">Start trial</span>
+          <p style="font-size: 12px; color: #a8a79d; margin: 0;">User analyzes first competitor video.</p>
+        </div>
+
+        <div class="meta-journey-card">
+          <span class="meta-jn-num">05 / RETENTION</span>
+          <h4>Paid Customer</h4>
+          <span class="event-name">Purchase</span>
+          <p style="font-size: 12px; color: #a8a79d; margin: 0;">User converts to a paid subscription.</p>
+        </div>
+      </div>
+
+      <!-- Core Performance Metric Formulas -->
+      <div class="meta-formulas-grid" aria-label="Core Performance Metric Formulas">
+        <div class="meta-formula-card">
+          <span class="meta-formula-name">Cost Per Mille (CPM)</span>
+          <div class="meta-formula-calc">(Spend / Impressions) × 1,000</div>
+          <span class="meta-formula-note">Cost to reach 1,000 ad impressions</span>
+        </div>
+
+        <div class="meta-formula-card">
+          <span class="meta-formula-name">Link Click-Through Rate</span>
+          <div class="meta-formula-calc">(Link Clicks / Impressions) × 100</div>
+          <span class="meta-formula-note">Measures hook &amp; creative relevance</span>
+        </div>
+
+        <div class="meta-formula-card">
+          <span class="meta-formula-name">Cost Per Click (CPC)</span>
+          <div class="meta-formula-calc">Spend / Link Clicks</div>
+          <span class="meta-formula-note">Cost to acquire a qualified site visitor</span>
+        </div>
+
+        <div class="meta-formula-card">
+          <span class="meta-formula-name">Registration Rate</span>
+          <div class="meta-formula-calc">(Registrations / Link Clicks) × 100</div>
+          <span class="meta-formula-note">Landing page to account creation rate</span>
+        </div>
+
+        <div class="meta-formula-card">
+          <span class="meta-formula-name">Cost Per Registration</span>
+          <div class="meta-formula-calc">Spend / Verified Registrations</div>
+          <span class="meta-formula-note">Key unit economic acquisition metric</span>
+        </div>
+
+        <div class="meta-formula-card">
+          <span class="meta-formula-name">Ad Frequency</span>
+          <div class="meta-formula-calc">Impressions / Reach</div>
+          <span class="meta-formula-note">Average exposures per reached user</span>
+        </div>
+      </div>
+
+      <!-- Diagnostic Decision Tree -->
+      <div class="meta-card-panel">
+        <div class="mono" style="color: #dfad52;">DIAGNOSTIC DECISION TREE</div>
+        <h3>Systematic Funnel Troubleshooting</h3>
+        <p>
+          When live campaign performance drops, optimization should not be a random guess. The four-stage diagnostic framework isolates exactly where the user drop-off occurs:
+        </p>
+
+        <table class="meta-tree-table" aria-label="Diagnostic Troubleshooting Framework">
+          <thead>
+            <tr>
+              <th scope="col">Observed Symptom</th>
+              <th scope="col">Root Cause Investigation &amp; Action Plan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="meta-symptom-cell">Low Link CTR</td>
+              <td style="color: #cfceca;">
+                Review the first 2 seconds of the video hook, visual contrast, text legibility in feed, audience relevance, and placement delivery ratios.
+              </td>
+            </tr>
+            <tr>
+              <td class="meta-symptom-cell">Good CTR, Few Registrations</td>
+              <td style="color: #cfceca;">
+                Check message match between the ad copy and landing page headline, mobile load speed, signup form friction, and verify Meta Pixel event firing.
+              </td>
+            </tr>
+            <tr>
+              <td class="meta-symptom-cell">Registrations, Few Trials</td>
+              <td style="color: #cfceca;">
+                Audit the user onboarding sequence, initial time-to-value, clarity of the first competitor analysis run, and in-app empty state guidance.
+              </td>
+            </tr>
+            <tr>
+              <td class="meta-symptom-cell">Trials, Few Paid Users</td>
+              <td style="color: #cfceca;">
+                Investigate subscription pricing tiers, feature paywalls, product value perception, and potential checkout UX friction.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 08/09: RESULTS, LIMITATIONS & NEXT STEPS -->
+    <section class="meta-learnings-wrap" aria-label="Results, Limitations and Next Steps">
+      <!-- Left Panel: Honest Boundaries -->
+      <div class="meta-dark-panel">
+        <div class="mono" style="color: #dfad52;">08.1 / RESULTS &amp; BOUNDARIES</div>
+        <h3>What the Evidence Documents</h3>
+        <p>
+          I configured a comprehensive Meta Ads lead-generation campaign draft for ReelForge AI, including hierarchy structure, Advantage+ audience configuration, custom 9:16 video creative, ad copy matrices, and verified browser-side Pixel integration.
+        </p>
+        <div style="font-family: var(--font-mono); font-size: 10px; color: #e57373; letter-spacing: 0.08em; text-transform: uppercase;">
+          Explicit Limitations — What This Project Does NOT Claim:
+        </div>
+        <ul class="meta-limits-list">
+          <li>
+            <span><b>Zero Campaign Delivery:</b> The campaign remained in draft/unpublished status. No live impressions, clicks, or ad budget were consumed.</span>
+          </li>
+          <li>
+            <span><b>No Generated Leads or Conversions:</b> Zero customer sign-ups, leads, or commercial revenue are claimed as paid campaign results.</span>
+          </li>
+          <li>
+            <span><b>Unverified Event Dropdown:</b> The ad set conversion event was unselected in the draft capture and requires mapping to <code>CompleteRegistration</code>.</span>
+          </li>
+          <li>
+            <span><b>Point-in-Time Event Snapshots:</b> Events Manager activity reflects manual testing and cannot be attributed to advertising delivery.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Panel: Next Steps -->
+      <div class="meta-dark-panel">
+        <div class="mono" style="color: #8c8b82;">08.2 / ROADMAP &amp; NEXT STEPS</div>
+        <h3>Pre-Launch Action Plan</h3>
+        <p>
+          Before moving this practice build into live advertising delivery, four essential validation milestones must be completed:
+        </p>
+        <ul class="meta-steps-list">
+          <li>
+            <span class="meta-step-bullet">1</span>
+            <span>Select and verify the <code>CompleteRegistration</code> standard event inside the ad set conversion settings.</span>
+          </li>
+          <li>
+            <span class="meta-step-bullet">2</span>
+            <span>Deploy Google Tag Manager / Meta Pixel Helper testing to validate registration event firing upon form submission.</span>
+          </li>
+          <li>
+            <span class="meta-step-bullet">3</span>
+            <span>Resolve any account or beneficiary-payer delivery warnings flagged within Meta Ads Manager.</span>
+          </li>
+          <li>
+            <span class="meta-step-bullet">4</span>
+            <span>Execute a structured creative split test (Video Concept A vs Static Concept B) with equal budget weighting.</span>
+          </li>
+        </ul>
+        <div class="meta-project-status-box">
+          <b>Project Status:</b> Campaign architecture, video creative, copy, and browser-side Pixel tracking completed as an unpublished draft; conversion event mapping and beneficiary compliance required before live launch.
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="meta-page-footer" role="contentinfo">
+      <div class="meta-footer-nav">
+        <a href="index.html#digital-marketing" class="meta-pill-link">
+          <span aria-hidden="true">&#8592;</span> Return to Portfolio Projects
+        </a>
+        <a href="ga4-analytics.html" class="meta-pill-link">
+          <span>Explore GA4 &amp; GTM Analytics Case Study</span> <span aria-hidden="true">↗</span>
+        </a>
+        <a href="google-ads.html" class="meta-pill-link">
+          <span>Explore Google Ads Search Strategy</span> <span aria-hidden="true">↗</span>
+        </a>
+        <a href="reelforge-ai.html" class="meta-pill-link">
+          <span>Explore ReelForge AI Technical SEO</span> <span aria-hidden="true">↗</span>
+        </a>
+        <a href="certificate-viewer.html?cert=meta-ab-testing" class="meta-pill-link">
+          <span>View Meta Blueprint Certification</span> <span aria-hidden="true">↗</span>
+        </a>
+        <a href="index.html#about-contact" class="meta-pill-link">
+          <span>Let's Talk</span> <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="meta-footer-brand">
+        <b>MANOVA SAMUEL</b> / DIGITAL MARKETING PORTFOLIO · CHENNAI, INDIA · 2026
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ACCESSIBLE LIGHTBOX MODAL -->
+  <div class="meta-lightbox" id="imageLightbox" role="dialog" aria-modal="true" aria-label="Enlarged screenshot viewer">
+    <button class="meta-lightbox-close" id="lightboxClose" aria-label="Close enlarged view">
+      <span>Close</span> <span aria-hidden="true">✕</span>
+    </button>
+    <div class="meta-lightbox-dialog">
+      <img src="" alt="" class="meta-lightbox-img" id="lightboxImg" />
+      <div class="meta-lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPT FOR ACCESSIBLE LIGHTBOX -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const lightbox = document.getElementById('imageLightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxClose = document.getElementById('lightboxClose');
+      let previousActiveElement = null;
+
+      const openLightbox = (src, caption, alt) => {
+        previousActiveElement = document.activeElement;
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || caption || 'Enlarged case study screenshot';
+        lightboxCaption.textContent = caption || '';
+        lightbox.classList.add('active');
+        lightboxClose.focus();
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        lightboxImg.alt = '';
+        lightboxCaption.textContent = '';
+        document.body.style.overflow = '';
+        if (previousActiveElement) {
+          previousActiveElement.focus();
+        }
+      };
+
+      document.querySelectorAll('[data-lightbox]').forEach(trigger => {
+        const handler = () => {
+          const src = trigger.getAttribute('data-lightbox');
+          const caption = trigger.getAttribute('data-caption') || '';
+          const img = trigger.querySelector('img');
+          const alt = img ? img.getAttribute('alt') : '';
+          openLightbox(src, caption, alt);
+        };
+
+        trigger.addEventListener('click', handler);
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handler();
+          }
+        });
+      });
+
+      lightboxClose.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    });
+  </script>
+
+  <!-- Motion & Scroll Controller -->
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111111" />
+  <title>Google Ads Search Campaign Strategy — ReelForge AI — Manova Samuel</title>
+  <meta name="description" content="Google Ads Search campaign strategy case study for ReelForge AI by Manova Samuel. Intent-led ad group architecture, exact and phrase match strategy, negative keywords, RSA copy hierarchy, and pre-launch measurement framework." />
+  <meta name="author" content="Manova Samuel" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Google Ads Search Campaign Strategy — ReelForge AI — Manova Samuel" />
+  <meta property="og:description" content="A practical Google Ads Search campaign build for ReelForge AI: 5 intent-led ad groups, exact and phrase match strategy, negative keyword exclusions, responsive search ad copywriting, and pre-launch measurement." />
+  <meta property="og:image" content="assets/images/google-ads/p1_img1_4.png" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+
+  <!-- Inherits the portfolio design system -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+
+  <style>
+    /* ==========================================================================
+       DEDICATED GOOGLE ADS SEARCH CASE STUDY PAGE
+       Preserves the approved Nothing Technology-inspired design system:
+       - Dark charcoal (#111111) and warm off-white (#ecebe4 / #f2f0e9) palette
+       - Subtle widely spaced dot grid (72px spacing, 1.15px radius)
+       - Instrument Serif editorial headlines
+       - Space Grotesk body typography
+       - Local NDot55 font for technical labels and section numbers
+       - Thin borders, restrained accent colors, clean image-and-text layouts
+       ========================================================================== */
+
+    .ga-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-ink);
+      background-image: radial-gradient(circle at 50% 50%, var(--dot-dark-color) var(--dot-radius), transparent calc(var(--dot-radius) + 0.35px));
+      background-size: var(--dot-spacing-x) var(--dot-spacing-y);
+      background-repeat: repeat;
+      background-position: 0 0;
+      color: var(--color-text-light);
+    }
+
+    /* Top Navigation Bar */
+    .ga-topstrip {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px var(--pad-x);
+      border-bottom: 1px solid var(--color-border-dark);
+      background-color: rgba(17, 17, 17, 0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      gap: 16px;
+    }
+
+    .ga-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .ga-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-muted-light);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 999px;
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .ga-back-btn:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      border-color: var(--color-paper);
+      transform: translateX(-3px);
+    }
+
+    .ga-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #6a6961;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ga-breadcrumb-sep { opacity: 0.45; }
+
+    .ga-breadcrumb-active {
+      color: var(--color-muted-light);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ga-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .ga-nav-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-text-dark);
+      background: var(--color-paper);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--color-paper);
+      transition: transform var(--transition-fast), background var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .ga-nav-action:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .ga-nav-action-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+      background: transparent;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--color-border-dark);
+      transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .ga-nav-action-outline:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Main Container */
+    .ga-page-main {
+      flex: 1;
+      max-width: var(--max-width);
+      width: 100%;
+      margin: 0 auto;
+      padding: 64px var(--pad-x) 110px;
+      display: flex;
+      flex-direction: column;
+      gap: 72px;
+    }
+
+    /* Section Eyebrow */
+    .ga-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted-dark);
+      margin-bottom: 16px;
+    }
+
+    .ga-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--color-muted-dark);
+      flex-shrink: 0;
+    }
+
+    /* --- SECTION A: HERO --- */
+    .ga-hero {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .ga-hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(38px, 5.8vw, 76px);
+      font-weight: 400;
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      color: var(--color-text-light);
+      margin: 0;
+      max-width: 960px;
+    }
+
+    .ga-hero-tagline {
+      font-family: var(--font-sans);
+      font-size: clamp(17px, 2.1vw, 22px);
+      color: var(--color-muted-light);
+      line-height: 1.5;
+      margin: 0;
+      max-width: 820px;
+    }
+
+    .ga-hero-tagline em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--color-paper);
+    }
+
+    .ga-badges-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .ga-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .ga-badge-amber {
+      color: #dfad52;
+      background: rgba(223, 173, 82, 0.09);
+      border: 1px solid rgba(223, 173, 82, 0.28);
+    }
+
+    .ga-badge-muted {
+      color: var(--color-muted-light);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--color-border-dark);
+    }
+
+    /* Metadata Strip */
+    .ga-meta-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 20px;
+      padding: 24px 0;
+      border-top: 1px solid var(--color-border-dark);
+      border-bottom: 1px solid var(--color-border-dark);
+    }
+
+    .ga-meta-col {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .ga-meta-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6a6961;
+    }
+
+    .ga-meta-val {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--color-text-light);
+    }
+
+    .ga-meta-val.mono-val {
+      font-family: 'Noto Sans Mono', monospace;
+      font-size: 12.5px;
+    }
+
+    /* Hero Showcase Panel */
+    .ga-showcase {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #141413;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+    }
+
+    .ga-showcase-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: #1b1b1a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ga-showcase-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ga-showcase-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .ga-showcase-ads-logo {
+      height: 22px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+
+    .ga-showcase-title-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ga-showcase-title-block b {
+      font-size: 13px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .ga-showcase-title-block span {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: #8c8b82;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .ga-showcase-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ga-showcase-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-paper);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+
+    .ga-showcase-link:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+    }
+
+    .ga-showcase-media {
+      width: 100%;
+      background: #0d0d0d;
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .ga-showcase-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: opacity var(--transition-fast);
+    }
+
+    .ga-showcase-media:hover .ga-showcase-img {
+      opacity: 0.96;
+    }
+
+    .ga-showcase-foot {
+      padding: 12px 20px;
+      background: #141413;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: #77766d;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* --- SECTION B: PROJECT OVERVIEW --- */
+    .ga-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .ga-card-panel {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 28px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .ga-card-panel h3 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--color-paper);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .ga-card-panel p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--color-muted-light);
+      margin: 0;
+    }
+
+    .ga-boundary-note {
+      padding: 14px 18px;
+      background: rgba(223, 173, 82, 0.06);
+      border-left: 2px solid #dfad52;
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #cfceca;
+    }
+
+    .ga-boundary-note b {
+      color: #dfad52;
+      font-weight: 600;
+    }
+
+    /* --- SECTION C: STRATEGY (WARM OFF-WHITE CONTRAST PANEL) --- */
+    .ga-warm-surface {
+      background-color: var(--color-paper);
+      background-image: radial-gradient(circle at 50% 50%, var(--dot-light-color) var(--dot-radius), transparent calc(var(--dot-radius) + 0.35px));
+      background-size: var(--dot-spacing-x) var(--dot-spacing-y);
+      background-repeat: repeat;
+      background-position: 0 0;
+      color: var(--color-text-dark);
+      border-radius: 10px;
+      padding: 38px 36px 42px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .ga-warm-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+      padding-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .ga-warm-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .ga-warm-brand img.ads-mark {
+      height: 24px;
+      width: auto;
+    }
+
+    .ga-warm-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.6vw, 42px);
+      font-weight: 400;
+      color: var(--color-text-dark);
+      margin: 0;
+      letter-spacing: -0.03em;
+    }
+
+    .ga-strategy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .ga-strategy-text {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .ga-strategy-text p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #3b3a35;
+      margin: 0;
+    }
+
+    .ga-point-card {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(17, 17, 17, 0.1);
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ga-point-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #111111;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ga-point-title span {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #111111;
+      border-radius: 50%;
+    }
+
+    .ga-point-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #4a4943;
+      margin: 0;
+    }
+
+    .ga-evidence-frame {
+      border: 1px solid rgba(17, 17, 17, 0.14);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      cursor: zoom-in;
+    }
+
+    .ga-evidence-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .ga-evidence-caption {
+      padding: 10px 14px;
+      background: #f7f6f2;
+      border-top: 1px solid rgba(17, 17, 17, 0.08);
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: #63625b;
+    }
+
+    .ga-evidence-caption strong {
+      color: #111111;
+    }
+
+    /* --- SECTION D: ARCHITECTURE --- */
+    .ga-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .ga-section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ga-section-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.8vw, 44px);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      color: var(--color-text-light);
+      margin: 0;
+    }
+
+    .ga-section-head p {
+      font-size: 14px;
+      color: var(--color-muted-light);
+      max-width: 760px;
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .ga-adgroups-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .ga-adgroup-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .ga-adgroup-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .ga-ag-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-paper);
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
+    }
+
+    .ga-adgroup-card h4 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .ga-adgroup-card p {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #a8a79d;
+      margin: 0;
+    }
+
+    .ga-rule-banner {
+      background: #151514;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .ga-rule-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #dfad52;
+    }
+
+    .ga-rule-formula {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-paper);
+      letter-spacing: 0.04em;
+    }
+
+    /* --- SECTION E: KEYWORDS & EXCLUSIONS --- */
+    .ga-dual-evidence {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .ga-dark-evidence-card {
+      background: #141413;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ga-ev-head {
+      padding: 12px 18px;
+      background: #1b1b1a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #8c8b82;
+    }
+
+    .ga-ev-img-wrap {
+      width: 100%;
+      background: #0d0d0d;
+      cursor: zoom-in;
+    }
+
+    .ga-ev-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .ga-ev-caption {
+      padding: 14px 18px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #9c9b92;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .ga-ev-caption strong {
+      color: var(--color-paper);
+    }
+
+    /* Match Type Explanations */
+    .ga-match-types-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .ga-match-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ga-match-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-paper);
+    }
+
+    .ga-match-example {
+      font-family: 'Noto Sans Mono', monospace;
+      font-size: 13px;
+      color: #dfad52;
+      background: rgba(223, 173, 82, 0.08);
+      padding: 6px 12px;
+      border-radius: 4px;
+      align-self: flex-start;
+      margin: 4px 0;
+    }
+
+    .ga-match-card p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--color-muted-light);
+      margin: 0;
+    }
+
+    /* --- SECTION F: RESPONSIVE SEARCH ADS --- */
+    .ga-rsa-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .ga-rsa-copy-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .ga-hierarchy-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .ga-hierarchy-table th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8c8b82;
+      background: #181817;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border-dark);
+    }
+
+    .ga-hierarchy-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13px;
+    }
+
+    .ga-hierarchy-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .ga-role-cell {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #dfad52;
+      white-space: nowrap;
+    }
+
+    .ga-headline-cell {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .ga-quotes-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ga-quote-box {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 2px solid var(--color-paper);
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ga-quote-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8c8b82;
+    }
+
+    .ga-quote-text {
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      color: #e5e4de;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* --- SECTION G: DESCRIPTIONS & ASSETS --- */
+    .ga-assets-audit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    /* --- SECTION H: MEASUREMENT --- */
+    .ga-funnel-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .ga-funnel-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+
+    .ga-funnel-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #dfad52;
+      letter-spacing: 0.08em;
+    }
+
+    .ga-funnel-card h4 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .ga-funnel-card p {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #a8a79d;
+      margin: 0;
+    }
+
+    .ga-verification-panel {
+      background: #171612;
+      border: 1px solid rgba(223, 173, 82, 0.3);
+      border-radius: 8px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ga-verification-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .ga-verification-panel h3 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 400;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .ga-verification-panel p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #cfceca;
+      margin: 0;
+    }
+
+    .ga-controls-table {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+    }
+
+    .ga-control-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ga-control-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #77766d;
+    }
+
+    .ga-control-val {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-paper);
+    }
+
+    .ga-formulas-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .ga-formula-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ga-formula-name {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #dfad52;
+    }
+
+    .ga-formula-calc {
+      font-family: 'Noto Sans Mono', monospace;
+      font-size: 12.5px;
+      color: var(--color-paper);
+    }
+
+    .ga-formula-note {
+      font-size: 11px;
+      color: #77766d;
+    }
+
+    /* --- SECTION I: OPTIMIZATION PLAYBOOK --- */
+    .ga-playbook-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .ga-playbook-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .ga-playbook-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .ga-pb-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-paper);
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
+    }
+
+    .ga-playbook-card h4 {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 400;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.15;
+    }
+
+    .ga-playbook-card p {
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: #a8a79d;
+      margin: 0;
+    }
+
+    /* --- SECTION J: RESULTS & LIMITATIONS --- */
+    .ga-learnings-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .ga-dark-panel {
+      background: #141413;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .ga-dark-panel h3 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--color-paper);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .ga-dark-panel p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--color-muted-light);
+      margin: 0;
+    }
+
+    .ga-limits-list, .ga-steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .ga-limits-list li {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #d1cfc7;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .ga-limits-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #e57373;
+    }
+
+    .ga-limits-list li b {
+      color: #ffffff;
+    }
+
+    .ga-steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #d1cfc7;
+    }
+
+    .ga-step-bullet {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-paper);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .ga-project-status-box {
+      margin-top: 6px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 6px;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #cfceca;
+    }
+
+    /* --- FOOTER --- */
+    .ga-page-footer {
+      border-top: 1px solid var(--color-border-dark);
+      padding: 48px var(--pad-x) 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .ga-footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .ga-pill-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-muted-light);
+      text-decoration: none;
+      padding: 8px 18px;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 999px;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .ga-pill-link:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      border-color: var(--color-paper);
+    }
+
+    .ga-footer-brand {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #6a6961;
+      text-transform: uppercase;
+    }
+
+    .ga-footer-brand b {
+      color: var(--color-paper);
+    }
+
+    /* --- ACCESSIBLE LIGHTBOX MODAL --- */
+    .ga-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10, 10, 10, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .ga-lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .ga-lightbox-dialog {
+      max-width: 95vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .ga-lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    .ga-lightbox-caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #cfceca;
+      letter-spacing: 0.04em;
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .ga-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast);
+    }
+
+    .ga-lightbox-close:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 1024px) {
+      .ga-adgroups-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .ga-strategy-grid,
+      .ga-rsa-layout,
+      .ga-dual-evidence,
+      .ga-assets-audit-grid,
+      .ga-learnings-wrap {
+        grid-template-columns: 1fr;
+      }
+      .ga-funnel-grid,
+      .ga-formulas-grid,
+      .ga-playbook-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ga-split-grid,
+      .ga-adgroups-grid,
+      .ga-match-types-grid,
+      .ga-funnel-grid,
+      .ga-formulas-grid,
+      .ga-playbook-grid {
+        grid-template-columns: 1fr;
+      }
+      .ga-topstrip {
+        padding: 12px 16px;
+      }
+      .ga-breadcrumb {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="ga-page">
+
+  <!-- Sticky Top Navigation -->
+  <header class="ga-topstrip" role="banner">
+    <div class="ga-nav-left">
+      <a href="index.html#digital-marketing" class="ga-back-btn" id="topBackBtn">
+        <span aria-hidden="true">&#8592;</span> Return to Portfolio
+      </a>
+      <div class="ga-breadcrumb" aria-label="Breadcrumb">
+        <span>Portfolio</span>
+        <span class="ga-breadcrumb-sep">/</span>
+        <span>Digital Marketing</span>
+        <span class="ga-breadcrumb-sep">/</span>
+        <span class="ga-breadcrumb-active">Google Ads Search Strategy</span>
+      </div>
+    </div>
+    <div class="ga-nav-right">
+      <a href="https://reel-forge-ai-psi.vercel.app/" target="_blank" rel="noopener noreferrer" class="ga-nav-action">
+        <span>Live Product</span> <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <main class="ga-page-main" id="mainContent">
+
+    <!-- SECTION A: HERO -->
+    <section class="ga-hero" aria-labelledby="heroHeadline">
+      <div class="ga-eyebrow reveal">02.1 / PERFORMANCE MARKETING · SEARCH STRATEGY</div>
+      
+      <h1 class="ga-hero-title reveal delay-1" id="heroHeadline">
+        Search intent,<br>with a strategy.
+      </h1>
+
+      <p class="ga-hero-tagline reveal delay-2">
+        A practical Google Ads Search campaign build for <em>ReelForge AI</em> — from intent-led structure and ad messaging to measurement and optimization planning.
+      </p>
+
+      <div class="ga-badges-strip reveal delay-3">
+        <span class="ga-badge ga-badge-amber">
+          <span aria-hidden="true">✦</span> Practice Build · Paused by Design
+        </span>
+        <span class="ga-badge ga-badge-muted">
+          No Live Campaign Spend Claimed
+        </span>
+        <span class="ga-badge ga-badge-muted">
+          Objective: Plan for Qualified Sign-ups
+        </span>
+      </div>
+
+      <!-- Metadata Strip -->
+      <div class="ga-meta-strip reveal delay-3" aria-label="Project Metadata">
+        <div class="ga-meta-col">
+          <span class="ga-meta-label">Category</span>
+          <span class="ga-meta-val">Performance Marketing / Search</span>
+        </div>
+        <div class="ga-meta-col">
+          <span class="ga-meta-label">Brand &amp; Product</span>
+          <span class="ga-meta-val">ReelForge AI (Social Intelligence)</span>
+        </div>
+        <div class="ga-meta-col">
+          <span class="ga-meta-label">Campaign Status</span>
+          <span class="ga-meta-val">Draft / Paused (₹0.00 Delivery)</span>
+        </div>
+        <div class="ga-meta-col">
+          <span class="ga-meta-label">Primary Conversion</span>
+          <span class="ga-meta-val">Completed Product Sign-up</span>
+        </div>
+        <div class="ga-meta-col">
+          <span class="ga-meta-label">Targeting Setup</span>
+          <span class="ga-meta-val mono-val">India · English · Search Only</span>
+        </div>
+        <div class="ga-meta-col">
+          <span class="ga-meta-label">Bidding Strategy</span>
+          <span class="ga-meta-val mono-val">Maximize Conversions</span>
+        </div>
+      </div>
+
+      <!-- Hero Visual Showcase: Campaign Overview Evidence -->
+      <div class="ga-showcase" aria-label="Google Ads Campaign Overview Evidence">
+        <div class="ga-showcase-bar">
+          <div class="ga-showcase-brand">
+            <img src="assets/images/reelforge/reelforge_logo.png" alt="ReelForge AI Official Logo" class="ga-showcase-logo" />
+            <img src="assets/images/certifications/google-ads/logo.svg" alt="Google Ads Logo" class="ga-showcase-ads-logo" />
+            <div class="ga-showcase-title-block">
+              <b>ReelForge AI | Search | Lead Generation</b>
+              <span>Google Ads Workspace · Campaign Overview</span>
+            </div>
+          </div>
+          <div class="ga-showcase-actions">
+            <a href="https://reel-forge-ai-psi.vercel.app/" target="_blank" rel="noopener noreferrer" class="ga-showcase-link">
+              <span>Product Website</span> <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="ga-showcase-media" role="button" tabindex="0" data-lightbox="assets/images/google-ads/p1_img1_4.png" data-caption="Figure 1: Campaign Overview Table in Google Ads. Documents draft campaign 'ReelForge AI | Search | Lead Generation' configured with ₹1.00/day budget in paused status. Red alert bar confirms: 'None of your ads are running - Your campaigns and ad groups are paused or removed.'" aria-label="Click to enlarge Figure 1 screenshot">
+          <img src="assets/images/google-ads/p1_img1_4.png" alt="Google Ads campaign overview interface showing ReelForge AI Search Lead Generation campaign paused with zero delivery" class="ga-showcase-img" />
+        </div>
+
+        <div class="ga-showcase-foot">
+          <span>Figure 1: Campaign Overview &amp; Alert Banner (Google Ads Workspace)</span>
+          <span>Status: Paused by design · Zero ad delivery</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION B: PROJECT OVERVIEW -->
+    <section class="ga-section reveal" aria-labelledby="overviewTitle">
+      <div class="ga-eyebrow">01 / PROJECT OVERVIEW</div>
+      <div class="ga-section-head">
+        <h2 id="overviewTitle">A strategy built around one clear outcome.</h2>
+        <p>The goal is not to buy the most clicks. It is to build a controlled Search path toward relevant sign-ups.</p>
+      </div>
+
+      <div class="ga-split-grid">
+        <div class="ga-card-panel">
+          <div class="mono" style="color: #8c8b82;">THE PRODUCT</div>
+          <h3>Social Media Intelligence</h3>
+          <p>
+            ReelForge AI analyzes brands, competitor channels, and high-performing social video content to surface actionable creative patterns for content strategy and script planning.
+          </p>
+          <div class="mono" style="color: #8c8b82; margin-top: 8px;">THE CAMPAIGN INTENT</div>
+          <p>
+            Target active search demand for social media intelligence and content analytics tools. The planned primary business action is a completed account sign-up.
+          </p>
+        </div>
+
+        <div class="ga-card-panel">
+          <div class="mono" style="color: #8c8b82;">CAMPAIGN ARCHITECTURE &amp; SCOPE</div>
+          <h3>Planning vs. Live Delivery</h3>
+          <p>
+            This project documents deliberate campaign planning, keyword mapping, ad group structuring, and measurement controls configured inside Google Ads.
+          </p>
+          <div class="ga-boundary-note">
+            <b>Honesty Boundary:</b> This campaign is a paused practice build. No advertising budget has been consumed, and zero live clicks, conversions, or revenue are claimed.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION C: CAMPAIGN STRATEGY & OBJECTIVE CHOICE (WARM CONTRAST) -->
+    <section class="ga-warm-surface reveal" aria-labelledby="strategyTitle">
+      <div class="ga-warm-head">
+        <div class="ga-warm-brand">
+          <img src="assets/images/certifications/google-ads/logo.svg" alt="Google Ads Logo" class="ads-mark" />
+          <div class="mono" style="color: #63625b;">02 / CAMPAIGN STRATEGY</div>
+        </div>
+        <h2 id="strategyTitle">Objective choice: Why Leads + Search.</h2>
+      </div>
+
+      <div class="ga-strategy-grid">
+        <div class="ga-strategy-text">
+          <p>
+            In Google Ads, the campaign objective dictates algorithm prioritization, ad bidding models, and platform recommendations. For ReelForge AI, two deliberate choices guided the setup:
+          </p>
+
+          <div class="ga-point-card">
+            <div class="ga-point-title">
+              <span></span> Objective: Leads
+            </div>
+            <p class="ga-point-desc">
+              Leads directly matched the intended business outcome: attracting users who complete account registration. Selecting Leads focuses the Google Ads setup on user acquisition rather than raw impression volume or unguided traffic.
+            </p>
+          </div>
+
+          <div class="ga-point-card">
+            <div class="ga-point-title">
+              <span></span> Campaign Type: Search
+            </div>
+            <p class="ga-point-desc">
+              Search was selected for query-level transparency, negative keyword practice, and disciplined search-term review. High-intent queries capture prospects at the exact moment they express demand for social intelligence solutions.
+            </p>
+          </div>
+
+          <div class="ga-point-card">
+            <div class="ga-point-title">
+              <span></span> Controlled Workspace
+            </div>
+            <p class="ga-point-desc">
+              Search Partners and Display Network were deliberately toggled off. This ensures that ad spend is strictly preserved for direct Google Search query matching without network spillover.
+            </p>
+          </div>
+        </div>
+
+        <!-- Evidence: Objective Screen -->
+        <div class="ga-evidence-frame" role="button" tabindex="0" data-lightbox="assets/images/google-ads/p2_img1_7.png" data-caption="Figure 2: Campaign Objective Selection in Google Ads. Documents the deliberate configuration of the Leads objective and Search campaign type." aria-label="Click to enlarge Figure 2 screenshot">
+          <img src="assets/images/google-ads/p2_img1_7.png" alt="Google Ads campaign creation interface highlighting Leads objective and Search campaign type" />
+          <div class="ga-evidence-caption">
+            <strong>Figure 2: Campaign Objective Selection (Google Ads).</strong> Documents the deliberate selection of the 'Leads' objective and Search campaign type to guide qualified queries toward completed sign-ups.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION D: CAMPAIGN ARCHITECTURE -->
+    <section class="ga-section" aria-labelledby="architectureTitle">
+      <div class="ga-eyebrow">03 / CAMPAIGN ARCHITECTURE</div>
+      <div class="ga-section-head">
+        <h2 id="architectureTitle">Five ad groups. Five specific search intents.</h2>
+        <p>The structure keeps each cluster focused so the search query, ad message, and landing-page promise remain strictly aligned.</p>
+      </div>
+
+      <!-- 5 Editorial Ad Groups Grid -->
+      <div class="ga-adgroups-grid">
+        <div class="ga-adgroup-card">
+          <span class="ga-ag-num">AD GROUP 01</span>
+          <h4>Social Media Intelligence</h4>
+          <p>Core platform intent. Focuses on searches seeking holistic social media intelligence and brand monitoring capabilities.</p>
+        </div>
+
+        <div class="ga-adgroup-card">
+          <span class="ga-ag-num">AD GROUP 02</span>
+          <h4>Social Media Analytics</h4>
+          <p>Measurement-related searches. Captures users actively looking for social performance analytics and reporting tools.</p>
+        </div>
+
+        <div class="ga-adgroup-card">
+          <span class="ga-ag-num">AD GROUP 03</span>
+          <h4>Competitor Analysis</h4>
+          <p>Benchmarking intent. Targets searches for competitive social analysis, content gap identification, and rival tracking.</p>
+        </div>
+
+        <div class="ga-adgroup-card">
+          <span class="ga-ag-num">AD GROUP 04</span>
+          <h4>Content Strategy</h4>
+          <p>Ideation and planning. Captures marketers researching content strategy frameworks, AI workflows, and script development.</p>
+        </div>
+
+        <div class="ga-adgroup-card">
+          <span class="ga-ag-num">AD GROUP 05</span>
+          <h4>Content Repurposing</h4>
+          <p>Workflow efficiency. Addresses queries around adapting, formatting, and distributing video content across social networks.</p>
+        </div>
+      </div>
+
+      <!-- Working Principle Banner -->
+      <div class="ga-rule-banner">
+        <div>
+          <div class="ga-rule-title">The Structure Rule</div>
+          <div style="font-size: 13.5px; color: var(--color-muted-light); margin-top: 4px;">
+            Group by search intent, not by arbitrary keyword count. Each group contains queries that can share a cohesive ad message.
+          </div>
+        </div>
+        <div class="ga-rule-formula">
+          Intent → Relevant Ad → Suitable Page → Measurable Sign-up
+        </div>
+      </div>
+
+      <!-- Genuine Screenshot: Ad Groups Table -->
+      <div class="ga-dark-evidence-card reveal-scale">
+        <div class="ga-ev-head">
+          <span>AD GROUPS IN THE GOOGLE ADS WORKSPACE</span>
+          <span>5 THEMATIC CLUSTERS CONFIGURED</span>
+        </div>
+        <div class="ga-ev-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/google-ads/p3_img1_9.png" data-caption="Figure 3: Ad Groups List in Google Ads Workspace. Documents all five intent-segmented ad groups configured for ReelForge AI: Social Media Intelligence, Social Media Analytics, Competitor Analysis, Content Strategy, and Content Repurposing." aria-label="Click to enlarge Figure 3 screenshot">
+          <img src="assets/images/google-ads/p3_img1_9.png" alt="Google Ads workspace showing five ad groups: Social Media Intelligence, Social Media Analytics, Competitor Analysis, Content Strategy, Content Repurposing" />
+        </div>
+        <div class="ga-ev-caption">
+          <strong>Figure 3: Ad Group Structure in Google Ads Workspace.</strong> Confirms the five active draft clusters. Organizing keywords by search intent allows custom RSA headlines and dedicated landing pages to match user expectations.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION E: KEYWORD STRATEGY & NEGATIVE KEYWORDS -->
+    <section class="ga-section" aria-labelledby="keywordsTitle">
+      <div class="ga-eyebrow">04 / KEYWORDS &amp; EXCLUSIONS</div>
+      <div class="ga-section-head">
+        <h2 id="keywordsTitle">Control the query space before scaling.</h2>
+        <p>Start deliberately, read the actual search terms, then expand or exclude based on intent and business fit.</p>
+      </div>
+
+      <!-- Match Types Breakdown -->
+      <div class="ga-match-types-grid">
+        <div class="ga-match-card">
+          <span class="ga-match-tag">01 / EXACT MATCH CONTROL</span>
+          <div class="ga-match-example">[social media intelligence platform]</div>
+          <p>
+            Starts with tighter control around a rigorously defined user need. Exact match limits query expansion to close variants, ensuring ad impressions only trigger when commercial intent is unambiguous.
+          </p>
+        </div>
+
+        <div class="ga-match-card">
+          <span class="ga-match-tag">02 / PHRASE MATCH EXPANSION</span>
+          <div class="ga-match-example">"social media analytics tool" &amp; "content repurposing tool"</div>
+          <p>
+            Permits relevant qualifying queries (e.g., "best social media analytics tool for agencies") while preserving word meaning and intent sequence, balancing controlled reach with discovery.
+          </p>
+        </div>
+      </div>
+
+      <!-- Dual Visual Evidence: Keywords & Negative Keywords -->
+      <div class="ga-dual-evidence">
+        <!-- Evidence 4A: Keywords Table -->
+        <div class="ga-dark-evidence-card reveal-scale">
+          <div class="ga-ev-head">
+            <span>DRAFT QUERY TARGETING</span>
+            <span>PHRASE MATCH EXAMPLE</span>
+          </div>
+          <div class="ga-ev-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/google-ads/p4_img1_11.png" data-caption="Figure 4A: Keywords Targeting Table (Google Ads). Displays draft phrase-match query 'best social media analytics tools' in paused status with 0 clicks and zero campaign spend." aria-label="Click to enlarge Figure 4A screenshot">
+            <img src="assets/images/google-ads/p4_img1_11.png" alt="Google Ads keywords report showing phrase match keyword 'best social media analytics tools' with zero clicks" />
+          </div>
+          <div class="ga-ev-caption">
+            <strong>Figure 4A: Keyword View in Account.</strong> Demonstrates the phrase-match keyword setup. The table shows a paused draft with 0 clicks, 0 impressions, and zero spend, reflecting pre-launch status.
+          </div>
+        </div>
+
+        <!-- Evidence 4B: Negative Keywords Table -->
+        <div class="ga-dark-evidence-card reveal-scale">
+          <div class="ga-ev-head">
+            <span>CAMPAIGN-LEVEL EXCLUSIONS</span>
+            <span>NEGATIVE KEYWORD CONTROL</span>
+          </div>
+          <div class="ga-ev-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/google-ads/p4_img2_12.png" data-caption="Figure 4B: Campaign-Level Negative Keywords (Google Ads). Saved broad-match exclusions for 'jobs' and 'salary' to filter non-commercial employment intent before launch." aria-label="Click to enlarge Figure 4B screenshot">
+            <img src="assets/images/google-ads/p4_img2_12.png" alt="Google Ads negative keywords interface displaying 'jobs' and 'salary' saved at the campaign level" />
+          </div>
+          <div class="ga-ev-caption">
+            <strong>Figure 4B: Campaign-Level Negative Keywords.</strong> Saved broad-match exclusions for <code>jobs</code> and <code>salary</code> to proactively filter employment-seeking queries that waste budget without sign-up intent.
+          </div>
+        </div>
+      </div>
+
+      <!-- Negative Keyword Strategic Logic -->
+      <div class="ga-card-panel">
+        <div class="mono" style="color: #dfad52;">EXCLUSION STRATEGY &amp; SEARCH TERM DISCIPLINE</div>
+        <h3>Why Negative Keywords Require Intent Analysis</h3>
+        <p>
+          Campaign-level exclusions currently configured in the account include <code>jobs</code> and <code>salary</code>. They filter employment-related queries that have virtually zero probability of product evaluation or sign-up conversion.
+        </p>
+        <p>
+          Crucially, negative keywords possess their own matching behavior in Google Ads. Informational queries or searches containing "free" should be judged through search intent, conversion quality, and business economics — not blindly excluded. An early-stage SaaS product can often convert high-intent "free trial" queries if the onboarding funnel is sound.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION F: RESPONSIVE SEARCH AD CREATIVE -->
+    <section class="ga-section" aria-labelledby="rsaTitle">
+      <div class="ga-eyebrow">05 / AD CREATIVE &amp; MESSAGING</div>
+      <div class="ga-section-head">
+        <h2 id="rsaTitle">Ad copy that matches competitor-analysis intent.</h2>
+        <p>The example below is a draft Responsive Search Ad (RSA) in Google Ads. The preview is illustrative; this ad has not served.</p>
+      </div>
+
+      <div class="ga-rsa-layout">
+        <!-- Copy Hierarchy Column -->
+        <div class="ga-rsa-copy-col">
+          <table class="ga-hierarchy-table" aria-label="Ad Headline Messaging Hierarchy">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 25%;">Hierarchy</th>
+                <th scope="col">Actual Draft Headline</th>
+                <th scope="col">Strategic Angle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ga-role-cell">Relevance</td>
+                <td class="ga-headline-cell">Competitor Social Analysis</td>
+                <td style="color: #a8a79d; font-size: 12.5px;">Immediate query matching with user search terms</td>
+              </tr>
+              <tr>
+                <td class="ga-role-cell">Action</td>
+                <td class="ga-headline-cell">Analyze Your Competitors</td>
+                <td style="color: #a8a79d; font-size: 12.5px;">Direct active verb prompting tactical evaluation</td>
+              </tr>
+              <tr>
+                <td class="ga-role-cell">Capability</td>
+                <td class="ga-headline-cell">AI Competitor Insights</td>
+                <td style="color: #a8a79d; font-size: 12.5px;">Communicates underlying AI intelligence feature</td>
+              </tr>
+              <tr>
+                <td class="ga-role-cell">Opportunity</td>
+                <td class="ga-headline-cell">Find Competitor Content Gaps</td>
+                <td style="color: #a8a79d; font-size: 12.5px;">Tangible user outcome: discovering untapped ideas</td>
+              </tr>
+              <tr>
+                <td class="ga-role-cell">Strategy</td>
+                <td class="ga-headline-cell">Discover Competitor Strategies</td>
+                <td style="color: #a8a79d; font-size: 12.5px;">High-level value proposition for marketing leads</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Descriptions -->
+          <div class="ga-quotes-wrap">
+            <div class="ga-quote-box">
+              <span class="ga-quote-label">Example Description 01 (90/90 characters)</span>
+              <div class="ga-quote-text">
+                “Analyze competitor content and social performance to uncover strategies and opportunities.”
+              </div>
+            </div>
+            <div class="ga-quote-box">
+              <span class="ga-quote-label">Example Description 02 (82/90 characters)</span>
+              <div class="ga-quote-text">
+                “Discover what competitors are doing well and identify content gaps for your brand.”
+              </div>
+            </div>
+          </div>
+
+          <div class="ga-boundary-note">
+            <b>Why This Angle:</b> The ad reflects genuine user intent — understand competitor brands, identify content gaps, and translate data into strategy. It deliberately avoids unsupported hype such as "guaranteed viral reach" or unproven percentage uplifts.
+          </div>
+        </div>
+
+        <!-- Evidence: RSA Editor Screen -->
+        <div class="ga-dark-evidence-card reveal-scale">
+          <div class="ga-ev-head">
+            <span>RSA EDITOR &amp; PREVIEW</span>
+            <span>10 / 15 HEADLINES ENTERED</span>
+          </div>
+          <div class="ga-ev-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/google-ads/p5_img1_14.png" data-caption="Figure 5: Responsive Search Ad (RSA) Editor & Mobile Preview. Displays 10 of 15 headline fields configured around competitor intelligence, with mobile ad preview: 'Competitor Social Analysis - Find Competitor Content Gaps'." aria-label="Click to enlarge Figure 5 screenshot">
+            <img src="assets/images/google-ads/p5_img1_14.png" alt="Google Ads RSA editor showing headlines entered and mobile preview of search ad" />
+          </div>
+          <div class="ga-ev-caption">
+            <strong>Figure 5: RSA Workspace &amp; Mobile Preview.</strong> 10 of 15 available headline fields are populated in this capture. Labelled as a draft that has not served. A second distinct RSA should be authored prior to launch for structured creative A/B testing.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION G: DESCRIPTIONS & AD ASSETS -->
+    <section class="ga-section" aria-labelledby="assetsTitle">
+      <div class="ga-eyebrow">06 / DESCRIPTIONS &amp; ASSETS</div>
+      <div class="ga-section-head">
+        <h2 id="assetsTitle">Carry the promise from ad to landing page.</h2>
+        <p>Descriptions explain the value behind the headline; assets should help users choose their most relevant next step.</p>
+      </div>
+
+      <div class="ga-assets-audit-grid">
+        <!-- Evidence 6A: Descriptions & Sitelinks Workspace -->
+        <div class="ga-dark-evidence-card reveal-scale">
+          <div class="ga-ev-head">
+            <span>DESCRIPTIONS &amp; SITELINKS</span>
+            <span>4 DESCRIPTIONS / SITELINKS BLANK</span>
+          </div>
+          <div class="ga-ev-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/google-ads/p6_img2_16.png" data-caption="Figure 6A: Ad Descriptions & Sitelinks Workspace (Google Ads). Confirms 4 of 4 descriptions authored while sitelink fields 1–6 remain unpopulated in the draft setup." aria-label="Click to enlarge Figure 6A screenshot">
+            <img src="assets/images/google-ads/p6_img2_16.png" alt="Google Ads ad descriptions editor with 4 descriptions filled and unconfigured sitelinks" />
+          </div>
+          <div class="ga-ev-caption">
+            <strong>Figure 6A: Descriptions &amp; Sitelink Workspace.</strong> Confirms 4 descriptions configured. Sitelink slots 1–6 were captured blank and require dedicated destination URLs prior to any live activation.
+          </div>
+        </div>
+
+        <!-- Evidence 6B: Callout Asset Editor -->
+        <div class="ga-dark-evidence-card reveal-scale">
+          <div class="ga-ev-head">
+            <span>CALLOUT ASSET EDITOR</span>
+            <span>UNPOPULATED IN DRAFT</span>
+          </div>
+          <div class="ga-ev-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/google-ads/p6_img1_17.png" data-caption="Figure 6B: Callout Asset Editor (Google Ads). Documents unpopulated callout fields in the draft capture; accurate feature benefits and sitelink destinations must be completed before any live activation." aria-label="Click to enlarge Figure 6B screenshot">
+            <img src="assets/images/google-ads/p6_img1_17.png" alt="Google Ads callout asset editor displaying blank callout text fields in draft account" />
+          </div>
+          <div class="ga-ev-caption">
+            <strong>Figure 6B: Callout Asset Workspace.</strong> Documents that callout fields are unpopulated in this draft capture. Accurate product callouts and verified sitelinks must be completed before campaign launch.
+          </div>
+        </div>
+      </div>
+
+      <div class="ga-card-panel">
+        <div class="mono" style="color: #8c8b82;">CRITICAL DRAFT AUDIT</div>
+        <h3>Transparent Pre-Launch Asset Evaluation</h3>
+        <p>
+          Ad descriptions carry the strategic promise from the headline directly to the landing page. In this workspace capture, descriptions 1 through 4 are authored to convey feature depth and competitor insight capabilities.
+        </p>
+        <p>
+          However, the captured callout fields and sitelinks 1–6 were blank. Rather than presenting unfinished assets as completed, the roadmap explicitly mandates adding authentic product callouts (e.g., "AI Script Ideation," "Competitor Benchmarking," "Multi-Platform Analytics") and distinct sitelink destinations before moving into live media testing.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION H: MEASUREMENT BEFORE LAUNCH -->
+    <section class="ga-section" aria-labelledby="measurementTitle">
+      <div class="ga-eyebrow">07 / MEASUREMENT BEFORE LAUNCH</div>
+      <div class="ga-section-head">
+        <h2 id="measurementTitle">Measure the action that matters.</h2>
+        <p>The intended primary conversion is a successful sign-up — but the account warning means tracking must be validated before launch.</p>
+      </div>
+
+      <!-- Conversion Pathway -->
+      <div class="ga-funnel-grid" aria-label="Conversion Pathway Steps">
+        <div class="ga-funnel-card">
+          <span class="ga-funnel-num">STAGE 01</span>
+          <h4>Search Click</h4>
+          <p>A qualified, intent-driven query leads the user to the dedicated ReelForge AI landing page.</p>
+        </div>
+
+        <div class="ga-funnel-card">
+          <span class="ga-funnel-num">STAGE 02</span>
+          <h4>Completed Sign-up</h4>
+          <p>User completes account registration. This constitutes the primary conversion action.</p>
+        </div>
+
+        <div class="ga-funnel-card">
+          <span class="ga-funnel-num">STAGE 03</span>
+          <h4>Product Activation</h4>
+          <p>User runs their first brand or competitor video analysis, validating product value.</p>
+        </div>
+
+        <div class="ga-funnel-card">
+          <span class="ga-funnel-num">STAGE 04</span>
+          <h4>Paid Customer</h4>
+          <p>Downstream subscription conversion confirming sustainable customer acquisition economics.</p>
+        </div>
+      </div>
+
+      <!-- Pre-launch Verification Panel -->
+      <div class="ga-verification-panel">
+        <div class="ga-verification-top">
+          <span class="mono" style="color: #dfad52;">PRE-LAUNCH CHECK · TRACKING VERIFICATION</span>
+          <span class="ga-badge ga-badge-amber">Action Required Before Launch</span>
+        </div>
+        <h3>Verify the Sign-up Conversion Action</h3>
+        <p>
+          The setup previously displayed an inactive or unverified website conversion action for sign-ups. In performance advertising, deploying ad spend without verified conversion telemetry leads to automated bidding drift and unmeasurable acquisition costs.
+        </p>
+        <p>
+          Before activating any live campaign, the Google tag and custom sign-up event firing must be verified using Google Tag Manager Preview Mode and Google Ads Tag Assistant on a live registration run.
+        </p>
+      </div>
+
+      <!-- Campaign Configuration Matrix -->
+      <div class="ga-controls-table" aria-label="Campaign Configuration Settings">
+        <div class="ga-control-item">
+          <span class="ga-control-label">Campaign Objective</span>
+          <span class="ga-control-val">Leads</span>
+        </div>
+        <div class="ga-control-item">
+          <span class="ga-control-label">Campaign Type</span>
+          <span class="ga-control-val">Search Only</span>
+        </div>
+        <div class="ga-control-item">
+          <span class="ga-control-label">Bidding Strategy</span>
+          <span class="ga-control-val">Maximize Conversions (Draft)</span>
+        </div>
+        <div class="ga-control-item">
+          <span class="ga-control-label">Geographic Targeting</span>
+          <span class="ga-control-val">India</span>
+        </div>
+        <div class="ga-control-item">
+          <span class="ga-control-label">Language</span>
+          <span class="ga-control-val">English</span>
+        </div>
+        <div class="ga-control-item">
+          <span class="ga-control-label">Search Partners</span>
+          <span class="ga-control-val mono-val">OFF</span>
+        </div>
+        <div class="ga-control-item">
+          <span class="ga-control-label">Display Network</span>
+          <span class="ga-control-val mono-val">OFF</span>
+        </div>
+        <div class="ga-control-item">
+          <span class="ga-control-label">AI Max Settings</span>
+          <span class="ga-control-val mono-val">OFF (Controlled Practice)</span>
+        </div>
+      </div>
+
+      <!-- Core Metric Formulas (Evidence-based, zero fabricated data) -->
+      <div class="ga-formulas-grid" aria-label="Core Performance Metric Formulas">
+        <div class="ga-formula-card reveal-scale">
+          <span class="ga-formula-name">Click-Through Rate</span>
+          <div class="ga-formula-calc">Clicks / Impressions</div>
+          <span class="ga-formula-note">Measures query &amp; headline relevance</span>
+        </div>
+        <div class="ga-formula-card reveal-scale">
+          <span class="ga-formula-name">Average CPC</span>
+          <div class="ga-formula-calc">Cost / Clicks</div>
+          <span class="ga-formula-note">Auction clearing price per visitor</span>
+        </div>
+        <div class="ga-formula-card reveal-scale">
+          <span class="ga-formula-name">Conversion Rate</span>
+          <div class="ga-formula-calc">Conversions / Clicks</div>
+          <span class="ga-formula-note">Landing page to sign-up efficiency</span>
+        </div>
+        <div class="ga-formula-card reveal-scale">
+          <span class="ga-formula-name">Cost Per Acquisition</span>
+          <div class="ga-formula-calc">Cost / Conversions</div>
+          <span class="ga-formula-note">Target metric for business unit economics</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION I: OPTIMIZATION PLAYBOOK -->
+    <section class="ga-section" aria-labelledby="playbookTitle">
+      <div class="ga-eyebrow">08 / OPTIMIZATION PLAYBOOK</div>
+      <div class="ga-section-head">
+        <h2 id="playbookTitle">A repeatable loop, not a guess.</h2>
+        <p>Once tracking is reliable and genuine delivery data exists, use the sequence below to decide what to change.</p>
+      </div>
+
+      <div class="ga-playbook-grid">
+        <div class="ga-playbook-card reveal-scale">
+          <span class="ga-pb-num">01 / VALIDATE</span>
+          <h4>Validate the Signal</h4>
+          <p>
+            Audit conversion tracking and data quality before making performance decisions. Never adjust bidding algorithms or pause keywords based on unverified tracking telemetry.
+          </p>
+        </div>
+
+        <div class="ga-playbook-card reveal-scale">
+          <span class="ga-pb-num">02 / INTERPRET</span>
+          <h4>Read Search Intent</h4>
+          <p>
+            Analyze actual search terms. Decide whether to keep, add as new keyword, adjust match type, monitor, or exclude based on true searcher meaning and intent match.
+          </p>
+        </div>
+
+        <div class="ga-playbook-card reveal-scale">
+          <span class="ga-pb-num">03 / DIAGNOSE</span>
+          <h4>Diagnose the Funnel</h4>
+          <p>
+            Isolate click-through performance from sign-up completion, user activation, and lead quality. Pinpoint whether bottlenecks reside in ad messaging or landing-page UX.
+          </p>
+        </div>
+
+        <div class="ga-playbook-card reveal-scale">
+          <span class="ga-pb-num">04 / SCALE</span>
+          <h4>Scale with Economics</h4>
+          <p>
+            Evaluate CPA against an acceptable business target. Increase daily budgets and test automated Target CPA bidding only when incremental volume demonstrates positive unit economics.
+          </p>
+        </div>
+      </div>
+
+      <!-- Visual Evidence: Ad Inventory Overview -->
+      <div class="ga-dark-evidence-card reveal-scale">
+        <div class="ga-ev-head">
+          <span>AD INVENTORY IN THE DRAFT ACCOUNT</span>
+          <span>CREATIVE VARIATIONS CONFIGURED</span>
+        </div>
+        <div class="ga-ev-img-wrap" role="button" tabindex="0" data-lightbox="assets/images/google-ads/p1_img2_5.png" data-caption="Figure 7: Ad Inventory & Workspace Overview (Google Ads). Documents draft creative inventory configured across the five ad groups." aria-label="Click to enlarge Figure 7 screenshot">
+          <img src="assets/images/google-ads/p1_img2_5.png" alt="Google Ads ad inventory overview across draft ad groups" />
+        </div>
+        <div class="ga-ev-caption">
+          <strong>Figure 7: Ad Inventory Overview.</strong> Overview of ad creative assets drafted across the ad groups. Demonstrates structured ad copy alignment with search queries across the campaign hierarchy.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION J: RESULTS, LIMITATIONS & NEXT STEPS -->
+    <section class="ga-learnings-wrap reveal" aria-label="Results, Limitations and Next Steps">
+      <!-- Left Panel: Honest Boundaries -->
+      <div class="ga-dark-panel">
+        <div class="mono" style="color: #dfad52;">09.1 / RESULTS &amp; BOUNDARIES</div>
+        <h3>What the Evidence Documents</h3>
+        <p>
+          I built a practical Google Search campaign structure for ReelForge AI with five intent-led ad groups, controlled match types, employment-intent negatives, RSA copy hierarchy, and a tracking-first optimization plan.
+        </p>
+        <div style="font-family: var(--font-mono); font-size: 10px; color: #e57373; letter-spacing: 0.08em; text-transform: uppercase;">
+          Explicit Limitations — What This Build Does NOT Claim:
+        </div>
+        <ul class="ga-limits-list">
+          <li>
+            <span><b>Zero Campaign Delivery:</b> The campaign is paused by design. No live impressions, clicks, or ad spend have occurred.</span>
+          </li>
+          <li>
+            <span><b>No Generated Leads or Conversions:</b> Zero customer sign-ups, leads, or commercial revenue are claimed from this draft.</span>
+          </li>
+          <li>
+            <span><b>No Performance Uplift or ROAS:</b> Metrics such as CTR, average CPC, and CPA represent planning formulas, not live delivery numbers.</span>
+          </li>
+          <li>
+            <span><b>Unverified Tracking:</b> The sign-up conversion action is unverified in Google Ads and requires end-to-end tag QA before launch.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Panel: Next Steps -->
+      <div class="ga-dark-panel">
+        <div class="mono" style="color: #8c8b82;">09.2 / ROADMAP &amp; NEXT STEPS</div>
+        <h3>Pre-Launch Action Plan</h3>
+        <p>
+          Before moving this practice build into live advertising delivery, four essential validation milestones must be completed:
+        </p>
+        <ul class="ga-steps-list">
+          <li>
+            <span class="ga-step-bullet">1</span>
+            <span>Verify the Google tag and test signup event firing via GTM Preview Mode to confirm Google Ads records conversions accurately.</span>
+          </li>
+          <li>
+            <span class="ga-step-bullet">2</span>
+            <span>Author complete sitelink assets with live landing page anchors and fill out callout extension benefits.</span>
+          </li>
+          <li>
+            <span class="ga-step-bullet">3</span>
+            <span>Conduct keyword search volume analysis to set initial maximum CPC bid caps before enabling Maximize Conversions.</span>
+          </li>
+          <li>
+            <span class="ga-step-bullet">4</span>
+            <span>Ensure landing page copy, value proposition, and mobile page-speed performance match the RSA headline promise.</span>
+          </li>
+        </ul>
+        <div class="ga-project-status-box">
+          <b>Project Status:</b> Campaign architecture, keyword mapping, ad copy, and measurement framework completed as a paused draft; conversion tracking verification and asset authoring required before activation.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="ga-page-footer" role="contentinfo">
+      <div class="ga-footer-nav">
+        <a href="index.html#digital-marketing" class="ga-pill-link">
+          <span aria-hidden="true">&#8592;</span> Return to Portfolio Projects
+        </a>
+        <a href="ga4-analytics.html" class="ga-pill-link">
+          <span>Explore GA4 &amp; GTM Analytics Case Study</span> <span aria-hidden="true">↗</span>
+        </a>
+        <a href="meta-ads.html" class="ga-pill-link">
+          <span>Explore Meta Ads Strategy &amp; Video</span> <span aria-hidden="true">↗</span>
+        </a>
+        <a href="reelforge-ai.html" class="ga-pill-link">
+          <span>Explore ReelForge AI Technical SEO</span> <span aria-hidden="true">↗</span>
+        </a>
+        <a href="certificate-viewer.html?cert=google-ads" class="ga-pill-link">
+          <span>View Google Ads Certification</span> <span aria-hidden="true">↗</span>
+        </a>
+        <a href="index.html#about-contact" class="ga-pill-link">
+          <span>Let's Talk</span> <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="ga-footer-brand">
+        <b>MANOVA SAMUEL</b> / DIGITAL MARKETING PORTFOLIO · CHENNAI, INDIA · 2026
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ACCESSIBLE LIGHTBOX MODAL -->
+  <div class="ga-lightbox" id="imageLightbox" role="dialog" aria-modal="true" aria-label="Enlarged screenshot viewer">
+    <button class="ga-lightbox-close" id="lightboxClose" aria-label="Close enlarged view">
+      <span>Close</span> <span aria-hidden="true">✕</span>
+    </button>
+    <div class="ga-lightbox-dialog">
+      <img src="" alt="" class="ga-lightbox-img" id="lightboxImg" />
+      <div class="ga-lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPT FOR ACCESSIBLE LIGHTBOX -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const lightbox = document.getElementById('imageLightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxClose = document.getElementById('lightboxClose');
+      let previousActiveElement = null;
+
+      const openLightbox = (src, caption, alt) => {
+        previousActiveElement = document.activeElement;
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || caption || 'Enlarged case study screenshot';
+        lightboxCaption.textContent = caption || '';
+        lightbox.classList.add('active');
+        lightboxClose.focus();
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        lightboxImg.alt = '';
+        lightboxCaption.textContent = '';
+        document.body.style.overflow = '';
+        if (previousActiveElement) {
+          previousActiveElement.focus();
+        }
+      };
+
+      document.querySelectorAll('[data-lightbox]').forEach(trigger => {
+        const handler = () => {
+          const src = trigger.getAttribute('data-lightbox');
+          const caption = trigger.getAttribute('data-caption') || '';
+          const img = trigger.querySelector('img');
+          const alt = img ? img.getAttribute('alt') : '';
+          openLightbox(src, caption, alt);
+        };
+
+        trigger.addEventListener('click', handler);
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handler();
+          }
+        });
+      });
+
+      lightboxClose.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    });
+  </script>
+
+  <!-- Motion & Scroll Controller -->
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

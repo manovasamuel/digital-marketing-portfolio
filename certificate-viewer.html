@@ -1,0 +1,845 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificate — Manova Samuel</title>
+  <meta name="description" content="Credential viewer — Manova Samuel digital marketing portfolio." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+  <!-- Inherits the full portfolio design system -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    /* ── CERTIFICATE VIEWER — portfolio design-system extension ─────────────
+       Uses the exact same tokens as main.css. No new design language.
+       ─────────────────────────────────────────────────────────────────────── */
+
+    /* PAGE WRAPPER — dots-dark matches all other dark sections */
+    .cv-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-ink);
+      background-image: radial-gradient(circle at 50% 50%, var(--dot-dark-color) var(--dot-radius), transparent calc(var(--dot-radius) + 0.35px));
+      background-size: var(--dot-spacing-x) var(--dot-spacing-y);
+      background-repeat: repeat;
+      background-position: 0 0;
+    }
+
+    /* ── SKIP LINK ── */
+    .cv-skip {
+      position: absolute; left: -9999px; top: 8px;
+      background: var(--color-paper); color: var(--color-ink);
+      padding: 8px 18px; border-radius: 999px;
+      font-family: var(--font-mono); font-size: 11px;
+      z-index: 9999; text-decoration: none;
+    }
+    .cv-skip:focus { left: 16px; }
+
+    /* ── TOP STRIP — breadcrumb + nav consistent with portfolio mono style ── */
+    .cv-topstrip {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px var(--pad-x);
+      border-bottom: 1px solid var(--color-border-dark);
+      background-color: rgba(17, 17, 17, 0.9);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      gap: 20px;
+    }
+
+    /* Back link — pill style matching portfolio */
+    .cv-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-muted-light);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 999px;
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .cv-back:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      border-color: var(--color-paper);
+      transform: translateX(-3px);
+    }
+
+    /* Breadcrumb — mono NDot55 */
+    .cv-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #4a4942;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+    }
+    .cv-breadcrumb-sep { opacity: 0.45; }
+    .cv-breadcrumb-active {
+      color: var(--color-muted-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 300px;
+    }
+
+    /* Arrow navigation — matches .arrow style */
+    .cv-nav-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 999px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .cv-nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--color-muted-light);
+      font-size: 16px;
+      padding: 7px 15px;
+      cursor: pointer;
+      transition: background var(--transition-fast);
+      line-height: 1;
+    }
+    .cv-nav-btn:hover { background: rgba(255, 255, 255, 0.1); }
+    .cv-counter {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: #4a4942;
+      padding: 0 12px;
+      border-left: 1px solid var(--color-border-dark);
+      border-right: 1px solid var(--color-border-dark);
+      line-height: 32px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .cv-main {
+      flex: 1;
+      padding: 70px var(--pad-x) 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      max-width: var(--max-width);
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* ── CERT HEADER — same layout as section headers ── */
+    .cv-header {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Section number eyebrow — same as "05 / Skills & certifications" */
+    .cv-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted-dark);
+    }
+    .cv-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--color-muted-dark);
+      flex-shrink: 0;
+    }
+
+    /* Large editorial serif title */
+    .cv-title {
+      font-family: var(--font-serif);
+      font-size: clamp(38px, 5.5vw, 78px);
+      font-weight: 400;
+      line-height: 0.92;
+      letter-spacing: -0.038em;
+      color: var(--color-text-light);
+      margin: 0;
+      max-width: 860px;
+    }
+
+    /* Description — same as hero body copy */
+    .cv-desc {
+      font-size: 14.5px;
+      line-height: 1.72;
+      color: var(--color-muted-light);
+      max-width: 620px;
+      margin: 0;
+    }
+
+    /* Issuer pill row */
+    .cv-issuer-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    /* Small white logo pill — same proportions as cert-brand-pill on index */
+    .cv-logo-pill {
+      height: 28px;
+      padding: 4px 9px;
+      background: #fff;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .cv-logo-pill img {
+      height: 16px;
+      width: auto;
+      max-width: 72px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .cv-issuer-name {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted-dark);
+    }
+
+    /* Verified badge — same as cert-badge-verified */
+    .cv-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.06em;
+      color: var(--color-muted-light);
+      border: 1px solid var(--color-border-dark);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    /* Thin metadata row — validity / recipient / reference */
+    .cv-meta-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--color-border-dark);
+      padding-top: 18px;
+      margin-top: 2px;
+    }
+    .cv-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cv-meta-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4a4942;
+    }
+    .cv-meta-value {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-muted-light);
+    }
+    .cv-meta-value.mono-val {
+      font-family: 'Noto Sans Mono', monospace;
+      font-size: 11.5px;
+      word-break: break-all;
+    }
+
+    /* ── CERTIFICATE DISPLAY STAGE ──
+       Warm off-white surface (--color-paper) containing the cert image.
+       Matches the "dots-light" warm paper background used in light sections. */
+    .cv-stage-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cv-stage-hint {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #4a4942;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cv-orient-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.07em;
+      color: #4a4942;
+      border: 1px solid var(--color-border-dark);
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+
+    /* The warm paper stage — matching --color-paper from the design system */
+    .cv-stage {
+      background-color: var(--color-paper);
+      background-image: radial-gradient(circle at 50% 50%, var(--dot-light-color) var(--dot-radius), transparent calc(var(--dot-radius) + 0.35px));
+      background-size: var(--dot-spacing-x) var(--dot-spacing-y);
+      background-repeat: repeat;
+      background-position: 0 0;
+      border-radius: 8px;
+      padding: 48px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      cursor: zoom-in;
+      border: 1px solid rgba(17, 17, 17, 0.1);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      position: relative;
+    }
+    .cv-stage.is-zoomed { cursor: zoom-out; }
+
+    .cv-cert-frame {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      transition: transform 0.35s var(--ease-smooth);
+    }
+    .cv-cert-frame.is-landscape { max-width: 960px; }
+    .cv-cert-frame.is-portrait  { max-width: 520px; }
+    .cv-cert-frame.is-zoomed    { transform: scale(1.5); transform-origin: top center; }
+
+    .cv-cert-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 3px;
+      box-shadow: 0 6px 28px rgba(0, 0, 0, 0.14);
+      user-select: none;
+      -webkit-user-select: none;
+      pointer-events: none;
+    }
+
+    /* ── SWITCHER STRIP ── */
+    .cv-switcher-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cv-switcher-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4a4942;
+    }
+
+    .cv-switcher-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    /* Switcher cards — same visual language as cert-cards on index */
+    .cv-switch-card {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      text-align: left;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--color-text-light);
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+      width: 100%;
+    }
+    .cv-switch-card:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    .cv-switch-card.is-active {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    /* Thumbnail */
+    .cv-thumb {
+      width: 52px;
+      height: 38px;
+      border-radius: 3px;
+      overflow: hidden;
+      background: var(--color-paper);
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .cv-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Switch mini logo pill */
+    .cv-switch-pill {
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 2px;
+      overflow: hidden;
+    }
+    .cv-switch-pill img {
+      width: 12px;
+      height: 12px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .cv-switch-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+      flex: 1;
+    }
+    .cv-switch-org {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4a4942;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .cv-switch-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-muted-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ── BOTTOM BAR ── */
+    .cv-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      border-top: 1px solid var(--color-border-dark);
+      padding-top: 32px;
+    }
+
+    .cv-notice {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      color: #3a3933;
+      line-height: 1.7;
+      border-left: 2px solid rgba(255, 255, 255, 0.1);
+      padding-left: 14px;
+    }
+
+    .cv-return-row {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Return button — matches .pill on dark sections */
+    .cv-return-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 24px;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-muted-light);
+      text-decoration: none;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+    .cv-return-link:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      border-color: var(--color-paper);
+      transform: translateY(-2px);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .cv-breadcrumb { display: none; }
+      .cv-stage { padding: 28px 20px; }
+      .cv-cert-frame.is-zoomed { transform: scale(1.6); transform-origin: top left; }
+    }
+    @media (max-width: 680px) {
+      .cv-main { padding: 48px var(--pad-x) 72px; gap: 40px; }
+      .cv-title { font-size: clamp(30px, 8vw, 52px); }
+      .cv-switcher-grid { grid-template-columns: 1fr; }
+      .cv-meta-row { gap: 20px; }
+      .cv-topstrip { padding: 12px 20px; }
+    }
+    @media (max-width: 420px) {
+      .cv-back span:last-child { display: none; }
+    }
+
+    /* Page fade-in */
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .cv-main { animation: pageIn 0.45s var(--ease-smooth) both; }
+  </style>
+</head>
+<body class="cv-page">
+  <a href="#cv-content" class="cv-skip">Skip to certificate</a>
+
+  <!-- TOP STRIP -->
+  <header class="cv-topstrip" role="banner">
+    <div style="display:flex;align-items:center;gap:20px;min-width:0;">
+      <a href="index.html#skills-certifications" class="cv-back" aria-label="Return to certifications grid">
+        <span aria-hidden="true">&#8592;</span>
+        <span>Certifications</span>
+      </a>
+      <nav class="cv-breadcrumb" aria-label="Page breadcrumb">
+        <span>PORTFOLIO</span>
+        <span class="cv-breadcrumb-sep">/</span>
+        <span>CREDENTIALS</span>
+        <span class="cv-breadcrumb-sep">/</span>
+        <span class="cv-breadcrumb-active" id="cvBreadcrumb">CERTIFICATE</span>
+      </nav>
+    </div>
+    <div class="cv-nav-group" role="group" aria-label="Navigate between certificates">
+      <button class="cv-nav-btn" id="cvPrev" type="button" aria-label="Previous certificate">&#8249;</button>
+      <span class="cv-counter" id="cvCounter" aria-live="polite">1 / 7</span>
+      <button class="cv-nav-btn" id="cvNext" type="button" aria-label="Next certificate">&#8250;</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="cv-main" id="cv-content">
+
+    <!-- CERTIFICATE HEADER -->
+    <section class="cv-header" aria-labelledby="cvTitle">
+      <div class="cv-eyebrow" id="cvEyebrow">05 / CREDENTIALS / CERTIFICATE</div>
+      <h1 class="cv-title" id="cvTitle">Certificate</h1>
+      <div class="cv-issuer-row">
+        <div class="cv-logo-pill" id="cvLogoPill">
+          <img id="cvLogoImg" src="" alt="" />
+        </div>
+        <span class="cv-issuer-name" id="cvIssuerName"></span>
+        <span class="cv-verified">&#10003; Verified Credential</span>
+      </div>
+      <p class="cv-desc" id="cvDesc"></p>
+      <div class="cv-meta-row" role="list">
+        <div class="cv-meta-item" role="listitem">
+          <span class="cv-meta-label">Issuing Body</span>
+          <span class="cv-meta-value" id="cvMetaIssuer"></span>
+        </div>
+        <div class="cv-meta-item" role="listitem">
+          <span class="cv-meta-label">Recipient</span>
+          <span class="cv-meta-value" id="cvMetaRecipient"></span>
+        </div>
+        <div class="cv-meta-item" role="listitem">
+          <span class="cv-meta-label">Validity</span>
+          <span class="cv-meta-value" id="cvMetaValidity"></span>
+        </div>
+        <div class="cv-meta-item" role="listitem">
+          <span class="cv-meta-label">Reference</span>
+          <span class="cv-meta-value mono-val" id="cvMetaRef"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATE DISPLAY STAGE -->
+    <section class="cv-stage-wrap" aria-label="Certificate image">
+      <div class="cv-stage-hint">
+        <span>Click to zoom &#183; Arrow keys to browse &#183; Esc to return</span>
+        <span class="cv-orient-tag" id="cvOrientTag">LANDSCAPE (A4)</span>
+      </div>
+      <div class="cv-stage" id="cvStage" role="button" aria-label="Certificate image. Click to zoom." tabindex="0">
+        <div class="cv-cert-frame is-landscape" id="cvCertFrame">
+          <img class="cv-cert-img" id="cvCertImg" src="" alt="" loading="eager" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SWITCHER STRIP -->
+    <section class="cv-switcher-wrap" aria-label="All seven credentials">
+      <div class="cv-switcher-eyebrow">Select certificate — 7 verified credentials</div>
+      <div class="cv-switcher-grid" id="cvSwitcherGrid" role="tablist"></div>
+    </section>
+
+    <!-- BOTTOM -->
+    <div class="cv-bottom">
+      <p class="cv-notice">
+        AUTHENTIC CREDENTIAL RECORD &#183; On-page inspection for recruiters and hiring managers. Original certificate proportions preserved. No downloads provided.
+      </p>
+      <div class="cv-return-row">
+        <a href="index.html#skills-certifications" class="cv-return-link">
+          <span aria-hidden="true">&#8592;</span> Return to Portfolio
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var CERTS = {
+        'google-ads': {
+          title: 'Google Ads Search Certification (2026)',
+          issuer: 'Google Skillshop',
+          logo: 'assets/images/certifications/google-ads/logo.svg',
+          image: 'assets/images/certifications/google-ads/certificate.png',
+          orient: 'landscape',
+          validity: 'Sep 2, 2026 \u2013 Sep 2, 2027',
+          recipient: 'Manova Samuel M',
+          ref: 'nl78i1uh_1788345905463',
+          desc: 'Validates proficiency in structuring intent-driven Search campaigns \u2014 STAG architecture, keyword match type management, audience targeting, and Responsive Search Ads (RSAs).'
+        },
+        'google-analytics': {
+          title: 'Google Analytics Certification (2026)',
+          issuer: 'Google',
+          logo: 'assets/images/certifications/google-analytics/logo.svg',
+          image: 'assets/images/certifications/google-analytics/certificate.png',
+          orient: 'landscape',
+          validity: 'Valid: 2026 \u2013 2027',
+          recipient: 'Manova Samuel M',
+          ref: 'Cert ID: 198020735',
+          desc: 'Validates measurement expertise in GA4 \u2014 custom event taxonomy, conversion tracking, attribution models, exploration reports, and diagnostic discrepancy analysis.'
+        },
+        'semrush-seo': {
+          title: 'SEO Essentials with Semrush',
+          issuer: 'Semrush Academy',
+          logo: 'assets/images/certifications/semrush-seo/logo.png',
+          image: 'assets/images/certifications/semrush-seo/certificate.png',
+          orient: 'landscape',
+          validity: 'Certified Oct 21, 2026 \u00b7 Expires Oct 20, 2027',
+          recipient: 'Manova Samuel M',
+          ref: 'f00bff74f4',
+          desc: 'Core SEO foundations: keyword research methodology, competitive intelligence, on-page alignment, technical crawl health, and link building fundamentals using Semrush.'
+        },
+        'semrush-ai-visibility': {
+          title: 'AI Visibility Essentials with Semrush',
+          issuer: 'Semrush Academy',
+          logo: 'assets/images/certifications/semrush-ai-visibility/logo.png',
+          image: 'assets/images/certifications/semrush-ai-visibility/certificate.png',
+          orient: 'landscape',
+          validity: 'Certified Oct 21, 2026 \u00b7 Expires Oct 20, 2027',
+          recipient: 'Manova Samuel M',
+          ref: '9c6339cee9',
+          desc: 'Modern search discovery: AI answer engine indexing, crawler access boundaries, structured schema metadata, technical site health diagnostics, and crawl error remediation.'
+        },
+        'meta-ab-testing': {
+          title: 'Learning A/B Tests, Creative Tests and Lift Studies',
+          issuer: 'Meta Blueprint',
+          logo: 'assets/images/certifications/meta-ab-testing/logo.svg',
+          image: 'assets/images/certifications/meta-ab-testing/certificate.png',
+          orient: 'portrait',
+          validity: 'Certified: Oct 11, 2026',
+          recipient: 'Manova Samuel M',
+          ref: 'Official Course Credential',
+          desc: 'Scientific testing frameworks on Meta: isolated variable hypothesis testing, creative format lift, conversion lift studies, and statistical significance evaluation.'
+        },
+        'meta-business-suite': {
+          title: 'Connect with Customers Using Meta Business Suite',
+          issuer: 'Meta Blueprint',
+          logo: 'assets/images/certifications/meta-business-suite/logo.svg',
+          image: 'assets/images/certifications/meta-business-suite/certificate.png',
+          orient: 'portrait',
+          validity: 'Certified: Oct 21, 2026',
+          recipient: 'Manova Samuel M',
+          ref: 'Official Course Credential',
+          desc: 'Managing business assets across Facebook and Instagram \u2014 direct messaging, automation workflows, content scheduling, and organic performance measurement.'
+        },
+        'hubspot-digital-marketing': {
+          title: 'Digital Marketing Certification',
+          issuer: 'HubSpot Academy',
+          logo: 'assets/images/certifications/hubspot-digital-marketing/logo.png',
+          image: 'assets/images/certifications/hubspot-digital-marketing/certificate.png',
+          orient: 'landscape',
+          validity: 'Oct 20, 2026 \u2013 Nov 18, 2028',
+          recipient: 'Manova Samuel',
+          ref: '271f39a106fb465b8f72f86dba948e8f',
+          desc: 'Comprehensive inbound marketing credential covering SEO content strategy, website optimisation, video audience engagement, paid amplification, and measurement hygiene.'
+        }
+      };
+
+      var keys = Object.keys(CERTS);
+      var current = 'google-ads';
+      var zoomed = false;
+
+      var param = new URLSearchParams(location.search).get('cert');
+      if (param && CERTS[param]) current = param;
+
+      function eid(id) { return document.getElementById(id); }
+
+      var dom = {
+        breadcrumb:  eid('cvBreadcrumb'),
+        eyebrow:     eid('cvEyebrow'),
+        title:       eid('cvTitle'),
+        logoImg:     eid('cvLogoImg'),
+        issuerName:  eid('cvIssuerName'),
+        desc:        eid('cvDesc'),
+        metaIssuer:  eid('cvMetaIssuer'),
+        metaRecip:   eid('cvMetaRecipient'),
+        metaValid:   eid('cvMetaValidity'),
+        metaRef:     eid('cvMetaRef'),
+        orientTag:   eid('cvOrientTag'),
+        stage:       eid('cvStage'),
+        frame:       eid('cvCertFrame'),
+        certImg:     eid('cvCertImg'),
+        prev:        eid('cvPrev'),
+        next:        eid('cvNext'),
+        counter:     eid('cvCounter'),
+        switcher:    eid('cvSwitcherGrid')
+      };
+
+      function setZoom(on) {
+        zoomed = on;
+        dom.frame.classList.toggle('is-zoomed', on);
+        dom.stage.classList.toggle('is-zoomed', on);
+        dom.stage.setAttribute('aria-label',
+          on ? 'Certificate zoomed. Click to fit view.' : 'Certificate image. Click to zoom.');
+      }
+
+      function render(id, push) {
+        var c = CERTS[id];
+        if (!c) return;
+        current = id;
+        var idx = keys.indexOf(id);
+
+        document.title = c.title + ' \u2014 Manova Samuel';
+
+        var eyebrowLabel = '05 / CREDENTIALS / ' + c.issuer.toUpperCase();
+        dom.eyebrow.textContent = eyebrowLabel;
+        dom.breadcrumb.textContent = c.issuer.toUpperCase();
+        dom.title.textContent = c.title;
+        dom.logoImg.src = c.logo;
+        dom.logoImg.alt = c.issuer + ' logo';
+        dom.issuerName.textContent = c.issuer;
+        dom.desc.textContent = c.desc;
+        dom.metaIssuer.textContent = c.issuer;
+        dom.metaRecip.textContent = c.recipient;
+        dom.metaValid.textContent = c.validity;
+        dom.metaRef.textContent = c.ref;
+
+        var portrait = c.orient === 'portrait';
+        dom.frame.className = 'cv-cert-frame ' + (portrait ? 'is-portrait' : 'is-landscape');
+        dom.orientTag.textContent = portrait ? 'PORTRAIT (A4)' : 'LANDSCAPE (A4)';
+        dom.certImg.src = c.image;
+        dom.certImg.alt = c.title + ' \u2014 original certificate issued to ' + c.recipient;
+
+        setZoom(false);
+
+        dom.counter.textContent = (idx + 1) + ' / ' + keys.length;
+
+        dom.switcher.querySelectorAll('.cv-switch-card').forEach(function (btn) {
+          var on = btn.dataset.cert === id;
+          btn.classList.toggle('is-active', on);
+          btn.setAttribute('aria-selected', String(on));
+        });
+
+        if (push !== false) {
+          history.replaceState({ cert: id }, '', '?cert=' + id);
+        }
+      }
+
+      function go(dir) {
+        var idx = keys.indexOf(current);
+        var next = (idx + dir + keys.length) % keys.length;
+        render(keys[next]);
+        dom.stage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      function buildSwitcher() {
+        keys.forEach(function (key) {
+          var c = CERTS[key];
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'cv-switch-card' + (key === current ? ' is-active' : '');
+          btn.dataset.cert = key;
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-selected', String(key === current));
+          btn.setAttribute('aria-label', 'View ' + c.title);
+          btn.innerHTML =
+            '<div class="cv-thumb"><img src="' + c.image + '" alt="" aria-hidden="true" loading="lazy" /></div>' +
+            '<div class="cv-switch-info">' +
+              '<div class="cv-switch-org">' +
+                '<span class="cv-switch-pill"><img src="' + c.logo + '" alt="" aria-hidden="true" /></span>' +
+                c.issuer +
+              '</div>' +
+              '<div class="cv-switch-name">' + c.title + '</div>' +
+            '</div>';
+          btn.addEventListener('click', function () {
+            render(key);
+            dom.stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+          dom.switcher.appendChild(btn);
+        });
+      }
+
+      // Stage click to toggle zoom
+      dom.stage.addEventListener('click', function () { setZoom(!zoomed); });
+      dom.stage.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setZoom(!zoomed); }
+      });
+
+      dom.prev.addEventListener('click', function () { go(-1); });
+      dom.next.addEventListener('click', function () { go(1); });
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft')  go(-1);
+        if (e.key === 'ArrowRight') go(1);
+        if (e.key === 'Escape')     location.href = 'index.html#skills-certifications';
+      });
+
+      window.addEventListener('popstate', function () {
+        var p = new URLSearchParams(location.search).get('cert');
+        if (p && CERTS[p]) render(p, false);
+      });
+
+      buildSwitcher();
+      render(current, false);
+    })();
+  </script>
+</body>
+</html>

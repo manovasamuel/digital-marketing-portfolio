@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111111" />
+  <title>ReelForge AI — Website Analytics & Conversion Tracking — Manova Samuel</title>
+  <meta name="description" content="A practical GA4 and Google Tag Manager case study for ReelForge AI by Manova Samuel. Traffic acquisition, onboarding event taxonomy, DebugView verification, and signup conversion validation." />
+  <meta name="author" content="Manova Samuel" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ReelForge AI — Website Analytics & Conversion Tracking — Manova Samuel" />
+  <meta property="og:description" content="A practical GA4 analytics case study examining active user acquisition, onboarding event taxonomy, DebugView timeline evidence, and conversion verification." />
+  <meta property="og:image" content="assets/images/ga4/ga4_overview_reports.png" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌁</text></svg>" />
+
+  <!-- Inherits the portfolio design system -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+
+  <style>
+    /* ==========================================================================
+       DEDICATED GA4 WEBSITE ANALYTICS & CONVERSION TRACKING CASE STUDY
+       Preserves the approved Nothing Technology-inspired design system:
+       - Dark charcoal (#111111) and warm off-white (#ecebe4 / #f2f0e9) palette
+       - Exactly 13 dots per horizontal row across full viewport width
+       - Instrument Serif editorial headlines
+       - Space Grotesk body typography
+       - Local NDot55 font for technical labels and section numbers
+       - Thin borders, restrained accent colors, clean data tables, genuine evidence
+       ========================================================================== */
+
+    .ga4-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-ink);
+      background-image: radial-gradient(circle at 50% 50%, var(--dot-dark-color) var(--dot-radius), transparent calc(var(--dot-radius) + 0.35px));
+      background-size: var(--dot-spacing-x) var(--dot-spacing-y);
+      background-repeat: repeat;
+      background-position: 0 0;
+      color: var(--color-text-light);
+    }
+
+    /* Top Navigation Bar */
+    .ga4-topstrip {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px var(--pad-x);
+      border-bottom: 1px solid var(--color-border-dark);
+      background-color: rgba(17, 17, 17, 0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      gap: 16px;
+    }
+
+    .ga4-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .ga4-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-muted-light);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 999px;
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .ga4-back-btn:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      border-color: var(--color-paper);
+      transform: translateX(-3px);
+    }
+
+    .ga4-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #6a6961;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ga4-breadcrumb-sep { opacity: 0.45; }
+
+    .ga4-breadcrumb-active {
+      color: var(--color-muted-light);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ga4-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .ga4-nav-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-dark);
+      background: var(--color-paper);
+      padding: 8px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .ga4-nav-action:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* Page Main Container */
+    .ga4-page-main {
+      flex: 1;
+      max-width: var(--max-width);
+      width: 100%;
+      margin: 0 auto;
+      padding: 60px var(--pad-x) 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+    }
+
+    /* --- HERO SECTION --- */
+    .ga4-hero {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--color-border-dark);
+    }
+
+    .ga4-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9c9b91;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ga4-eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: #88877d;
+    }
+
+    .ga4-hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 6.2vw, 88px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin: 0;
+      color: #ffffff;
+      max-width: 980px;
+    }
+
+    .ga4-hero-title em {
+      font-style: italic;
+      color: #a8a79d;
+    }
+
+    .ga4-hero-tagline {
+      font-size: clamp(16px, 1.8vw, 20px);
+      line-height: 1.6;
+      color: #c5c4bb;
+      max-width: 860px;
+      margin: 0;
+    }
+
+    .ga4-hero-tagline strong {
+      color: #f5f4ed;
+      font-weight: 500;
+    }
+
+    .ga4-badges-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .ga4-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid currentColor;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ga4-badge-amber {
+      color: #e5a93b;
+      border-color: rgba(229, 169, 59, 0.4);
+      background: rgba(229, 169, 59, 0.06);
+    }
+
+    .ga4-badge-cyan {
+      color: #5bbad5;
+      border-color: rgba(91, 186, 213, 0.4);
+      background: rgba(91, 186, 213, 0.06);
+    }
+
+    .ga4-badge-muted {
+      color: #9e9d94;
+      border-color: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Metadata Grid */
+    .ga4-meta-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      padding: 22px 24px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+    }
+
+    .ga4-meta-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ga4-meta-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7a7972;
+    }
+
+    .ga4-meta-val {
+      font-size: 13px;
+      font-weight: 500;
+      color: #f4f3ec;
+      line-height: 1.4;
+    }
+
+    .ga4-meta-val.mono-val {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Hero Evidence Showcase */
+    .ga4-showcase {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #141414;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+    }
+
+    .ga4-showcase-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: #1c1c1b;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #a2a198;
+      letter-spacing: 0.06em;
+    }
+
+    .ga4-showcase-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ga4-dot-live {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+    }
+
+    .ga4-showcase-img-wrap {
+      position: relative;
+      background: #0d0d0d;
+      cursor: zoom-in;
+    }
+
+    .ga4-showcase-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s var(--ease-nothing);
+    }
+
+    .ga4-showcase-img-wrap:hover .ga4-showcase-img {
+      transform: scale(1.008);
+    }
+
+    .ga4-showcase-caption {
+      padding: 14px 22px;
+      background: #161615;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12.5px;
+      color: #9e9d94;
+      line-height: 1.6;
+    }
+
+    .ga4-showcase-caption strong {
+      color: #eae9e1;
+    }
+
+    /* --- SECTION HEADERS & GENERAL SECTIONS --- */
+    .ga4-section {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .ga4-section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ga4-section-head .mono {
+      color: #8c8b82;
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+    }
+
+    .ga4-section-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.4vw, 52px);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.05;
+    }
+
+    .ga4-section-head h2 em {
+      font-style: italic;
+      color: #a3a296;
+    }
+
+    .ga4-section-head p {
+      font-size: 15px;
+      color: #b8b7ad;
+      max-width: 820px;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* Metric Cards Grid */
+    .ga4-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .ga4-metric-card {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.4s var(--ease-nothing), border-color 0.4s var(--ease-nothing);
+    }
+
+    .ga4-metric-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .ga4-metric-num {
+      font-family: var(--font-serif);
+      font-size: clamp(42px, 4.6vw, 64px);
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    .ga4-metric-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #c7c6bd;
+      margin-top: 4px;
+    }
+
+    .ga4-metric-note {
+      font-size: 12px;
+      color: #7e7d76;
+      line-height: 1.5;
+    }
+
+    /* Core Questions & Evidence Boundary Layout */
+    .ga4-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .ga4-info-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .ga4-info-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #dfad52;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ga4-questions-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ga4-questions-list li {
+      font-size: 14px;
+      color: #d6d5cb;
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .ga4-questions-list li::before {
+      content: "→";
+      color: #dfad52;
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    .ga4-boundary-box {
+      border: 1px solid rgba(229, 169, 59, 0.25);
+      background: rgba(229, 169, 59, 0.03);
+      border-radius: 8px;
+      padding: 22px 24px;
+      font-size: 13.5px;
+      color: #cac9bf;
+      line-height: 1.75;
+    }
+
+    .ga4-boundary-box strong {
+      color: #e5a93b;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* --- WARM EDITORIAL SURFACE (NOTHING TECH STYLE) --- */
+    .ga4-warm-surface {
+      background-color: var(--color-warm);
+      background-image: radial-gradient(circle at 50% 50%, var(--dot-warm-color) var(--dot-radius), transparent calc(var(--dot-radius) + 0.35px));
+      background-size: var(--dot-spacing-x) var(--dot-spacing-y);
+      background-repeat: repeat;
+      background-position: 0 0;
+      color: var(--color-text-dark);
+      border-radius: 12px;
+      padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px);
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+    }
+
+    .ga4-warm-head h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.4vw, 52px);
+      font-weight: 400;
+      color: var(--color-text-dark);
+      margin: 0 0 10px;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+    }
+
+    .ga4-warm-head p {
+      font-size: 15px;
+      color: #4f4e48;
+      max-width: 820px;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* Structured Data Tables */
+    .ga4-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid rgba(17, 17, 17, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+
+    .ga4-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+
+    .ga4-table th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5d5c55;
+      background: #f4f3ec;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+      white-space: nowrap;
+    }
+
+    .ga4-table td {
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+      color: #2b2a26;
+      vertical-align: middle;
+    }
+
+    .ga4-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .ga4-table tr:hover td {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .ga4-code-col {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #111111;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .ga4-count-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #111111;
+      background: #ebe9df;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(17, 17, 17, 0.1);
+    }
+
+    /* Dark Section Tables */
+    .ga4-dark-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .ga4-dark-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    .ga4-dark-table th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8c8b82;
+      background: #181817;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--color-border-dark);
+      white-space: nowrap;
+    }
+
+    .ga4-dark-table td {
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      color: #d8d7cf;
+      vertical-align: middle;
+    }
+
+    .ga4-dark-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Validation Status Card Grid */
+    .ga4-status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .ga4-status-card {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ga4-status-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .ga4-status-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    .pill-green {
+      background: rgba(74, 222, 128, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+
+    .pill-amber {
+      background: rgba(229, 169, 59, 0.12);
+      color: #e5a93b;
+      border: 1px solid rgba(229, 169, 59, 0.3);
+    }
+
+    .pill-cyan {
+      background: rgba(91, 186, 213, 0.12);
+      color: #5bbad5;
+      border: 1px solid rgba(91, 186, 213, 0.3);
+    }
+
+    .pill-red {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .ga4-status-title {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .ga4-status-desc {
+      font-size: 13px;
+      color: #a4a39b;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Dual Evidence Showcase Grid */
+    .ga4-evidence-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .ga4-evidence-card {
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #141414;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ga4-evidence-header {
+      padding: 10px 16px;
+      background: #1b1b1a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.07em;
+      color: #9c9b92;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ga4-evidence-img-wrap {
+      cursor: zoom-in;
+      background: #0c0c0c;
+    }
+
+    .ga4-evidence-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s var(--ease-nothing);
+    }
+
+    .ga4-evidence-img-wrap:hover .ga4-evidence-img {
+      transform: scale(1.01);
+    }
+
+    .ga4-evidence-caption {
+      padding: 12px 18px;
+      background: #161615;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12px;
+      color: #9e9d94;
+      line-height: 1.6;
+    }
+
+    .ga4-evidence-caption strong {
+      color: #eae9e1;
+    }
+
+    /* 5-Step Recommendation Workflow */
+    .ga4-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .ga4-step-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 8px;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.3s var(--ease-nothing);
+    }
+
+    .ga4-step-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    .ga4-step-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: #dfad52;
+    }
+
+    .ga4-step-title {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .ga4-step-text {
+      font-size: 12px;
+      color: #8c8b82;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* --- FOOTER & NAVIGATION --- */
+    .ga4-footer {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--color-border-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .ga4-footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ga4-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .ga4-pill-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-muted-light);
+      text-decoration: none;
+      padding: 8px 18px;
+      border: 1px solid var(--color-border-dark);
+      border-radius: 999px;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .ga4-pill-link:hover {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      border-color: var(--color-paper);
+    }
+
+    .ga4-footer-brand {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #6a6961;
+      text-transform: uppercase;
+    }
+
+    .ga4-footer-brand b {
+      color: var(--color-paper);
+    }
+
+    /* --- ACCESSIBLE LIGHTBOX MODAL --- */
+    .ga4-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10, 10, 10, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .ga4-lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .ga4-lightbox-content {
+      position: relative;
+      max-width: 1200px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ga4-lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .ga4-lightbox-caption {
+      font-size: 13px;
+      color: #cfcecb;
+      text-align: center;
+      max-width: 800px;
+      font-family: var(--font-sans);
+    }
+
+    .ga4-lightbox-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      color: #ffffff;
+      font-size: 28px;
+      line-height: 1;
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0.75;
+      padding: 8px;
+      transition: opacity 0.2s ease;
+    }
+
+    .ga4-lightbox-close:hover {
+      opacity: 1;
+    }
+
+    /* --- RESPONSIVE MEDIA QUERIES --- */
+    @media (max-width: 1024px) {
+      .ga4-meta-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .ga4-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .ga4-steps-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .ga4-status-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ga4-meta-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .ga4-split-grid,
+      .ga4-evidence-grid {
+        grid-template-columns: 1fr;
+      }
+      .ga4-steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .ga4-topstrip {
+        padding: 12px 16px;
+      }
+      .ga4-breadcrumb {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="ga4-page">
+
+  <!-- Sticky Top Navigation -->
+  <header class="ga4-topstrip" role="banner">
+    <div class="ga4-nav-left">
+      <a href="index.html#digital-marketing" class="ga4-back-btn" id="topBackBtn">
+        <span aria-hidden="true">&#8592;</span> Return to Portfolio
+      </a>
+      <div class="ga4-breadcrumb" aria-label="Breadcrumb">
+        <span>Portfolio</span>
+        <span class="ga4-breadcrumb-sep">/</span>
+        <span>Digital Marketing</span>
+        <span class="ga4-breadcrumb-sep">/</span>
+        <span class="ga4-breadcrumb-active">GA4 Website Analytics &amp; Conversion Tracking</span>
+      </div>
+    </div>
+    <div class="ga4-nav-right">
+      <a href="https://reel-forge-ai-psi.vercel.app/" target="_blank" rel="noopener noreferrer" class="ga4-nav-action">
+        <span>Live Product</span> <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <main class="ga4-page-main" id="mainContent">
+
+    <!-- SECTION A: HERO -->
+    <section class="ga4-hero" aria-labelledby="heroHeadline">
+      <div class="ga4-eyebrow reveal">02.2 / MARKETING ANALYTICS · GA4 &amp; GOOGLE TAG MANAGER</div>
+      
+      <h1 class="ga4-hero-title reveal delay-1" id="heroHeadline">
+        From click to conversion.<br><em>Measured in code.</em>
+      </h1>
+
+      <p class="ga4-hero-tagline reveal delay-2">
+        A practical Google Analytics 4 and GTM case study for <strong>ReelForge AI</strong> — examining real website traffic acquisition, onboarding event taxonomy, DebugView verification, and signup conversion tracking integrity.
+      </p>
+
+      <div class="ga4-badges-strip reveal delay-3">
+        <span class="ga4-badge ga4-badge-amber">
+          <span aria-hidden="true">✦</span> Real Website Analytics Project
+        </span>
+        <span class="ga4-badge ga4-badge-cyan">
+          Reporting Window: 28 Sep – 25 Oct 2026
+        </span>
+        <span class="ga4-badge ga4-badge-muted">
+          Website: reel-forge-ai-psi.vercel.app
+        </span>
+        <span class="ga4-badge ga4-badge-muted">
+          signup_lead Trigger: Pending Full Validation
+        </span>
+        <span class="ga4-badge ga4-badge-muted">
+          No Live Ad Spend or Revenue Claimed
+        </span>
+      </div>
+
+      <!-- Metadata Strip -->
+      <div class="ga4-meta-strip reveal delay-3" aria-label="Project Metadata">
+        <div class="ga4-meta-col">
+          <span class="ga4-meta-label">Category</span>
+          <span class="ga4-meta-val">Marketing Analytics / Tracking</span>
+        </div>
+        <div class="ga4-meta-col">
+          <span class="ga4-meta-label">Brand &amp; Product</span>
+          <span class="ga4-meta-val">ReelForge AI (Social Intelligence)</span>
+        </div>
+        <div class="ga4-meta-col">
+          <span class="ga4-meta-label">GA4 Measurement ID</span>
+          <span class="ga4-meta-val mono-val">G-03MQ1003FP</span>
+        </div>
+        <div class="ga4-meta-col">
+          <span class="ga4-meta-label">GTM Container</span>
+          <span class="ga4-meta-val mono-val">GTM-M3M6PCQV</span>
+        </div>
+        <div class="ga4-meta-col">
+          <span class="ga4-meta-label">Google Ads Tag</span>
+          <span class="ga4-meta-val mono-val">AW-18396355739</span>
+        </div>
+        <div class="ga4-meta-col">
+          <span class="ga4-meta-label">Observed Scope</span>
+          <span class="ga4-meta-val">36 Active Users · 530 Events</span>
+        </div>
+      </div>
+
+      <!-- Hero Visual Showcase: GA4 Reports Snapshot -->
+      <div class="ga4-showcase reveal-scale" aria-label="GA4 Reports Snapshot Evidence">
+        <div class="ga4-showcase-bar">
+          <div class="ga4-showcase-bar-left">
+            <span class="ga4-dot-live" aria-hidden="true"></span>
+            <span>GA4 REPORTS SNAPSHOT · REELFORGE AI LIVE PROPERTY</span>
+          </div>
+          <span>OCTOBER 2026 AUDIT CYCLE</span>
+        </div>
+        <div class="ga4-showcase-img-wrap" data-lightbox="assets/images/ga4/ga4_overview_reports.png" data-caption="Figure 1: GA4 Reports snapshot for the period 28 Sep – 25 Oct 2026, displaying 36 active users, 530 total events, and 154 page views.">
+          <img
+            src="assets/images/ga4/ga4_overview_reports.png"
+            alt="GA4 Reports snapshot showing 36 active users, 530 total events, and 154 page views for ReelForge AI"
+            class="ga4-showcase-img"
+            width="953"
+            height="949"
+          />
+        </div>
+        <div class="ga4-showcase-caption">
+          <strong>Figure 1:</strong> GA4 Reports snapshot for the period 28 September – 25 October 2026. Documents 36 active users, 530 total events, and 154 page views across the product website. Click image to inspect full-size evidence.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION B: EXECUTIVE SUMMARY & METRIC OVERVIEW -->
+    <section class="ga4-section reveal" aria-labelledby="execSummaryHeading">
+      <div class="ga4-section-head">
+        <span class="mono">01 / EXECUTIVE SUMMARY</span>
+        <h2 id="execSummaryHeading">Real website activity,<br><em>transparently evaluated.</em></h2>
+        <p>
+          ReelForge AI is my own SaaS product project (hosted on Vercel), used here as a practical testing ground for implementing Google Analytics 4 via Google Tag Manager. The case study distinguishes observed analytics data from previous implementation QA and sets out clear verification boundaries.
+        </p>
+      </div>
+
+      <!-- 4 High-Impact Metrics Cards -->
+      <div class="ga4-metrics-grid">
+        <div class="ga4-metric-card reveal-scale">
+          <span class="ga4-metric-num">36</span>
+          <span class="ga4-metric-title">Active Users</span>
+          <span class="ga4-metric-note">Observed over the 28-day window (28 Sep – 25 Oct 2026).</span>
+        </div>
+        <div class="ga4-metric-card reveal-scale delay-1">
+          <span class="ga4-metric-num">530</span>
+          <span class="ga4-metric-title">Total Events</span>
+          <span class="ga4-metric-note">Captured across discovery, navigation, and onboarding steps.</span>
+        </div>
+        <div class="ga4-metric-card reveal-scale delay-2">
+          <span class="ga4-metric-num">154</span>
+          <span class="ga4-metric-title">Page Views</span>
+          <span class="ga4-metric-note">Concentrated primarily on the main landing page (124 views).</span>
+        </div>
+        <div class="ga4-metric-card reveal-scale delay-3">
+          <span class="ga4-metric-num">1</span>
+          <span class="ga4-metric-title">signup_lead Event</span>
+          <span class="ga4-metric-note">Observed in Events &amp; DebugView; trigger pending verification.</span>
+        </div>
+      </div>
+
+      <!-- Core Questions & Evidence Disclosure -->
+      <div class="ga4-split-grid">
+        <div class="ga4-info-card">
+          <span class="ga4-info-title">Core Measurement Questions Investigated</span>
+          <ul class="ga4-questions-list">
+            <li>Which pages and events are receiving user activity?</li>
+            <li>How are users being attributed to acquisition channels and sources?</li>
+            <li>Are onboarding progression events available for funnel analysis?</li>
+            <li>Does <code>signup_lead</code> fire only after a genuine successful account creation?</li>
+          </ul>
+        </div>
+
+        <div class="ga4-boundary-box">
+          <strong>Portfolio Evidence Disclosure</strong>
+          This case study uses real GA4 report screenshots for the stated reporting period. Event transmission and prior QA observations are described only to the extent supported by the supplied screenshots and earlier implementation notes. The <code>signup_lead</code> trigger and successful-signup semantics remain pending verification. No advertising results, commercial revenue, or performance lift are claimed.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION C: MEASUREMENT SETUP & EVENT TAXONOMY -->
+    <section class="ga4-section reveal" aria-labelledby="setupHeading">
+      <div class="ga4-section-head">
+        <span class="mono">02 / MEASUREMENT SETUP &amp; EVENT INVENTORY</span>
+        <h2 id="setupHeading">Architecture &amp; documented<br><em>event taxonomy.</em></h2>
+        <p>
+          Configured GA4 tags, custom parameters, and GTM trigger logic deployed to ReelForge AI on Vercel. Below is the complete event inventory recorded in GA4 during the reporting window.
+        </p>
+      </div>
+
+      <!-- Component Architecture Table -->
+      <div class="ga4-dark-table-wrap reveal">
+        <table class="ga4-dark-table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Recorded Configuration Detail</th>
+              <th>Evidence &amp; Implementation Note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ga4-code-col" style="color:#ffffff;">Target Website</td>
+              <td>ReelForge AI on Vercel (Next.js Application)</td>
+              <td>Production environment (<a href="https://reel-forge-ai-psi.vercel.app/" target="_blank" rel="noopener noreferrer" style="color:#dfad52; text-decoration:underline;">reel-forge-ai-psi.vercel.app ↗</a>)</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col" style="color:#ffffff;">GA4 Measurement ID</td>
+              <td><code>G-03MQ1003FP</code></td>
+              <td>Recorded in container config; active data stream</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col" style="color:#ffffff;">GTM Container ID</td>
+              <td><code>GTM-M3M6PCQV</code></td>
+              <td>Client-side tag container managing triggers and parameters</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col" style="color:#ffffff;">Google Ads Tag</td>
+              <td><code>AW-18396355739</code></td>
+              <td>Recorded in earlier setup notes; configuration staged for Search campaigns</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col" style="color:#ffffff;">Validation Tools</td>
+              <td>GA4 Reports, DebugView, Chrome DevTools, Playwright</td>
+              <td>Multi-tool testing protocol validating client-to-server payload delivery</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Complete Observed Event Inventory Table -->
+      <div class="ga4-dark-table-wrap reveal" style="margin-top: 10px;">
+        <table class="ga4-dark-table">
+          <thead>
+            <tr>
+              <th>Event Name in GA4</th>
+              <th>Observed Count</th>
+              <th>Interpretation &amp; Tracking Context</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ga4-code-col">page_view</td>
+              <td><span class="ga4-count-badge" style="background:#222; color:#fff; border-color:#444;">154</span></td>
+              <td>Enhanced measurement and custom page view triggers across product routes</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">scroll</td>
+              <td><span class="ga4-count-badge" style="background:#222; color:#fff; border-color:#444;">108</span></td>
+              <td>Scroll depth threshold triggers capturing engagement down the landing page</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">onboarding_step_complete</td>
+              <td><span class="ga4-count-badge" style="background:#222; color:#fff; border-color:#444;">77</span></td>
+              <td>Granular step completions inside the interactive user onboarding workflow</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">user_engagement</td>
+              <td><span class="ga4-count-badge" style="background:#222; color:#fff; border-color:#444;">65</span></td>
+              <td>GA4 automatic session engagement signals (&gt;10s duration)</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">session_start</td>
+              <td><span class="ga4-count-badge" style="background:#222; color:#fff; border-color:#444;">45</span></td>
+              <td>Distinct user session initializations across all traffic sources</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">first_visit</td>
+              <td><span class="ga4-count-badge" style="background:#222; color:#fff; border-color:#444;">36</span></td>
+              <td>New unique user discoveries recorded on their initial browser session</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">onboarding_complete</td>
+              <td><span class="ga4-count-badge" style="background:#222; color:#fff; border-color:#444;">21</span></td>
+              <td>Full onboarding flow completions; previously verified with Playwright QA</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">onboarding_start</td>
+              <td><span class="ga4-count-badge" style="background:#222; color:#fff; border-color:#444;">19</span></td>
+              <td>User progression entering the first screen of the workspace setup</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">form_start</td>
+              <td><span class="ga4-count-badge" style="background:#222; color:#fff; border-color:#444;">2</span></td>
+              <td>Initial user focus or input into interactive input elements</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">onboarding_skip</td>
+              <td><span class="ga4-count-badge" style="background:#222; color:#fff; border-color:#444;">2</span></td>
+              <td>Users opting to bypass the guided questions to enter the app directly</td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col" style="color:#e5a93b;">signup_lead</td>
+              <td><span class="ga4-count-badge" style="background:rgba(229,169,59,0.15); color:#e5a93b; border-color:rgba(229,169,59,0.4);">1</span></td>
+              <td>Signup-related event; requires trigger &amp; successful account validation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Supporting Screenshot: GA4 Home & Event Overview -->
+      <div class="ga4-evidence-card reveal-scale" style="margin-top: 10px;">
+        <div class="ga4-evidence-header">
+          <span>FIGURE 2 · GA4 HOME &amp; EVENT OVERVIEW</span>
+          <span>REPORTING WINDOW EVIDENCE</span>
+        </div>
+        <div class="ga4-evidence-img-wrap" data-lightbox="assets/images/ga4/ga4_home_event_overview.png" data-caption="Figure 2: GA4 Home and event overview displaying observed activity, active users, and real-time report summaries.">
+          <img
+            src="assets/images/ga4/ga4_home_event_overview.png"
+            alt="GA4 Home and event overview dashboard for ReelForge AI"
+            class="ga4-evidence-img"
+            width="944"
+            height="779"
+          />
+        </div>
+        <div class="ga4-evidence-caption">
+          <strong>Figure 2:</strong> GA4 Home and event overview interface documenting user trends and recent report timelines for ReelForge AI. Click to enlarge.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION D: OBSERVED ANALYTICS & BREAKDOWNS (WARM SURFACE) -->
+    <section class="ga4-warm-surface reveal" aria-labelledby="observedBreakdownHeading">
+      <div class="ga4-warm-head">
+        <span class="mono" style="color:#5e5d56; font-size:10.5px; letter-spacing:0.1em;">03 / OBSERVED REPORTING DATA</span>
+        <h2 id="observedBreakdownHeading">Traffic acquisition &amp;<br>page-view distribution.</h2>
+        <p>
+          Examining the first-user source/medium breakdown and page-level impressions. Because this is a compact dataset (36 users), numbers reflect observed baseline behavior rather than statistical channel effectiveness.
+        </p>
+      </div>
+
+      <div class="ga4-split-grid">
+        <!-- Acquisition Table -->
+        <div>
+          <h3 style="font-family:var(--font-serif); font-size:24px; font-weight:400; margin-bottom:12px; color:#111;">Acquisition: First-User Source / Medium</h3>
+          <div class="ga4-table-wrap">
+            <table class="ga4-table">
+              <thead>
+                <tr>
+                  <th>First-User Source / Medium</th>
+                  <th>Active Users</th>
+                  <th>Share (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="ga4-code-col">(direct) / (none)</td>
+                  <td><span class="ga4-count-badge">33</span></td>
+                  <td>91.7%</td>
+                </tr>
+                <tr>
+                  <td class="ga4-code-col">google / cpc</td>
+                  <td><span class="ga4-count-badge">2</span></td>
+                  <td>5.6%</td>
+                </tr>
+                <tr>
+                  <td class="ga4-code-col">facebook.com / referral</td>
+                  <td><span class="ga4-count-badge">1</span></td>
+                  <td>2.8%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:12.5px; color:#5a5952; margin-top:12px; line-height:1.6;">
+            <strong>Interpretation:</strong> Direct acquisition represents the vast majority in this early sample. Direct traffic should not automatically be assumed to be typed URLs (can include bookmarks, untagged links, or apps). Channel comparison requires larger data samples and verified UTM tagging.
+          </p>
+        </div>
+
+        <!-- Page Views Table -->
+        <div>
+          <h3 style="font-family:var(--font-serif); font-size:24px; font-weight:400; margin-bottom:12px; color:#111;">Page Views: Top Reported Routes</h3>
+          <div class="ga4-table-wrap">
+            <table class="ga4-table">
+              <thead>
+                <tr>
+                  <th>Page Title as Displayed</th>
+                  <th>Views</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight:500;">ReelForge AI | AI Extract Winning Patterns…</td>
+                  <td><span class="ga4-count-badge">124</span></td>
+                </tr>
+                <tr>
+                  <td>Set up your workspace</td>
+                  <td><span class="ga4-count-badge">13</span></td>
+                </tr>
+                <tr>
+                  <td>Sign In | ReelForge AI</td>
+                  <td><span class="ga4-count-badge">8</span></td>
+                </tr>
+                <tr>
+                  <td>Pricing | ReelForge AI</td>
+                  <td><span class="ga4-count-badge">3</span></td>
+                </tr>
+                <tr>
+                  <td>About Us | ReelForge AI</td>
+                  <td><span class="ga4-count-badge">2</span></td>
+                </tr>
+                <tr>
+                  <td>Personalize Your Experience…</td>
+                  <td><span class="ga4-count-badge">2</span></td>
+                </tr>
+                <tr>
+                  <td>Create Account | ReelForge AI</td>
+                  <td><span class="ga4-count-badge">1</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:12.5px; color:#5a5952; margin-top:12px; line-height:1.6;">
+            <strong>Interpretation:</strong> 80.5% of page views occurred on the main homepage. Page views reflect impression volume, not unique prospects or product adoption. The next phase must evaluate step progression into onboarding and verified account creation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Supporting Screenshot: GA4 Events Report -->
+      <div class="ga4-evidence-card reveal-scale" style="background:#ffffff; border-color:rgba(17,17,17,0.12);">
+        <div class="ga4-evidence-header" style="background:#f4f3ec; color:#5d5c55; border-color:rgba(17,17,17,0.1);">
+          <span>FIGURE 3 · GA4 EVENTS REPORT</span>
+          <span>REPORTING PERIOD COUNTS</span>
+        </div>
+        <div class="ga4-evidence-img-wrap" data-lightbox="assets/images/ga4/ga4_events_report.png" data-caption="Figure 3: GA4 Events report showing total event counts recorded during the reporting period.">
+          <img
+            src="assets/images/ga4/ga4_events_report.png"
+            alt="GA4 Events report displaying event counts for the reporting window"
+            class="ga4-evidence-img"
+            width="953"
+            height="947"
+          />
+        </div>
+        <div class="ga4-evidence-caption" style="background:#faf9f6; color:#5a5952; border-color:rgba(17,17,17,0.08);">
+          <strong style="color:#111111;">Figure 3:</strong> GA4 Events report confirming the 11 observed event types, including 154 page_views, 21 onboarding_complete events, and 1 signup_lead event. Click image to inspect.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION E: CONVERSION TRACKING VALIDATION -->
+    <section class="ga4-section reveal" aria-labelledby="conversionValidationHeading">
+      <div class="ga4-section-head">
+        <span class="mono">04 / CONVERSION TRACKING VALIDATION</span>
+        <h2 id="conversionValidationHeading">Verified findings vs.<br><em>pending verification.</em></h2>
+        <p>
+          The Events report records <code>signup_lead</code> once (from one user), and the DebugView timeline shows <code>signup_lead</code> received during a live testing session. Below is an honest breakdown of what the evidence proves versus what remains unverified.
+        </p>
+      </div>
+
+      <!-- Status Cards Grid -->
+      <div class="ga4-status-grid">
+        <div class="ga4-status-card reveal">
+          <div class="ga4-status-header">
+            <span class="ga4-status-pill pill-green">Observed in Report</span>
+            <span class="mono" style="font-size:10px; color:#777;">530 Events</span>
+          </div>
+          <h3 class="ga4-status-title">Total Activity Captured</h3>
+          <p class="ga4-status-desc">
+            GA4 received 530 total events and 154 page views for the 28 Sep – 25 Oct 2026 reporting period, confirming that the measurement container is actively transmitting data.
+          </p>
+        </div>
+
+        <div class="ga4-status-card reveal delay-1">
+          <div class="ga4-status-header">
+            <span class="ga4-status-pill pill-cyan">Observed &amp; Received</span>
+            <span class="mono" style="font-size:10px; color:#777;">1 Event / 1 User</span>
+          </div>
+          <h3 class="ga4-status-title">signup_lead Appearance</h3>
+          <p class="ga4-status-desc">
+            <code>signup_lead</code> appears once in the Events report and in the DebugView timeline, proving that the tag successfully communicated with GA4 during that test session.
+          </p>
+        </div>
+
+        <div class="ga4-status-card reveal delay-2">
+          <div class="ga4-status-header">
+            <span class="ga4-status-pill pill-green">Documented QA</span>
+            <span class="mono" style="font-size:10px; color:#777;">Playwright Network QA</span>
+          </div>
+          <h3 class="ga4-status-title">onboarding_complete Pipeline</h3>
+          <p class="ga4-status-desc">
+            Prior automated testing validated that <code>onboarding_complete</code> sent payloads with <code>completed_all=true</code> and <code>question_id=experience_level</code>, including a successful duplicate-suppression test.
+          </p>
+        </div>
+
+        <div class="ga4-status-card reveal delay-3">
+          <div class="ga4-status-header">
+            <span class="ga4-status-pill pill-amber">Pending Verification</span>
+            <span class="mono" style="font-size:10px; color:#777;">GTM Trigger Logic</span>
+          </div>
+          <h3 class="ga4-status-title">Account Creation Semantics</h3>
+          <p class="ga4-status-desc">
+            Whether the GTM trigger fires strictly on HTTP 200 account confirmation (rather than a raw button click or invalid form submission) has not been independently verified.
+          </p>
+        </div>
+      </div>
+
+      <!-- Dual Evidence: Events Report Detail + DebugView -->
+      <div class="ga4-evidence-grid" style="margin-top: 10px;">
+        <!-- Figure 4: Events Report - signup_lead detail -->
+        <div class="ga4-evidence-card reveal-scale">
+          <div class="ga4-evidence-header">
+            <span>FIGURE 4 · EVENTS REPORT DETAIL</span>
+            <span>signup_lead INSTANCE</span>
+          </div>
+          <div class="ga4-evidence-img-wrap" data-lightbox="assets/images/ga4/ga4_signup_lead_event.png" data-caption="Figure 4: GA4 Events report showing signup_lead event detail (1 event from 1 user).">
+            <img
+              src="assets/images/ga4/ga4_signup_lead_event.png"
+              alt="GA4 Events report detail showing signup_lead event count"
+              class="ga4-evidence-img"
+              width="735"
+              height="849"
+            />
+          </div>
+          <div class="ga4-evidence-caption">
+            <strong>Figure 4:</strong> GA4 Events report drill-down confirming <code>signup_lead</code> recorded once during the reporting window.
+          </div>
+        </div>
+
+        <!-- Figure 5: DebugView Timeline -->
+        <div class="ga4-evidence-card reveal-scale delay-1">
+          <div class="ga4-evidence-header">
+            <span>FIGURE 5 · GA4 DEBUGVIEW</span>
+            <span>TIMELINE VERIFICATION</span>
+          </div>
+          <div class="ga4-evidence-img-wrap" data-lightbox="assets/images/ga4/ga4_debugview_timeline.png" data-caption="Figure 5: GA4 DebugView timeline showing signup_lead received in the real-time device stream.">
+            <img
+              src="assets/images/ga4/ga4_debugview_timeline.png"
+              alt="GA4 DebugView timeline showing signup_lead event received"
+              class="ga4-evidence-img"
+              width="960"
+              height="772"
+            />
+          </div>
+          <div class="ga4-evidence-caption">
+            <strong>Figure 5:</strong> GA4 DebugView timeline demonstrating real-time receipt of <code>signup_lead</code> alongside page_view and session events.
+          </div>
+        </div>
+      </div>
+
+      <!-- Critical Boundary Alert -->
+      <div class="ga4-boundary-box reveal" style="border-color:rgba(239, 68, 68, 0.3); background:rgba(239, 68, 68, 0.04);">
+        <strong style="color:#f87171;">Critical Analytics Limitation</strong>
+        An event appearing in DebugView confirms <strong>data receipt by GA4</strong>, not the validity of the underlying business outcome. A button click or form submit without server validation is not proof of a registered user. Therefore, no claims of verified conversions, signup lift, or revenue are made.
+      </div>
+    </section>
+
+    <!-- SECTION F: RECOMMENDATIONS & NEXT STEPS -->
+    <section class="ga4-section reveal" aria-labelledby="recommendationsHeading">
+      <div class="ga4-section-head">
+        <span class="mono">05 / RECOMMENDATIONS &amp; QA PLAYBOOK</span>
+        <h2 id="recommendationsHeading">Rigorous 5-step validation<br><em>procedure for production.</em></h2>
+        <p>
+          Before marking <code>signup_lead</code> as a key event in GA4 or importing it into Google Ads as a primary conversion action, the following disciplined QA protocol should be executed.
+        </p>
+      </div>
+
+      <!-- 5-Step Playbook Cards -->
+      <div class="ga4-steps-grid">
+        <div class="ga4-step-card reveal">
+          <span class="ga4-step-num">STEP 01</span>
+          <h3 class="ga4-step-title">Inspect GTM Container</h3>
+          <p class="ga4-step-text">
+            Audit existing tag, destination, and trigger variables in GTM without changing live production configuration.
+          </p>
+        </div>
+
+        <div class="ga4-step-card reveal delay-1">
+          <span class="ga4-step-num">STEP 02</span>
+          <h3 class="ga4-step-title">Negative Path Testing</h3>
+          <p class="ga4-step-text">
+            Attempt invalid/failed signups (duplicate email, wrong password). Confirm <code>signup_lead</code> does NOT fire.
+          </p>
+        </div>
+
+        <div class="ga4-step-card reveal delay-2">
+          <span class="ga4-step-num">STEP 03</span>
+          <h3 class="ga4-step-title">Positive Path Testing</h3>
+          <p class="ga4-step-text">
+            Execute a successful test registration and independently verify account creation in the database/auth provider.
+          </p>
+        </div>
+
+        <div class="ga4-step-card reveal delay-3">
+          <span class="ga4-step-num">STEP 04</span>
+          <h3 class="ga4-step-title">DebugView Verification</h3>
+          <p class="ga4-step-text">
+            Validate in GA4 DebugView that the event fires exactly once per completed registration with expected parameters.
+          </p>
+        </div>
+
+        <div class="ga4-step-card reveal delay-4">
+          <span class="ga4-step-num">STEP 05</span>
+          <h3 class="ga4-step-title">Reconcile &amp; Promote</h3>
+          <p class="ga4-step-text">
+            Reconcile analytics counts against backend CRM records, then decide whether to promote to a GA4 Key Event.
+          </p>
+        </div>
+      </div>
+
+      <!-- Actionable Audit Recommendations Table -->
+      <div class="ga4-dark-table-wrap reveal" style="margin-top: 10px;">
+        <table class="ga4-dark-table">
+          <thead>
+            <tr>
+              <th>Current Observation</th>
+              <th>Actionable Technical Recommendation</th>
+              <th>Implementation Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ga4-code-col">Onboarding events exist (19 start, 21 complete)</td>
+              <td>Build a funnel exploration in GA4 with consistent step definitions; examine dropout rates without assuming counts equal unique users.</td>
+              <td><span class="ga4-status-pill pill-cyan">High Priority</span></td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">Signup-related event observed (1 count)</td>
+              <td>Validate GTM trigger against verified account creation callback before adopting as a conversion KPI.</td>
+              <td><span class="ga4-status-pill pill-amber">Critical QA</span></td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">Small acquisition sample (36 users)</td>
+              <td>Standardize UTM tracking parameters, check Google Ads auto-tagging (GCLID), and collect larger sample before comparing channels.</td>
+              <td><span class="ga4-status-pill pill-green">Standard Practice</span></td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">Page views concentrated on main page (124 views)</td>
+              <td>Measure progression from landing page CTA clicks to interactive product actions, workspace setup, and account creation.</td>
+              <td><span class="ga4-status-pill pill-cyan">High Priority</span></td>
+            </tr>
+            <tr>
+              <td class="ga4-code-col">Multiple tags recorded (GA4, GTM, Google Ads)</td>
+              <td>Audit container configurations to ensure zero duplicate page_view fires or unconsented tracking tags.</td>
+              <td><span class="ga4-status-pill pill-green">Ongoing Maintenance</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION G: PORTFOLIO SUMMARY & DISCLOSURE -->
+    <section class="ga4-section reveal" aria-labelledby="summaryHeading">
+      <div class="ga4-section-head">
+        <span class="mono">06 / PORTFOLIO SUMMARY &amp; TAKEAWAYS</span>
+        <h2 id="summaryHeading">Key learnings &amp;<br><em>professional takeaways.</em></h2>
+      </div>
+
+      <div class="ga4-split-grid">
+        <div class="ga4-info-card">
+          <span class="ga4-info-title">Core Analytical Principle</span>
+          <p style="font-size:14.5px; line-height:1.75; color:#eae9e1; margin:0;">
+            An analytics event is only useful as a business KPI when its definition matches the underlying action and its implementation is verified in code. Responsible analytics reporting must clearly separate <strong>observed counts</strong>, <strong>tested implementation behavior</strong>, and <strong>strategic recommendations</strong>.
+          </p>
+        </div>
+
+        <div class="ga4-info-card">
+          <span class="ga4-info-title">Suggested Résumé Bullet</span>
+          <p style="font-size:14px; line-height:1.75; color:#d8d7cf; margin:0;">
+            <em>"Implemented and analysed GA4 tracking for a personal SaaS website; reviewed acquisition, page-view and onboarding event reports, documented DebugView evidence, and developed a validation plan for signup conversion tracking."</em>
+          </p>
+        </div>
+      </div>
+
+      <!-- Formal Project Disclosure -->
+      <div class="ga4-boundary-box" style="margin-top: 10px;">
+        <strong>Project Reporting Disclosure</strong>
+        All analytics counts in this report are taken from genuine GA4 screenshots for 28 September – 25 October 2026 on <a href="https://reel-forge-ai-psi.vercel.app/" target="_blank" rel="noopener noreferrer" style="color:#dfad52; text-decoration:underline;">reel-forge-ai-psi.vercel.app</a>. Prior QA details are based on earlier Playwright network testing. No paid campaign outcomes, commercial revenue, or performance improvements are claimed. The signup_lead trigger and successful signup behavior remain pending validation.
+      </div>
+    </section>
+
+    <!-- SECTION H: FOOTER & NAVIGATION -->
+    <footer class="ga4-footer reveal" role="contentinfo">
+      <div class="ga4-footer-nav">
+        <div class="ga4-footer-links">
+          <a href="google-ads.html" class="ga4-pill-link">
+            <span aria-hidden="true">&#8592;</span> Google Ads Strategy
+          </a>
+          <a href="meta-ads.html" class="ga4-pill-link">
+            Meta Ads Case Study <span aria-hidden="true">→</span>
+          </a>
+          <a href="reelforge-ai.html" class="ga4-pill-link">
+            ReelForge AI SEO <span aria-hidden="true">↗</span>
+          </a>
+          <a href="certificate-viewer.html?cert=google-analytics" class="ga4-pill-link">
+            Google Analytics Certification <span aria-hidden="true">↗</span>
+          </a>
+          <a href="index.html#digital-marketing" class="ga4-pill-link">
+            All Projects ↗
+          </a>
+        </div>
+        <a href="#heroHeadline" class="ga4-pill-link">
+          Back to Top ↑
+        </a>
+      </div>
+
+      <div class="ga4-footer-brand">
+        <b>MANOVA SAMUEL</b> / DIGITAL MARKETING &amp; ANALYTICS PORTFOLIO · CHENNAI, INDIA · 2026
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Accessible Lightbox Modal -->
+  <div class="ga4-lightbox" id="ga4Lightbox" role="dialog" aria-modal="true" aria-label="Enlarged screenshot preview">
+    <div class="ga4-lightbox-content">
+      <button class="ga4-lightbox-close" id="lightboxClose" aria-label="Close enlarged preview">×</button>
+      <img src="" alt="" class="ga4-lightbox-img" id="lightboxImg" />
+      <div class="ga4-lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- Interactive Lightbox Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const lightbox = document.getElementById('ga4Lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxClose = document.getElementById('lightboxClose');
+      let previousActiveElement = null;
+
+      const openLightbox = (src, caption, alt) => {
+        previousActiveElement = document.activeElement;
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || caption || 'Enlarged analytics screenshot';
+        lightboxCaption.textContent = caption || '';
+        lightbox.classList.add('active');
+        lightboxClose.focus();
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        lightboxImg.alt = '';
+        lightboxCaption.textContent = '';
+        document.body.style.overflow = '';
+        if (previousActiveElement) {
+          previousActiveElement.focus();
+        }
+      };
+
+      document.querySelectorAll('[data-lightbox]').forEach(trigger => {
+        const handler = () => {
+          const src = trigger.getAttribute('data-lightbox');
+          const caption = trigger.getAttribute('data-caption') || '';
+          const img = trigger.querySelector('img');
+          const alt = img ? img.getAttribute('alt') : '';
+          openLightbox(src, caption, alt);
+        };
+
+        trigger.addEventListener('click', handler);
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handler();
+          }
+        });
+      });
+
+      lightboxClose.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    });
+  </script>
+
+  <!-- Motion & Scroll Controller -->
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

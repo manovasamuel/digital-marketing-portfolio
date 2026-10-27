@@ -82,257 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       badge: 'Personal product project / Technical audit remediation',
       results: 'Verified Semrush audit results:\n• Earlier Audit (Oct 20, 2026): 74% Site Health | 89% AI Search Health (19 pages crawled; 7 duplicate titles, 6 duplicate content, 7 duplicate meta descriptions).\n• Later Audit (Oct 21, 2026): 92% Site Health | 94% AI Search Health (14 pages crawled; 0 duplicate titles, 0 duplicate content, 0 duplicate meta descriptions).\n• Limitations: The audit scores reflect technical crawl health and error resolution across the 14 indexable pages. The follow-up report indicated crawler restrictions affecting several pages. These scores do not claim or prove increased organic traffic, keyword rankings, AI citations, leads, or revenue.'
-    },
-
-    'creative-content': {
-      title: 'Attention with a purpose.',
-      subtitle: 'Promotional video editing, creative strategy frameworks, and narrative storytelling',
-      category: 'Content & creative',
-      type: 'Personal projects & concept frameworks',
-      context: 'Self-directed creative production and strategic content planning combining short-form promotional video editing (9:16), structured creative strategy research frameworks, and published narrative storytelling. Explores how to hold viewer attention without relying on generic templates.',
-      objective: 'Develop high-retention visual hooks, audience-aware scripting, and structured brand content frameworks across multiple formats (short-form video, brand strategy decks, long-form narrative).',
-      role: 'Creative Strategist, Scriptwriter & Video Editor',
-      process: [
-        'Creative Strategy Research Framework: Applied a 4-stage research template (Competitor Research -> Audience Awareness Stages -> Angle Ideation -> Scripting) to deconstruct target audience friction points before writing.',
-        'Short-Form Video Production: Designed and edited 9:16 vertical video assets (Pomelli promotional creative concepts) emphasizing first-3-second retention hooks, kinetic text layout, and rhythm-synced cuts.',
-        'Brand Content Concepts: Formulated organic social content strategies and calendars for educational and lifestyle brand concepts (SITJEE, Temple Run Cafe).',
-        'Narrative Storytelling: Authored and structured long-form published narrative work ("Memories With Someone I Had Never Met"), applying emotional pacing and relatable tension to audience engagement.'
-      ],
-      tools: ['Premiere Pro / CapCut', 'After Effects / Motion tools', 'Creative Strategy Templates (Notion/Docs)', 'Figma / Canva'],
-      deliverables: [
-        '9:16 vertical promotional video creatives (Pomelli concept video)',
-        '4-part Creative Strategy Research framework (Research, Awareness Stages, Ideation, Script)',
-        'Social content strategy frameworks & content calendars (SITJEE & concept decks)',
-        'Narrative story manuscripts and script blueprints'
-      ],
-      results: 'Completed creative deliverables, strategy frameworks, and published writing. Explicitly distinguished as personal creative work, client concept proposals, and editorial writing—outcomes are not presented as commercial viral metrics or paid ad ROAS. Key learning: Visual polish without a clear audience awareness angle fails to hold attention; grounding creative ideation in customer friction before touching editing software delivers far clearer narrative direction.'
-    },
-
-    'social-audit': {
-      title: 'Social Media Account Audits',
-      subtitle: 'SITJEE Chennai & The Label Ritika · Pre-pitch commercial profile gap analysis',
-      category: 'Social & Audit Strategy',
-      type: 'Agency Client Deliverables (ALCAS)',
-      context: 'Conducted diagnostic pre-pitch social media and website audits during agency internship at ALCAS. Evaluated existing brand profiles, identified customer journey friction, and authored proposal decks for client acquisition meetings.',
-      objective: 'Analyze brand profile conversion friction (bio clarity, highlight structure, proof signals, WhatsApp CTA pathways) and formulate positioning solutions that pre-sell prospective customers before enquiry.',
-      role: 'Digital Marketing Intern / Audit Analyst',
-      process: [
-        'Account Hygiene & Bio Analysis: Examined current usernames, bio value propositions, and external link pathways. Discovered that both SITJEE and The Label Ritika were using static, product-only descriptions without clear next-step calls to action.',
-        'Highlight Funnel Architecture: Diagnosed absence of structured social proof. Reorganized highlights into standardized conversion buckets: Results / Achievements, Programs, Faculty Highlights, Reviews, and Consultation FAQ.',
-        'Content Ecosystem Mapping: Segmented posting styles into 4 core pillars (Authority, Reach, Inclusivity/Student Proof, Behind-the-Scenes) to replace disconnected product catalogues with an intentional conversion engine.',
-        'Inquiry Pathway Optimization: Structured the direct booking journey: Profile Visit -> Reel Hook -> WhatsApp / DM -> Diagnostic Consultation -> Client Onboarding.'
-      ],
-      tools: ['Instagram Analytics', 'Meta Business Suite', 'Google Docs', 'Canva'],
-      deliverables: [
-        'SITJEE Chennai Instagram Account Audit (Strengths vs Areas for Improvement)',
-        'The Label Ritika 3-Gap Situation Analysis & Client Acquisition Strategy',
-        'Standardized Story Highlight taxonomy blueprints',
-        'Pre-call audit decks presented during founder-level business development'
-      ],
-      badge: 'Agency Client Deliverables & Audit Blueprints',
-      results: 'Delivered client-ready audit proposals used in live agency business development. Identified that treating feeds as catalogues compresses price and inquiry volume; structuring the profile as an inquiry engine with clear social proof creates high-intent inbound consultations.'
-    },
-
-    'grid-redesigns': {
-      title: 'Instagram Grid Systems & Visual Direction',
-      subtitle: 'Before & After transformations for 5 commercial brands + 5 structured launch grids',
-      category: 'Creative Direction & Branding',
-      type: 'Client Work & Profile Transformations (ALCAS)',
-      context: 'Created visual identity transformations and structured 9-post launch grids for commercial and industrial businesses across Chennai (fashion boutiques, physiotherapy clinics, educational academies, and plumbing engineering).',
-      objective: 'Transform unbranded, chaotic social media profiles into premium, trustworthy visual assets that command higher customer perception and establish commercial credibility.',
-      role: 'Visual Strategist & Social Media Designer',
-      process: [
-        'Visual Audit & Diagnosis: Evaluated baseline feeds for lack of color cohesion, erratic typography, and low parent/client trust signals.',
-        'Color Palette Engineering: Defined disciplined color palettes tailored to industry psychology (Deep Blue/Industrial Orange for AquaFlow; Soft Cream/Rose for KKR Fashions; Crimson/Gold for The Circle Academy).',
-        '9-Post Modular Grid Structuring: Formulated intentional grid layouts (e.g. alternating educational carousels, client reviews, and direct solution posts) ensuring the feed looks cohesive from both 3-post and 9-post perspectives.',
-        'Highlight Cover Iconography: Designed unified vector highlight covers replacing random video stills with clean category markers (Courses, Faculty, Results, Reviews, FAQ).',
-        'Comparative Case Studies: Documented Before & After transformations across 5 commercial brands (Princess Park, KKR Fashions, Z Fashion Cult, Endora, Kiara).'
-      ],
-      tools: ['Canva', 'Adobe Photoshop', 'Instagram Grid Builder', 'Figma'],
-      deliverables: [
-        '5 Before & After commercial profile transformations (Princess Park, KKR Fashions, Z Fashion Cult, Endora, Kiara)',
-        '5 Complete 9-Post Launch Grids (AquaFlow, HomeCraft Living, KKR Fashions, The Circle Academy, ZCult)',
-        'Custom vector highlight cover suites for 5 client niches',
-        'Brand typography and hex color specification sheets'
-      ],
-      badge: 'Verified Client Deliverables & Case Studies',
-      results: 'Delivered 5 full before/after transformations and 5 complete 9-post launch grids. Grounding grid aesthetics in industry-specific color psychology and modular templates allows businesses to maintain visual consistency without expensive daily graphic design overhead.'
-    },
-
-    'content-engines': {
-      title: 'Multi-Format Content Strategy & Editorial Calendars',
-      subtitle: 'SITJEE Chennai, Bethel Logistics, Tamara Wellness & Run for Fizal',
-      category: 'Content Strategy & Copywriting',
-      type: 'Client Content Retainers & Narrative Carousels',
-      context: 'Developed monthly content creation roadmaps, weekly distribution calendars, and carousel scripts across educational coaching, B2B logistics, and health & wellness sectors during ALCAS agency work.',
-      objective: 'Construct compounding content systems where individual posts serve specific marketing objectives (reach, authority, proof, or inquiry conversion) rather than random vanity posting.',
-      role: 'Content Strategist & Copywriter',
-      process: [
-        'Content Pillar Definition: Categorized client messaging into 4 core pillars: Results & Achievements (Proof), Programs & Offerings (Authority), Faculty / Behind-the-Scenes (Human Connection), and Admissions / Urgency (Conversion).',
-        'Deliverable Mapping: Structured a monthly cadence (e.g. 12 monthly deliverables for SITJEE: 6 static educational cards, 6 concept reels) balancing production effort against audience frequency.',
-        'Scripting & Narrative Carousel Design: Scripted the 8-part "Run for Fizal: A Story in Motion" narrative carousel and authored 8-part wellness articles for Tamara Wellness.',
-        'Caption Copywriting & CTA Alignment: Formulated problem-first hooks and low-friction calls to action directed to WhatsApp consultation pathways.'
-      ],
-      tools: ['Notion', 'ChatGPT', 'Google Sheets', 'Canva'],
-      deliverables: [
-        'SITJEE 12-Deliverables Monthly Content Creation Roadmap and Weekly Calendar',
-        'Run for Fizal 8-Slide Storytelling Carousel Series',
-        'Bethel Express B2B logistics content schedule & published Father’s Day post',
-        'Tamara Wellness 8-part article series & copy assets'
-      ],
-      badge: 'Verified Content Proposals & Deliverables',
-      results: 'Completed and approved content roadmaps and calendar systems. Proved that establishing fixed weekly content categories eliminates creative block for small teams while ensuring a healthy 60/40 balance between educational value and commercial lead generation.'
-    },
-
-    'logo-design': {
-      title: 'Brand Identity Concepts & Poster Design',
-      subtitle: 'Backbone Media (6 Vector Directions), Krita Renewables & Bethel Logistics',
-      category: 'Brand Identity & Graphic Design',
-      type: 'Client Brand Explorations & Vector Guides',
-      context: 'Designed comprehensive vector brand identity systems and commercial posters for agency branding (Backbone Media), renewable energy clients (Krita Renewables), and logistics providers (Bethel Express).',
-      objective: 'Create distinct, vector-accurate identity systems complete with typography rules, color palettes, and production-ready exports across print, digital, and video watermarks.',
-      role: 'Brand Identity Designer',
-      process: [
-        'Concept Ideation & Slogan Mapping: Built 6 distinct identity concepts for Backbone Media tied to the positioning line "We don\'t just create content. We create content that turns attention into enquiries." (01 Intersection, 02 The Pivot K, 03 Portrait Cut, 04 Keystone, 05 The Masthead, 06 Block).',
-        'Vector Outline Construction: Generated pure vector SVGs for primary horizontal, stacked, symbol-only, and 9:16 video watermark variants in color, black, and white.',
-        'Typographic Specification: Defined exact font pairings using editorial serifs (Instrument Serif) and modern grotesque sans-serifs (Manrope, Archivo Expanded, Plus Jakarta Sans, Space Grotesk).',
-        'Commercial Poster Production: Created promotional cargo solution posters for Bethel Express & Impex and solar branding explorations for Krita Renewables.'
-      ],
-      tools: ['Adobe Illustrator', 'SVG Vector Spec', 'Midjourney AI', 'Canva'],
-      deliverables: [
-        'Backbone Media 6-Concept Vector Brand Asset Guide & SVG Packages',
-        'Krita Renewables 4-Concept Solar Energy Logo Explorations',
-        'Bethel Express B2B Cargo Logistics Poster Series',
-        'Social profile avatar lockups and video watermark overlays'
-      ],
-      badge: 'Verified Vector Brand Guides & Assets',
-      results: 'Delivered production-ready SVG and PDF asset packages with exact hex color specifications and typography rules. Key takeaway: A brand mark succeeds when it encapsulates a clear commercial narrative—such as an intersection representing attention meeting structure.'
-    },
-
-    'camera-production': {
-      title: 'Camera Handling & Video Production',
-      subtitle: 'Sony Alpha ILCE-6100 mirrorless operation, shot framing, B-roll capture & shoot planning',
-      category: 'Video Production & Camera Operation',
-      type: 'Hands-on Production & Field Shooting',
-      context: 'Practical on-location camera handling and video production experience across outdoor field shoots and commercial social media pre-production. Focuses on capturing intentional, well-composed raw footage tailored for post-production editing pipelines.',
-      objective: 'Master foundational mirrorless camera operation (Sony Alpha a6100), understand optical framing and lighting control, execute structured shot lists, and prepare raw footage for efficient video editing.',
-      role: 'Camera Operator & Production Coordinator',
-      process: [
-        'Camera Operation & Configuration: Configured Sony Alpha ILCE-6100 settings for video capture: balanced shutter speed to frame rate (180-degree rule), managed aperture for selective depth-of-field, and selected 50p/100p high-frame-rate modes for smooth slow-motion B-roll playback.',
-        'Framing, Composition & Shot Selection: Applied rule-of-thirds, eye-level alignment, leading lines, and natural environmental framing. Captured multiple shot angles per subject (wide establishing, medium action, tight macro detail) to give editors dynamic cutting options.',
-        'Lighting & Natural Exposure Control: Worked with natural outdoor sunlight, positioning subjects to leverage golden-hour side lighting and avoiding harsh overhead shadows.',
-        'Pre-Shoot Shot Planning: Authored structured shot lists and storyboard notes (e.g. ALCAS client video proposals) detailing shot type, movement (pan/tilt/tracking), lens focal length, and target duration before rolling camera.',
-        'Footage Ingestion & Editing Hand-off: Logged clip metadata, sorted takes, trimmed unusable heads/tails, and structured asset bins in Premiere Pro / CapCut to ensure seamless transitions into editing.'
-      ],
-      tools: ['Sony Alpha ILCE-6100', 'E-mount Lenses', 'Tripod & Mobile Rigs', 'Premiere Pro', 'Shot Lists & Storyboards'],
-      deliverables: [
-        'Raw High-Frame-Rate Video Footage (1080p 100fps Sony AVC MP4)',
-        'Curated 24MP Outdoor Beach Photography & Composition Suite',
-        'Pre-Production Shoot Coordination Guides and Shot Lists (The Label Ritika & ABN tasks)',
-        'Structured Raw-to-Edit Footage Ingestion Taxonomy'
-      ],
-      badge: 'Verified Camera Operation & Field Assets',
-      results: 'Captured authentic high-frame-rate mirrorless footage and composed photography assets. Clarified skill boundary: Focuses on practical foundational camera handling, framing, and shoot planning; distinguished from advanced cinematography or multi-camera broadcast production.'
-    },
-
-    'video-editing': {
-      title: 'Short-Form Video Editing & Kinetic Motion',
-      subtitle: 'Instagram Fashion Reel & Kinetic Typography Sequence',
-      category: 'Video Editing & Post-Production',
-      type: 'Practical Social Media Video Edits',
-      context: 'Edited vertical video assets for Instagram Reels focusing on fast-paced rhythm cuts, product framing, and kinetic text animation to sustain audience retention.',
-      objective: 'Master vertical video pacing (9:16), beat-synced trimming, on-screen caption synchronization, and audio-visual hook design.',
-      role: 'Video Editor & Motion Designer',
-      process: [
-        'Footage Curation & Assembly: Selected dynamic clips emphasizing movement and product texture.',
-        'Pacing & Beat-Syncing: Aligned cuts with audio downbeats to create an energetic, modern viewing rhythm.',
-        'Kinetic Typography: Animated dynamic text reveals timed to speech/audio beats to maximize silent-viewing engagement.',
-        'Format Optimization: Rendered 1080x1920 (9:16) MP4s optimized for mobile Instagram Reel compression.'
-      ],
-      tools: ['Premiere Pro', 'CapCut', 'Motion Design Tools'],
-      deliverables: [
-        'Instagram Fashion Reel Edit (5.2 MB vertical MP4)',
-        'Kinetic Typography Sequence Test (1.2 MB vertical MP4)'
-      ],
-      badge: 'Verified Video Deliverables',
-      results: 'Practical editing deliverables focusing on first-3-second retention. Proved that kinetic on-screen text and rhythm-based pacing double watch time compared to static video loops. Distinct from camera shooting: focuses strictly on post-production cutting, pacing, and retention.'
-    },
-
-    'ugc-ads': {
-      title: 'UGC-Style AI Performance Ad Creatives',
-      subtitle: 'Pomelli / ReelForge AI · 9:16 Vertical Video Creative',
-      category: 'Performance Creative & UGC',
-      type: 'Meta Ads Experimentation Asset',
-      context: 'Designed and produced high-retention vertical video creatives tested as part of the Meta Ads campaign build for ReelForge AI.',
-      objective: 'Create an authentic, user-generated-style performance ad that captures attention within 3 seconds, articulates the content friction, and drives website visits.',
-      role: 'Creative Strategist & Video Producer',
-      process: [
-        'Creative Hook Formulation: Tested problem-aware openers ("Still manually analyzing competitor reels?") to capture target creator attention.',
-        'Native Social Aesthetics: Formatted footage with native TikTok/Reels font styles, organic screen recordings, and natural conversational cadence.',
-        'AI Voiceover Synchronization: Timed voiceover narration to rapid UI screen captures demonstrating competitive research in seconds.',
-        'Call-to-Action Pacing: Concluded with a low-friction invitation to explore the live web tool.'
-      ],
-      tools: ['CapCut', 'Premiere Pro', 'AI Voice Tools', 'Meta Ads Manager'],
-      deliverables: [
-        '9:16 Vertical Promotional Video Creative (pomelli_creative_video_9_16_1021.mp4)',
-        'High-resolution video poster frame (video_poster.jpg)',
-        'Meta Ads creative testing variant documentation'
-      ],
-      badge: 'Verified Ad Creative & Test Asset',
-      results: 'Produced authentic 9:16 creative asset integrated into the Meta Ads case study. Key learning: Native UGC styling outperforms overly polished corporate ads on Meta feeds by reducing banner blindness.'
-    },
-
-    'aval-short-film': {
-      title: '"Aval" (அவள்) — Short Film Visual Pre-Production & Storyboards',
-      subtitle: 'Narrative Concept, Character Model Sheets & Paris Scene Storyboard Art',
-      category: 'Narrative Filmmaking & Visual Direction',
-      type: 'Short Film Pre-Production Project',
-      context: 'Visual pre-production development for "Aval" (அவள் - She), a Tamil drama short film following Muruga traveling from his traditional family home in Chennai across to a freezing, snowy Paris in search of Janaki.',
-      objective: 'Establish a consistent cinematic visual language, character reference model sheets, environmental mood contrasts, and shot-by-shot storyboards before production.',
-      role: 'Concept Artist, Visual Strategist & Storyboard Continuity Designer',
-      process: [
-        'Narrative Arc & Scene Beat Mapping: Developed scene-by-scene script beats contrasting warm Chennai familial roots with cold, foreign isolation in Paris.',
-        'Character Reference Sheet Engineering: Prompt-engineered and refined multi-angle character model sheets (Muruga, Janaki, Savithri, Santosh) to maintain facial recognition, hair styling, and wardrobe consistency across scenes.',
-        'Environmental Mood Prompts: Crafted contrasting lighting environments: warm interior lantern glow in traditional Tamil homes vs desaturated, snowy nighttime Paris streetscapes.',
-        'Storyboard Strip Assembly: Formatted cinematic 16:9 storyboards detailing camera angles (airplane window reflection, motorcycle braking at signal, kneeling in snow, answering phone call indoors).',
-        'Scene Assembly Preview: Assembled audio-visual scene preview combining storyboard stills with dialogue and Foley audio.'
-      ],
-      tools: ['Midjourney AI', 'Adobe Photoshop', 'PyTorch/Diffusers', 'Premiere Pro'],
-      deliverables: [
-        '8+ Detailed Character Reference Sheets (Savithri, Santosh, Muruga, Janaki)',
-        '20+ Scene Storyboard Frames across Paris and Chennai environments',
-        'Audio-Visual Scene Preview (aval_scene_muruga_call.mp4)',
-        'Cinematic color palette and visual continuity guide'
-      ],
-      badge: 'Verified Concept Art & Storyboard Deliverables',
-      results: 'Comprehensive visual pre-production package establishing complete scene continuity. Clarified contribution: Manova led narrative visualization, AI-assisted character modeling, and storyboard continuity; live-action shooting and cast performance were collaborative team efforts.'
-    },
-
-    'leadgen-playbook': {
-      title: 'B2B Lead Generation & Outreach Playbook',
-      subtitle: 'Prospect Research, Permission Cold Calling, Objection Playbook & CRM Pipeline',
-      category: 'Business Development & Outbound Sales',
-      type: 'Agency Sales Internship (ALCAS)',
-      context: 'Comprehensive outbound prospecting and business development executed during ALCAS agency internship. Sourced prospects via Apify, conducted pre-call audits, executed phone/email/DM cadences, and managed the pipeline in Notion CRM.',
-      objective: 'Build a disciplined, non-spammy outbound appointment generation system that converts cold local business owners into qualified discovery meetings.',
-      role: 'Business Development & Lead Generation Specialist',
-      process: [
-        'Prospect Sourcing & Data Verification: Used Apify to scrape local business directories; verified phone lines and business decision-maker names via Google Search and social registries.',
-        'Pre-Call Social & Website Audit: Spent 5 minutes reviewing target brand Instagram profiles to identify specific conversion leakage (e.g. lack of pre-selling funnel, product cataloging) prior to dialing.',
-        'Permission-Based Cold Calling: Delivered a 30-second respectful opener acknowledging the prospect\'s busy schedule, sharing a specific observation, and offering a free 1-page gap analysis.',
-        'Objection Handling & Reframing: Deployed calm, consultative reframing for common objections ("Already have an agency", "Just email pricing", "Not looking right now").',
-        'Multi-Touch Cadence & CRM Logging: Maintained a 9-day follow-up cadence across Phone, Email, and WhatsApp; recorded call dispositions and scheduled Google Meet appointments in Notion CRM.'
-      ],
-      tools: ['Apify', 'Notion CRM', 'Google Search', 'LinkedIn', 'WhatsApp Business', 'Gmail'],
-      deliverables: [
-        'The 30-Second Permission-Based Cold Calling Script (Verified: booked The Label Ritika founder meeting)',
-        'Objection-Handling Playbook for 4 core business responses',
-        '4-Touchpoint follow-up sequence and audit-led cold email template',
-        'Notion-based CRM sales pipeline tracking database',
-        'Daily cold calling activity reports (60+ calls, 70+ emails, 19+ DMs)'
-      ],
-      badge: 'Verified Agency Outbound Workflow & Records',
-      results: 'Logged 60+ cold calls, 70+ cold emails, 19+ DMs, and successfully scheduled a qualified Google Meet meeting with the founder of The Label Ritika for agency leadership. Proved that consultative, audit-led outreach builds trust where generic cold pitch calls fail.'
     }
   };
 
@@ -435,12 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = section.getAttribute('id');
 
         if (scrollPos >= top && scrollPos < top + height) {
-          navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${id}`) {
-              link.classList.add('active');
-            }
-          });
+          const matchingLink = Array.from(navLinks).find(link => link.getAttribute('href') === `#${id}`);
+          if (matchingLink) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            matchingLink.classList.add('active');
+          }
         }
       });
     }
@@ -969,58 +717,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- 6. BEFORE / AFTER COMPARATIVE GRID VIEWER ---
-  const baBtns = document.querySelectorAll('.ba-btn');
-  const baImage = document.getElementById('baImage');
-  if (baBtns.length && baImage) {
-    baBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        baBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const newSrc = btn.getAttribute('data-img');
-        if (newSrc && baImage.getAttribute('src') !== newSrc) {
-          baImage.style.transition = 'opacity 0.15s ease';
-          baImage.style.opacity = '0.2';
-          setTimeout(() => {
-            baImage.src = newSrc;
-            baImage.alt = btn.textContent.trim() + " transformation showcase";
-            baImage.style.opacity = '1';
-          }, 150);
-        }
-      });
+  // --- 6. IMAGE LIGHTBOX VIEWER ---
+  const lightboxModal = document.getElementById('lightboxModal');
+  const lightboxImg = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  const openLightbox = (src, caption) => {
+    if (!lightboxModal || !lightboxImg) return;
+    lightboxImg.src = src;
+    lightboxImg.alt = caption || 'Visual inspection';
+    if (lightboxCaption) {
+      lightboxCaption.textContent = caption || '';
+    }
+    lightboxModal.classList.add('active');
+    document.body.classList.add('modal-open');
+  };
+
+  const closeLightbox = () => {
+    if (!lightboxModal) return;
+    lightboxModal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    if (lightboxImg) lightboxImg.src = '';
+  };
+
+  document.querySelectorAll('[data-enlarge]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const src = el.getAttribute('data-enlarge');
+      const caption = el.getAttribute('data-caption') || el.getAttribute('aria-label') || '';
+      openLightbox(src, caption);
+    });
+  });
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+  }
+
+  if (lightboxModal) {
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) {
+        closeLightbox();
+      }
     });
   }
 
-  // --- 7. OBJECTION ACCORDION TOGGLE ---
-  const objectionTriggers = document.querySelectorAll('.objection-trigger');
-  objectionTriggers.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const item = trigger.closest('.objection-item');
-      if (!item) return;
-      const isOpen = item.classList.contains('open');
-      const icon = trigger.querySelector('.mono:last-child') || trigger.querySelector('span:last-child');
-      
-      if (isOpen) {
-        item.classList.remove('open');
-        if (icon) icon.textContent = '+';
-      } else {
-        item.classList.add('open');
-        if (icon) icon.textContent = '−';
-      }
-    });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightboxModal && lightboxModal.classList.contains('active')) {
+      closeLightbox();
+    }
   });
 
-  // --- 8. VIDEO PLAYBACK SINGLE-STREAM COORDINATION ---
-  const allVideos = document.querySelectorAll('video');
-  allVideos.forEach(v => {
-    v.addEventListener('play', () => {
-      allVideos.forEach(other => {
-        if (other !== v && !other.paused) {
-          other.pause();
-        }
-      });
-    });
-  });
 });

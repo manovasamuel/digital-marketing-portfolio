@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive Multi-Slide Carousel Projects by Manova Samuel. Genuine storytelling campaigns, LinkedIn sequences, and client carousels with slide navigation." />
+  <title>Multi-Slide Carousel Projects — Interactive Archive | Manova Samuel</title>
+
+  <!-- External Stylesheets -->
+  <link rel="stylesheet" href="assets/css/main.css?v=fixed" />
+  <link rel="stylesheet" href="assets/css/social-content.css?v=fixed" />
+  <style>
+    /* Carousel Viewer Modal Custom Styles */
+    .carousel-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(18px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+    .carousel-modal.active {
+      display: flex;
+      opacity: 1;
+    }
+    .carousel-dialog {
+      position: relative;
+      max-width: 94vw;
+      max-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .carousel-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85);
+      max-height: 72vh;
+    }
+    .carousel-slide-img {
+      max-width: 86vw;
+      max-height: 72vh;
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    /* On-Image Left & Right Nav Arrows */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(18, 18, 18, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(6px);
+    }
+    .carousel-arrow:hover:not(:disabled) {
+      background: #ffffff;
+      color: #0c0c0c;
+      transform: translateY(-50%) scale(1.08);
+    }
+    .carousel-arrow:disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .carousel-arrow-prev {
+      left: 16px;
+    }
+    .carousel-arrow-next {
+      right: 16px;
+    }
+    .carousel-top-bar {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 12;
+    }
+    .carousel-counter-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #ffffff;
+      background: rgba(18, 18, 18, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 6px 14px;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+    }
+    .carousel-modal-close {
+      background: rgba(18, 18, 18, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      font-size: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(6px);
+    }
+    .carousel-modal-close:hover {
+      background: #ffffff;
+      color: #0c0c0c;
+    }
+    /* Bottom Info & Dot Indicators */
+    .carousel-info-strip {
+      margin-top: 12px;
+      background: rgba(18, 18, 18, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 12px 20px;
+      max-width: 820px;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .carousel-meta-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: #34d399;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .carousel-dialog-title {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffffff;
+      margin: 0;
+      text-align: center;
+    }
+    /* Slide Indicators Dots */
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .carousel-dot.active {
+      background: #34d399;
+      transform: scale(1.3);
+    }
+    .carousel-dot:hover {
+      background: #ffffff;
+    }
+    @media (max-width: 768px) {
+      .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+      .carousel-arrow-prev {
+        left: 8px;
+      }
+      .carousel-arrow-next {
+        right: 8px;
+      }
+      .carousel-counter-badge {
+        font-size: 10px;
+        padding: 4px 10px;
+      }
+    }
+  </style>
+</head>
+<body class="dots-dark landing-page">
+
+  <!-- Shared Global Navigation Pill (Matches index.html) -->
+  <header class="topbar">
+    <a class="brand" href="index.html#home" aria-label="Manova Samuel Portfolio Home"><b>MANOVA</b> / PORTFOLIO</a>
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="index.html#digital-marketing">Marketing</a>
+      <a href="index.html#collections" class="active">Work</a>
+      <a href="index.html#skills-certifications">Certifications</a>
+      <a href="index.html#about-contact">About</a>
+      <a class="nav-cta" href="index.html#about-contact">Let's talk ↗</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="smm-hero dots-dark" id="top">
+      <div class="smm-container">
+        
+        <!-- Main Hero Card -->
+        <div class="hero-project-card">
+          
+          <div class="hero-project-top">
+            <span class="hero-label-tag">COLLECTION 01 · PROJECT 02 / CAROUSEL PROJECTS ARCHIVE</span>
+            <div class="hero-btn-group">
+              <a href="creative-poster-gallery.html" class="hero-breadcrumb-link">
+                ← Back to Creative Gallery
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-main-header">
+            <h1 class="hero-main-title">
+              Multi-Slide Carousels<br><em>&amp; Storytelling Campaigns.</em>
+            </h1>
+            <p class="hero-main-desc">
+              Curated collection of 10 genuine social media carousel projects comprising 74 verified slides. Explore complete slide sequences with Instagram-inspired next and previous controls, slide counters, and verified storytelling order.
+            </p>
+          </div>
+
+          <!-- Integrated 4-Column Statistics Grid -->
+          <div class="project-stats-grid">
+            <div class="project-stat-col">
+              <span class="project-stat-num">10</span>
+              <span class="project-stat-label">Carousel Projects</span>
+            </div>
+            <div class="project-stat-col">
+              <span class="project-stat-num">74</span>
+              <span class="project-stat-label">Total Verified Slides</span>
+            </div>
+            <div class="project-stat-col">
+              <span class="project-stat-num">04</span>
+              <span class="project-stat-label">Brand Verticals</span>
+            </div>
+            <div class="project-stat-col">
+              <span class="project-stat-num">100%</span>
+              <span class="project-stat-label">Sequential Integrity</span>
+            </div>
+          </div>
+
+          <!-- Production Methodology & Transparency Banner -->
+          <div class="poster-methodology-banner">
+            <div class="banner-top">
+              <span class="banner-pill">Interactive Viewer</span>
+              <span class="banner-title">Authentic Slide Sequencing &amp; Creation Disclosure</span>
+            </div>
+            <p class="banner-text">
+              Each carousel project preserves its exact narrative order, numeric slide sequence, and original aspect ratio. All slides were developed through Canva layout assembly, strategic copy architecture, and AI-assisted visual staging.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CAROUSEL GALLERY SECTION -->
+    <section class="poster-gallery-section" aria-label="Curated Carousel Projects Gallery">
+      <div class="smm-container">
+        
+        <!-- Filter Controls Bar -->
+        <div class="poster-filter-bar">
+          <div class="poster-filters" role="tablist" aria-label="Carousel Category Filters">
+            <button class="poster-filter-btn active" data-filter="all" role="tab" aria-selected="true">
+              All Carousels <span class="count">(10)</span>
+            </button>
+            <button class="poster-filter-btn" data-filter="alcas" role="tab" aria-selected="false">
+              ALCAS Agency &amp; Case Studies <span class="count">(5)</span>
+            </button>
+            <button class="poster-filter-btn" data-filter="bethel" role="tab" aria-selected="false">
+              Bethel Express &amp; Impex <span class="count">(3)</span>
+            </button>
+            <button class="poster-filter-btn" data-filter="b2b" role="tab" aria-selected="false">
+              B2B SaaS &amp; CRM <span class="count">(1)</span>
+            </button>
+            <button class="poster-filter-btn" data-filter="fitness" role="tab" aria-selected="false">
+              Fitness &amp; Hyrox <span class="count">(1)</span>
+            </button>
+          </div>
+          <span class="poster-status-count" id="carouselCountDisplay">Showing 10 of 10 projects</span>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="poster-gallery-grid" id="carouselGrid" style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));">
+        <!-- Carousel Card 01: Beyond Logos: Why Social Media Branding Matters -->
+        <article class="poster-card carousel-project-card" data-tags="all alcas" data-project-id="post_1" data-index="0">
+          <div class="poster-card-img-wrap carousel-cover-wrap" 
+               tabindex="0"
+               role="button"
+               aria-label="Launch interactive carousel viewer for Beyond Logos: Why Social Media Branding Matters"
+               data-project-id="post_1"
+               data-index="0">
+            <span class="poster-method-tag" style="background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.4); color: #34d399;">
+              ● 8 SLIDES
+            </span>
+            <img 
+              src="assets/images/creative/carousel_posters/post_1/linkedin-carousel-slide-1.jpg" 
+              alt="Beyond Logos: Why Social Media Branding Matters Cover Slide — ALCAS Digital Marketing Agency" 
+              class="poster-card-img" 
+              loading="eager" 
+            />
+          </div>
+          <div class="poster-card-body">
+            <div class="poster-brand-row">
+              <span class="poster-brand">ALCAS Digital Marketing Agency</span>
+              <span class="poster-aspect">Brand Strategy</span>
+            </div>
+            <h3 class="poster-title">Beyond Logos: Why Social Media Branding Matters</h3>
+            <p class="poster-caption">LinkedIn thought leadership carousel analyzing why social media branding extends far beyond a logo, featuring client proof and profile audit insights.</p>
+            <div class="poster-card-foot">
+              <button class="poster-inspect-btn carousel-launch-btn" type="button" aria-label="Launch 8 slide carousel viewer">
+                Launch Carousel Viewer (8 Slides) ↗
+              </button>
+              <span class="poster-aspect">Project #01</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Carousel Card 02: Vinay Renovation &amp; Beyond: Brand Identity Architecture -->
+        <article class="poster-card carousel-project-card" data-tags="all alcas" data-project-id="post_2" data-index="1">
+          <div class="poster-card-img-wrap carousel-cover-wrap" 
+               tabindex="0"
+               role="button"
+               aria-label="Launch interactive carousel viewer for Vinay Renovation &amp; Beyond: Brand Identity Architecture"
+               data-project-id="post_2"
+               data-index="1">
+            <span class="poster-method-tag" style="background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.4); color: #34d399;">
+              ● 9 SLIDES
+            </span>
+            <img 
+              src="assets/images/creative/carousel_posters/post_2/linkedin-carousel-slide-1(1).jpg" 
+              alt="Vinay Renovation &amp; Beyond: Brand Identity Architecture Cover Slide — ALCAS / Vinay Renovation &amp; Beyond" 
+              class="poster-card-img" 
+              loading="eager" 
+            />
+          </div>
+          <div class="poster-card-body">
+            <div class="poster-brand-row">
+              <span class="poster-brand">ALCAS / Vinay Renovation &amp; Beyond</span>
+              <span class="poster-aspect">Client Brand Identity</span>
+            </div>
+            <h3 class="poster-title">Vinay Renovation &amp; Beyond: Brand Identity Architecture</h3>
+            <p class="poster-caption">Step-by-step case study breakdown of building a complete identity system, logo design, stationery suite, and professional brand positioning for a renovation firm.</p>
+            <div class="poster-card-foot">
+              <button class="poster-inspect-btn carousel-launch-btn" type="button" aria-label="Launch 9 slide carousel viewer">
+                Launch Carousel Viewer (9 Slides) ↗
+              </button>
+              <span class="poster-aspect">Project #02</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Carousel Card 03: Why Your Instagram Grid is Costing You Customers -->
+        <article class="poster-card carousel-project-card" data-tags="all alcas" data-project-id="post_3" data-index="2">
+          <div class="poster-card-img-wrap carousel-cover-wrap" 
+               tabindex="0"
+               role="button"
+               aria-label="Launch interactive carousel viewer for Why Your Instagram Grid is Costing You Customers"
+               data-project-id="post_3"
+               data-index="2">
+            <span class="poster-method-tag" style="background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.4); color: #34d399;">
+              ● 9 SLIDES
+            </span>
+            <img 
+              src="assets/images/creative/carousel_posters/post_3/linkedin-carousel-slide-1(2).jpg" 
+              alt="Why Your Instagram Grid is Costing You Customers Cover Slide — ALCAS / Bethel Express &amp; Impex Case Study" 
+              class="poster-card-img" 
+              loading="eager" 
+            />
+          </div>
+          <div class="poster-card-body">
+            <div class="poster-brand-row">
+              <span class="poster-brand">ALCAS / Bethel Express &amp; Impex Case Study</span>
+              <span class="poster-aspect">Profile Architecture</span>
+            </div>
+            <h3 class="poster-title">Why Your Instagram Grid is Costing You Customers</h3>
+            <p class="poster-caption">Profile diagnostic examining feed confusion versus consistency, featuring Bethel Express &amp; Impex&#x27;s 9-post launch grid and conversion touchpoints.</p>
+            <div class="poster-card-foot">
+              <button class="poster-inspect-btn carousel-launch-btn" type="button" aria-label="Launch 9 slide carousel viewer">
+                Launch Carousel Viewer (9 Slides) ↗
+              </button>
+              <span class="poster-aspect">Project #03</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Carousel Card 04: People Don&#x27;t Remember Logos. They Remember Brands. -->
+        <article class="poster-card carousel-project-card" data-tags="all alcas" data-project-id="post_4" data-index="3">
+          <div class="poster-card-img-wrap carousel-cover-wrap" 
+               tabindex="0"
+               role="button"
+               aria-label="Launch interactive carousel viewer for People Don&#x27;t Remember Logos. They Remember Brands."
+               data-project-id="post_4"
+               data-index="3">
+            <span class="poster-method-tag" style="background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.4); color: #34d399;">
+              ● 8 SLIDES
+            </span>
+            <img 
+              src="assets/images/creative/carousel_posters/post_4/linkedin-carousel-slide-1(3).jpg" 
+              alt="People Don&#x27;t Remember Logos. They Remember Brands. Cover Slide — ALCAS / Brand Strategy Insights" 
+              class="poster-card-img" 
+              loading="lazy" 
+            />
+          </div>
+          <div class="poster-card-body">
+            <div class="poster-brand-row">
+              <span class="poster-brand">ALCAS / Brand Strategy Insights</span>
+              <span class="poster-aspect">Brand Recall</span>
+            </div>
+            <h3 class="poster-title">People Don&#x27;t Remember Logos. They Remember Brands.</h3>
+            <p class="poster-caption">High-impact carousel exploring brand recall psychology with multi-client examples across Bethel Express, Mithra&#x27;s Biryani, and Z4 Trendz apparel.</p>
+            <div class="poster-card-foot">
+              <button class="poster-inspect-btn carousel-launch-btn" type="button" aria-label="Launch 8 slide carousel viewer">
+                Launch Carousel Viewer (8 Slides) ↗
+              </button>
+              <span class="poster-aspect">Project #04</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Carousel Card 05: Different Industries. One Principle: Strategic Perception -->
+        <article class="poster-card carousel-project-card" data-tags="all alcas" data-project-id="post_5" data-index="4">
+          <div class="poster-card-img-wrap carousel-cover-wrap" 
+               tabindex="0"
+               role="button"
+               aria-label="Launch interactive carousel viewer for Different Industries. One Principle: Strategic Perception"
+               data-project-id="post_5"
+               data-index="4">
+            <span class="poster-method-tag" style="background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.4); color: #34d399;">
+              ● 8 SLIDES
+            </span>
+            <img 
+              src="assets/images/creative/carousel_posters/post_5/ChatGPT Image Jul 5, 2026, 01_57_56 PM.png" 
+              alt="Different Industries. One Principle: Strategic Perception Cover Slide — ALCAS Multi-Brand Portfolio" 
+              class="poster-card-img" 
+              loading="lazy" 
+            />
+          </div>
+          <div class="poster-card-body">
+            <div class="poster-brand-row">
+              <span class="poster-brand">ALCAS Multi-Brand Portfolio</span>
+              <span class="poster-aspect">Brand Architecture</span>
+            </div>
+            <h3 class="poster-title">Different Industries. One Principle: Strategic Perception</h3>
+            <p class="poster-caption">Multi-industry identity analysis examining brand perception and color psychology across fashion, home renovation, jewelry, grooming, real estate, and healthcare.</p>
+            <div class="poster-card-foot">
+              <button class="poster-inspect-btn carousel-launch-btn" type="button" aria-label="Launch 8 slide carousel viewer">
+                Launch Carousel Viewer (8 Slides) ↗
+              </button>
+              <span class="poster-aspect">Project #05</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Carousel Card 06: Preparing Your Shipment: Tracking Every Step -->
+        <article class="poster-card carousel-project-card" data-tags="all bethel" data-project-id="post_6" data-index="5">
+          <div class="poster-card-img-wrap carousel-cover-wrap" 
+               tabindex="0"
+               role="button"
+               aria-label="Launch interactive carousel viewer for Preparing Your Shipment: Tracking Every Step"
+               data-project-id="post_6"
+               data-index="5">
+            <span class="poster-method-tag" style="background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.4); color: #34d399;">
+              ● 7 SLIDES
+            </span>
+            <img 
+              src="assets/images/creative/carousel_posters/post_6/ChatGPT Image Jun 9, 2026, 04_40_00 AM.png" 
+              alt="Preparing Your Shipment: Tracking Every Step Cover Slide — Bethel Express &amp; Impex" 
+              class="poster-card-img" 
+              loading="lazy" 
+            />
+          </div>
+          <div class="poster-card-body">
+            <div class="poster-brand-row">
+              <span class="poster-brand">Bethel Express &amp; Impex</span>
+              <span class="poster-aspect">Client Logistics Journey</span>
+            </div>
+            <h3 class="poster-title">Preparing Your Shipment: Tracking Every Step</h3>
+            <p class="poster-caption">Gamified progress-bar storytelling sequence tracking an international courier shipment from Chennai packing to international flight, customs clearance, and doorstep delivery.</p>
+            <div class="poster-card-foot">
+              <button class="poster-inspect-btn carousel-launch-btn" type="button" aria-label="Launch 7 slide carousel viewer">
+                Launch Carousel Viewer (7 Slides) ↗
+              </button>
+              <span class="poster-aspect">Project #06</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Carousel Card 07: If Chennai Had An Inventory: Collectibles Campaign -->
+        <article class="poster-card carousel-project-card" data-tags="all bethel" data-project-id="post_7" data-index="6">
+          <div class="poster-card-img-wrap carousel-cover-wrap" 
+               tabindex="0"
+               role="button"
+               aria-label="Launch interactive carousel viewer for If Chennai Had An Inventory: Collectibles Campaign"
+               data-project-id="post_7"
+               data-index="6">
+            <span class="poster-method-tag" style="background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.4); color: #34d399;">
+              ● 10 SLIDES
+            </span>
+            <img 
+              src="assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 04_59_26 AM.png" 
+              alt="If Chennai Had An Inventory: Collectibles Campaign Cover Slide — Bethel Express &amp; Impex" 
+              class="poster-card-img" 
+              loading="lazy" 
+            />
+          </div>
+          <div class="poster-card-body">
+            <div class="poster-brand-row">
+              <span class="poster-brand">Bethel Express &amp; Impex</span>
+              <span class="poster-aspect">Viral Creative Campaign</span>
+            </div>
+            <h3 class="poster-title">If Chennai Had An Inventory: Collectibles Campaign</h3>
+            <p class="poster-caption">Viral RPG collectible card concept cataloging iconic Chennai items shipped overseas — Filter Coffee (Legendary), Marina Memories, Silk Sarees, and Sunday Lunch.</p>
+            <div class="poster-card-foot">
+              <button class="poster-inspect-btn carousel-launch-btn" type="button" aria-label="Launch 10 slide carousel viewer">
+                Launch Carousel Viewer (10 Slides) ↗
+              </button>
+              <span class="poster-aspect">Project #07</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Carousel Card 08: Delivering Chennai Worldwide: Parcel Care Carousel -->
+        <article class="poster-card carousel-project-card" data-tags="all bethel" data-project-id="post_8" data-index="7">
+          <div class="poster-card-img-wrap carousel-cover-wrap" 
+               tabindex="0"
+               role="button"
+               aria-label="Launch interactive carousel viewer for Delivering Chennai Worldwide: Parcel Care Carousel"
+               data-project-id="post_8"
+               data-index="7">
+            <span class="poster-method-tag" style="background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.4); color: #34d399;">
+              ● 5 SLIDES
+            </span>
+            <img 
+              src="assets/images/creative/carousel_posters/post_8/ChatGPT Image Jun 25, 2026, 11_22_29 AM.png" 
+              alt="Delivering Chennai Worldwide: Parcel Care Carousel Cover Slide — Bethel Express &amp; Impex" 
+              class="poster-card-img" 
+              loading="lazy" 
+            />
+          </div>
+          <div class="poster-card-body">
+            <div class="poster-brand-row">
+              <span class="poster-brand">Bethel Express &amp; Impex</span>
+              <span class="poster-aspect">Food Parcel Campaign</span>
+            </div>
+            <h3 class="poster-title">Delivering Chennai Worldwide: Parcel Care Carousel</h3>
+            <p class="poster-caption">Atmospheric unboxing series showcasing homemade Chennai snacks, sweets, and savories shipped safely to NRI families in the UK and USA.</p>
+            <div class="poster-card-foot">
+              <button class="poster-inspect-btn carousel-launch-btn" type="button" aria-label="Launch 5 slide carousel viewer">
+                Launch Carousel Viewer (5 Slides) ↗
+              </button>
+              <span class="poster-aspect">Project #08</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Carousel Card 09: Why Hyrox Training is Different: High-Performance Fitness -->
+        <article class="poster-card carousel-project-card" data-tags="all fitness" data-project-id="post_9" data-index="8">
+          <div class="poster-card-img-wrap carousel-cover-wrap" 
+               tabindex="0"
+               role="button"
+               aria-label="Launch interactive carousel viewer for Why Hyrox Training is Different: High-Performance Fitness"
+               data-project-id="post_9"
+               data-index="8">
+            <span class="poster-method-tag" style="background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.4); color: #34d399;">
+              ● 5 SLIDES
+            </span>
+            <img 
+              src="assets/images/creative/carousel_posters/post_9/1.png" 
+              alt="Why Hyrox Training is Different: High-Performance Fitness Cover Slide — Pro Fit Gym" 
+              class="poster-card-img" 
+              loading="lazy" 
+            />
+          </div>
+          <div class="poster-card-body">
+            <div class="poster-brand-row">
+              <span class="poster-brand">Pro Fit Gym</span>
+              <span class="poster-aspect">Fitness &amp; Lifestyle</span>
+            </div>
+            <h3 class="poster-title">Why Hyrox Training is Different: High-Performance Fitness</h3>
+            <p class="poster-caption">High-energy fitness carousel detailing functional endurance, strength under pressure, and mental toughness with multi-tier membership pricing.</p>
+            <div class="poster-card-foot">
+              <button class="poster-inspect-btn carousel-launch-btn" type="button" aria-label="Launch 5 slide carousel viewer">
+                Launch Carousel Viewer (5 Slides) ↗
+              </button>
+              <span class="poster-aspect">Project #09</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Carousel Card 10: Maxo Tech CRM: Organize Your Sales Pipeline -->
+        <article class="poster-card carousel-project-card" data-tags="all b2b" data-project-id="post_10" data-index="9">
+          <div class="poster-card-img-wrap carousel-cover-wrap" 
+               tabindex="0"
+               role="button"
+               aria-label="Launch interactive carousel viewer for Maxo Tech CRM: Organize Your Sales Pipeline"
+               data-project-id="post_10"
+               data-index="9">
+            <span class="poster-method-tag" style="background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.4); color: #34d399;">
+              ● 5 SLIDES
+            </span>
+            <img 
+              src="assets/images/creative/carousel_posters/post_10/1.png" 
+              alt="Maxo Tech CRM: Organize Your Sales Pipeline Cover Slide — Maxo Tech SaaS" 
+              class="poster-card-img" 
+              loading="lazy" 
+            />
+          </div>
+          <div class="poster-card-body">
+            <div class="poster-brand-row">
+              <span class="poster-brand">Maxo Tech SaaS</span>
+              <span class="poster-aspect">B2B SaaS Product</span>
+            </div>
+            <h3 class="poster-title">Maxo Tech CRM: Organize Your Sales Pipeline</h3>
+            <p class="poster-caption">Problem-led SaaS carousel demonstrating lead fragmentation across WhatsApp and Excel, introducing centralized pipeline tracking and automated follow-ups.</p>
+            <div class="poster-card-foot">
+              <button class="poster-inspect-btn carousel-launch-btn" type="button" aria-label="Launch 5 slide carousel viewer">
+                Launch Carousel Viewer (5 Slides) ↗
+              </button>
+              <span class="poster-aspect">Project #10</span>
+            </div>
+          </div>
+        </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <a class="brand" href="index.html#home"><b>MANOVA</b> / PORTFOLIO</a>
+      <span class="mono">Dedicated Archive · Multi-Slide Carousel Projects</span>
+      <div class="footer-links">
+        <a href="index.html#home">Portfolio Home</a>
+        <a href="creative-poster-gallery.html">← Creative Gallery (Level 3)</a>
+        <a href="static-posters.html">Static Posters (Collection 01) ↗</a>
+        <a href="social-content.html">Social &amp; Content (Level 2)</a>
+        <a href="instagram-grid-mockups.html">Instagram Grids (Project 01)</a>
+        <a href="index.html#digital-marketing">Marketing</a>
+        <a href="index.html#collections">Work</a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- INTERACTIVE CAROUSEL VIEWER MODAL -->
+  <div class="carousel-modal" id="carouselModal" role="dialog" aria-modal="true" aria-label="Social media carousel interactive viewer">
+    <div class="carousel-dialog">
+      
+      <!-- Top Bar: Counter & Close -->
+      <div class="carousel-top-bar">
+        <span class="carousel-counter-badge" id="carouselCounterBadge">1 / 8</span>
+        <button class="carousel-modal-close" id="carouselModalClose" aria-label="Close carousel viewer">✕</button>
+      </div>
+
+      <!-- Slide Stage with On-Image Navigation Arrows -->
+      <div class="carousel-stage" id="carouselStage">
+        <button class="carousel-arrow carousel-arrow-prev" id="carouselArrowPrev" aria-label="Previous slide">←</button>
+        <img src="" alt="" class="carousel-slide-img" id="carouselSlideImg" />
+        <button class="carousel-arrow carousel-arrow-next" id="carouselArrowNext" aria-label="Next slide">→</button>
+      </div>
+
+      <!-- Bottom Info Strip & Clickable Dot Indicators -->
+      <div class="carousel-info-strip">
+        <div class="carousel-meta-label" id="carouselMetaLabel">ALCAS DIGITAL MARKETING AGENCY · 8 SLIDES</div>
+        <h2 class="carousel-dialog-title" id="carouselDialogTitle">Beyond Logos: Why Social Media Branding Matters</h2>
+        <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Slide Indicator Dots">
+          <!-- Dots rendered dynamically -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Embedded Carousel Projects Database
+    const carouselsData = [
+  {
+    "id": "post_1",
+    "title": "Beyond Logos: Why Social Media Branding Matters",
+    "brand": "ALCAS Digital Marketing Agency",
+    "category": "Brand Strategy",
+    "filter": "alcas",
+    "slide_count": 8,
+    "desc": "LinkedIn thought leadership carousel analyzing why social media branding extends far beyond a logo, featuring client proof and profile audit insights.",
+    "slides": [
+      "assets/images/creative/carousel_posters/post_1/linkedin-carousel-slide-1.jpg",
+      "assets/images/creative/carousel_posters/post_1/linkedin-carousel-slide-2.jpg",
+      "assets/images/creative/carousel_posters/post_1/linkedin-carousel-slide-3.jpg",
+      "assets/images/creative/carousel_posters/post_1/linkedin-carousel-slide-4.jpg",
+      "assets/images/creative/carousel_posters/post_1/linkedin-carousel-slide-5.jpg",
+      "assets/images/creative/carousel_posters/post_1/linkedin-carousel-slide-6.jpg",
+      "assets/images/creative/carousel_posters/post_1/linkedin-carousel-slide-7.jpg",
+      "assets/images/creative/carousel_posters/post_1/linkedin-carousel-slide-8.jpg"
+    ]
+  },
+  {
+    "id": "post_2",
+    "title": "Vinay Renovation & Beyond: Brand Identity Architecture",
+    "brand": "ALCAS / Vinay Renovation & Beyond",
+    "category": "Client Brand Identity",
+    "filter": "alcas",
+    "slide_count": 9,
+    "desc": "Step-by-step case study breakdown of building a complete identity system, logo design, stationery suite, and professional brand positioning for a renovation firm.",
+    "slides": [
+      "assets/images/creative/carousel_posters/post_2/linkedin-carousel-slide-1(1).jpg",
+      "assets/images/creative/carousel_posters/post_2/linkedin-carousel-slide-2(1).jpg",
+      "assets/images/creative/carousel_posters/post_2/linkedin-carousel-slide-3(1).jpg",
+      "assets/images/creative/carousel_posters/post_2/linkedin-carousel-slide-4(1).jpg",
+      "assets/images/creative/carousel_posters/post_2/linkedin-carousel-slide-5(1).jpg",
+      "assets/images/creative/carousel_posters/post_2/linkedin-carousel-slide-6(1).jpg",
+      "assets/images/creative/carousel_posters/post_2/linkedin-carousel-slide-7(1).jpg",
+      "assets/images/creative/carousel_posters/post_2/linkedin-carousel-slide-8(1).jpg",
+      "assets/images/creative/carousel_posters/post_2/linkedin-carousel-slide-9.jpg"
+    ]
+  },
+  {
+    "id": "post_3",
+    "title": "Why Your Instagram Grid is Costing You Customers",
+    "brand": "ALCAS / Bethel Express & Impex Case Study",
+    "category": "Profile Architecture",
+    "filter": "alcas",
+    "slide_count": 9,
+    "desc": "Profile diagnostic examining feed confusion versus consistency, featuring Bethel Express & Impex's 9-post launch grid and conversion touchpoints.",
+    "slides": [
+      "assets/images/creative/carousel_posters/post_3/linkedin-carousel-slide-1(2).jpg",
+      "assets/images/creative/carousel_posters/post_3/linkedin-carousel-slide-2(2).jpg",
+      "assets/images/creative/carousel_posters/post_3/linkedin-carousel-slide-3(2).jpg",
+      "assets/images/creative/carousel_posters/post_3/linkedin-carousel-slide-4(2).jpg",
+      "assets/images/creative/carousel_posters/post_3/linkedin-carousel-slide-5(2).jpg",
+      "assets/images/creative/carousel_posters/post_3/linkedin-carousel-slide-6(2).jpg",
+      "assets/images/creative/carousel_posters/post_3/linkedin-carousel-slide-7(2).jpg",
+      "assets/images/creative/carousel_posters/post_3/linkedin-carousel-slide-8(2).jpg",
+      "assets/images/creative/carousel_posters/post_3/linkedin-carousel-slide-9(1).jpg"
+    ]
+  },
+  {
+    "id": "post_4",
+    "title": "People Don't Remember Logos. They Remember Brands.",
+    "brand": "ALCAS / Brand Strategy Insights",
+    "category": "Brand Recall",
+    "filter": "alcas",
+    "slide_count": 8,
+    "desc": "High-impact carousel exploring brand recall psychology with multi-client examples across Bethel Express, Mithra's Biryani, and Z4 Trendz apparel.",
+    "slides": [
+      "assets/images/creative/carousel_posters/post_4/linkedin-carousel-slide-1(3).jpg",
+      "assets/images/creative/carousel_posters/post_4/linkedin-carousel-slide-2(3).jpg",
+      "assets/images/creative/carousel_posters/post_4/linkedin-carousel-slide-3(3).jpg",
+      "assets/images/creative/carousel_posters/post_4/linkedin-carousel-slide-4(3).jpg",
+      "assets/images/creative/carousel_posters/post_4/linkedin-carousel-slide-5(3).jpg",
+      "assets/images/creative/carousel_posters/post_4/linkedin-carousel-slide-6(3).jpg",
+      "assets/images/creative/carousel_posters/post_4/linkedin-carousel-slide-7(3).jpg",
+      "assets/images/creative/carousel_posters/post_4/linkedin-carousel-slide-8(3).jpg"
+    ]
+  },
+  {
+    "id": "post_5",
+    "title": "Different Industries. One Principle: Strategic Perception",
+    "brand": "ALCAS Multi-Brand Portfolio",
+    "category": "Brand Architecture",
+    "filter": "alcas",
+    "slide_count": 8,
+    "desc": "Multi-industry identity analysis examining brand perception and color psychology across fashion, home renovation, jewelry, grooming, real estate, and healthcare.",
+    "slides": [
+      "assets/images/creative/carousel_posters/post_5/ChatGPT Image Jul 5, 2026, 01_57_56 PM.png",
+      "assets/images/creative/carousel_posters/post_5/ChatGPT Image Jul 5, 2026, 01_59_11 PM.png",
+      "assets/images/creative/carousel_posters/post_5/ChatGPT Image Jul 5, 2026, 01_59_23 PM.png",
+      "assets/images/creative/carousel_posters/post_5/ChatGPT Image Jul 5, 2026, 01_59_40 PM.png",
+      "assets/images/creative/carousel_posters/post_5/ChatGPT Image Jul 5, 2026, 02_01_30 PM.png",
+      "assets/images/creative/carousel_posters/post_5/ChatGPT Image Jul 5, 2026, 02_01_45 PM.png",
+      "assets/images/creative/carousel_posters/post_5/ChatGPT Image Jul 5, 2026, 02_09_54 PM.png",
+      "assets/images/creative/carousel_posters/post_5/ChatGPT Image Jul 5, 2026, 02_28_57 PM.png"
+    ]
+  },
+  {
+    "id": "post_6",
+    "title": "Preparing Your Shipment: Tracking Every Step",
+    "brand": "Bethel Express & Impex",
+    "category": "Client Logistics Journey",
+    "filter": "bethel",
+    "slide_count": 7,
+    "desc": "Gamified progress-bar storytelling sequence tracking an international courier shipment from Chennai packing to international flight, customs clearance, and doorstep delivery.",
+    "slides": [
+      "assets/images/creative/carousel_posters/post_6/ChatGPT Image Jun 9, 2026, 04_40_00 AM.png",
+      "assets/images/creative/carousel_posters/post_6/ChatGPT Image Jun 9, 2026, 04_40_53 AM.png",
+      "assets/images/creative/carousel_posters/post_6/ChatGPT Image Jun 9, 2026, 04_42_13 AM.png",
+      "assets/images/creative/carousel_posters/post_6/ChatGPT Image Jun 9, 2026, 04_43_08 AM.png",
+      "assets/images/creative/carousel_posters/post_6/ChatGPT Image Jun 9, 2026, 04_44_50 AM.png",
+      "assets/images/creative/carousel_posters/post_6/ChatGPT Image Jun 9, 2026, 04_48_18 AM.png",
+      "assets/images/creative/carousel_posters/post_6/ChatGPT Image Jun 9, 2026, 04_50_41 AM.png"
+    ]
+  },
+  {
+    "id": "post_7",
+    "title": "If Chennai Had An Inventory: Collectibles Campaign",
+    "brand": "Bethel Express & Impex",
+    "category": "Viral Creative Campaign",
+    "filter": "bethel",
+    "slide_count": 10,
+    "desc": "Viral RPG collectible card concept cataloging iconic Chennai items shipped overseas \u2014 Filter Coffee (Legendary), Marina Memories, Silk Sarees, and Sunday Lunch.",
+    "slides": [
+      "assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 04_59_26 AM.png",
+      "assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 05_00_18 AM.png",
+      "assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 05_02_51 AM.png",
+      "assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 05_04_43 AM.png",
+      "assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 05_05_57 AM.png",
+      "assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 05_07_25 AM.png",
+      "assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 05_09_15 AM.png",
+      "assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 05_09_34 AM.png",
+      "assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 05_20_40 AM.png",
+      "assets/images/creative/carousel_posters/post_7/ChatGPT Image Jun 9, 2026, 05_20_47 AM.png"
+    ]
+  },
+  {
+    "id": "post_8",
+    "title": "Delivering Chennai Worldwide: Parcel Care Carousel",
+    "brand": "Bethel Express & Impex",
+    "category": "Food Parcel Campaign",
+    "filter": "bethel",
+    "slide_count": 5,
+    "desc": "Atmospheric unboxing series showcasing homemade Chennai snacks, sweets, and savories shipped safely to NRI families in the UK and USA.",
+    "slides": [
+      "assets/images/creative/carousel_posters/post_8/ChatGPT Image Jun 25, 2026, 11_22_29 AM.png",
+      "assets/images/creative/carousel_posters/post_8/ChatGPT Image Jun 25, 2026, 11_36_58 AM.png",
+      "assets/images/creative/carousel_posters/post_8/ChatGPT Image Jun 25, 2026, 11_52_56 AM.png",
+      "assets/images/creative/carousel_posters/post_8/ChatGPT Image Jun 25, 2026, 11_55_52 AM.png",
+      "assets/images/creative/carousel_posters/post_8/ChatGPT Image Jun 25, 2026, 12_07_51 PM.png"
+    ]
+  },
+  {
+    "id": "post_9",
+    "title": "Why Hyrox Training is Different: High-Performance Fitness",
+    "brand": "Pro Fit Gym",
+    "category": "Fitness & Lifestyle",
+    "filter": "fitness",
+    "slide_count": 5,
+    "desc": "High-energy fitness carousel detailing functional endurance, strength under pressure, and mental toughness with multi-tier membership pricing.",
+    "slides": [
+      "assets/images/creative/carousel_posters/post_9/1.png",
+      "assets/images/creative/carousel_posters/post_9/2.png",
+      "assets/images/creative/carousel_posters/post_9/3.png",
+      "assets/images/creative/carousel_posters/post_9/4.png",
+      "assets/images/creative/carousel_posters/post_9/5.png"
+    ]
+  },
+  {
+    "id": "post_10",
+    "title": "Maxo Tech CRM: Organize Your Sales Pipeline",
+    "brand": "Maxo Tech SaaS",
+    "category": "B2B SaaS Product",
+    "filter": "b2b",
+    "slide_count": 5,
+    "desc": "Problem-led SaaS carousel demonstrating lead fragmentation across WhatsApp and Excel, introducing centralized pipeline tracking and automated follow-ups.",
+    "slides": [
+      "assets/images/creative/carousel_posters/post_10/1.png",
+      "assets/images/creative/carousel_posters/post_10/2.png",
+      "assets/images/creative/carousel_posters/post_10/3.png",
+      "assets/images/creative/carousel_posters/post_10/4.png",
+      "assets/images/creative/carousel_posters/post_10/5.png"
+    ]
+  }
+];
+
+    (function () {
+      const filterBtns = document.querySelectorAll('.poster-filter-btn');
+      const cards = Array.from(document.querySelectorAll('.carousel-project-card'));
+      const countDisplay = document.getElementById('carouselCountDisplay');
+
+      const modal = document.getElementById('carouselModal');
+      const slideImg = document.getElementById('carouselSlideImg');
+      const counterBadge = document.getElementById('carouselCounterBadge');
+      const metaLabel = document.getElementById('carouselMetaLabel');
+      const dialogTitle = document.getElementById('carouselDialogTitle');
+      const dotsContainer = document.getElementById('carouselDots');
+      const arrowPrev = document.getElementById('carouselArrowPrev');
+      const arrowNext = document.getElementById('carouselArrowNext');
+      const closeBtn = document.getElementById('carouselModalClose');
+      const stage = document.getElementById('carouselStage');
+
+      let currentProject = null;
+      let currentSlideIndex = 0;
+
+      // 1. Filter Logic
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          const filter = btn.dataset.filter;
+          let visibleCount = 0;
+
+          cards.forEach(card => {
+            const tags = card.dataset.tags.split(' ');
+            if (filter === 'all' || tags.includes(filter)) {
+              card.classList.remove('is-filtered-out');
+              visibleCount++;
+            } else {
+              card.classList.add('is-filtered-out');
+            }
+          });
+
+          if (countDisplay) {
+            countDisplay.textContent = `Showing ${visibleCount} of ${cards.length} projects`;
+          }
+        });
+      });
+
+      // 2. Open Carousel Viewer
+      function openCarousel(projectId) {
+        const project = carouselsData.find(p => p.id === projectId);
+        if (!project) return;
+
+        currentProject = project;
+        currentSlideIndex = 0;
+
+        dialogTitle.textContent = project.title;
+        metaLabel.textContent = `${project.brand.toUpperCase()} · ${project.slide_count} SLIDES`;
+
+        // Render Dots
+        dotsContainer.innerHTML = '';
+        project.slides.forEach((_, idx) => {
+          const dot = document.createElement('button');
+          dot.className = 'carousel-dot' + (idx === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+          dot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            goToSlide(idx);
+          });
+          dotsContainer.appendChild(dot);
+        });
+
+        updateSlideView();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      // 3. Update Slide View
+      function updateSlideView() {
+        if (!currentProject) return;
+
+        const total = currentProject.slides.length;
+        const currentSrc = currentProject.slides[currentSlideIndex];
+
+        slideImg.style.opacity = '0.4';
+        slideImg.src = currentSrc;
+        slideImg.alt = `${currentProject.title} — Slide ${currentSlideIndex + 1} of ${total}`;
+        slideImg.onload = () => {
+          slideImg.style.opacity = '1';
+        };
+
+        counterBadge.textContent = `${currentSlideIndex + 1} / ${total}`;
+
+        // Arrow disabled states
+        arrowPrev.disabled = currentSlideIndex === 0;
+        arrowNext.disabled = currentSlideIndex === total - 1;
+
+        // Update active dot
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, idx) => {
+          if (idx === currentSlideIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      function goToSlide(index) {
+        if (!currentProject) return;
+        if (index >= 0 && index < currentProject.slides.length) {
+          currentSlideIndex = index;
+          updateSlideView();
+        }
+      }
+
+      function prevSlide() {
+        if (currentSlideIndex > 0) {
+          currentSlideIndex--;
+          updateSlideView();
+        }
+      }
+
+      function nextSlide() {
+        if (currentProject && currentSlideIndex < currentProject.slides.length - 1) {
+          currentSlideIndex++;
+          updateSlideView();
+        }
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // Card Click Listeners
+      cards.forEach(card => {
+        const wrap = card.querySelector('.carousel-cover-wrap');
+        const btn = card.querySelector('.carousel-launch-btn');
+        const pid = card.dataset.projectId;
+
+        if (wrap) {
+          wrap.addEventListener('click', () => openCarousel(pid));
+          wrap.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openCarousel(pid);
+            }
+          });
+        }
+
+        if (btn) {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openCarousel(pid);
+          });
+        }
+      });
+
+      // Modal Controls
+      if (arrowPrev) arrowPrev.addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); });
+      if (arrowNext) arrowNext.addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); });
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.classList.contains('carousel-dialog')) {
+          closeModal();
+        }
+      });
+
+      // Keyboard Navigation
+      document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('active')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+      });
+
+      // Touch / Swipe Navigation on mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+      if (stage) {
+        stage.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        stage.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          if (touchStartX - touchEndX > 45) {
+            nextSlide();
+          } else if (touchEndX - touchStartX > 45) {
+            prevSlide();
+          }
+        }, { passive: true });
+      }
+
+    })();
+  </script>
+</body>
+</html>

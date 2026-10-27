@@ -1,0 +1,9 @@
+{
+  "name": "digital-marketing-portfolio",
+  "version": "1.0.0",
+  "description": "Manova Samuel — Digital Marketing Portfolio",
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "serve": "python -m http.server 8080"
+  }
+}
